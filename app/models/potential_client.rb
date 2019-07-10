@@ -1,0 +1,2 @@
+class PotentialClient < ApplicationRecord
+end

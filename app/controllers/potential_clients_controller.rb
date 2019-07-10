@@ -1,0 +1,2 @@
+class PotentialClientsController < ApplicationController
+end
