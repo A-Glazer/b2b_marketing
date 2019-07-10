@@ -1,0 +1,2 @@
+class BusinessService < ApplicationRecord
+end
