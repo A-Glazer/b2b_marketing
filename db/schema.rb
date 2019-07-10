@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_07_10_094427) do
 
   create_table "business_services", force: :cascade do |t|
-    t.string "user_id"
+    t.integer "user_id"
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2019_07_10_094427) do
   end
 
   create_table "meetings", force: :cascade do |t|
-    t.string "business_service_id"
-    t.string "potential_client_id"
+    t.integer "business_service_id"
+    t.integer "potential_client_id"
     t.datetime "date"
     t.datetime "time"
     t.string "location"
