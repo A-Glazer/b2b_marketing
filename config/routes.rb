@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meetings
   resources :potential_clients
   resources :business_services
   resources :users
