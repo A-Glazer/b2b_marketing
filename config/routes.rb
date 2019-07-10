@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :meetings
+  root 'sessions#home'
+  
+  get '/signup' => 'users#new'
+  get '/login' => 'sessions#new'
+  post '/login' => 'session#create'
+  
+  
+  # resources :meetings
   resources :potential_clients
   resources :business_services
   resources :users
