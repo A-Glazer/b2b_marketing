@@ -1,0 +1,7 @@
+
+ <% @clients.each do |client| %>
+      <li> <%= link_to "#{client.name}", potential_client_path(client) %> </li>
+    <% end %>
+
+    <p>Client name</p>
+    <p>Last Contacted</p>

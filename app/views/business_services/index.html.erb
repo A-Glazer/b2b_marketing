@@ -1,0 +1,8 @@
+
+ <% @services.each do |service| %>
+      <li> <%= link_to "#{service.name}", business_service_path(service) %> </li>
+    <% end %>
+
+    <p>Business Service Name</p>
+    <p>Business Service Desciption</p>
+    <p>Potential Clients</p>

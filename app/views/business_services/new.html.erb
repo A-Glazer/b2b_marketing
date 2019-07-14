@@ -1,0 +1,15 @@
+<h1>Create a new Business Service:</h1>
+
+<%= form_for @service do |f| %>
+    
+    <%= f.label :name %>   
+    <%= f.text_field :name %>
+    <br><br>
+
+    <%= f.label :description %>   
+    <%= f.text_area :description %>
+    <br><br>
+
+<br><br>
+    <%= f.submit "Create New Service" %>
+<% end %>

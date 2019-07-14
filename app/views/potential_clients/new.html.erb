@@ -1,0 +1,32 @@
+<h1>Create a new potential client:</h1>
+
+<%= form_for @client do |f| %>
+    
+    <%= f.label :name %>   
+    <%= f.text_field :name %>
+    <br><br>
+
+    <%= f.label :last_contacted %>   
+    <%= f.date_field :last_contacted %>
+    <br><br>
+
+    <%= f.label :reply %>   
+    <%= f.text_area :reply %>
+    <br><br>
+
+    <%= f.label :follow_up %>   
+    <%= f.date_field :follow_up %>
+    <br><br>
+
+    <%= f.label :agreed_to_meeting %>   
+    <%= f.text_field :agreed_to_meeting %>
+    <br><br>
+
+    Select A Business Service
+    <%#= f.label :business_service_id, "Select a Service" %>   
+    <%#= f.collection_select :business_service_id, BusinessService.all, :id, :name %>
+    <br><br>
+
+<br><br>
+    <%= f.submit "Create New Client" %>
+<% end %>
