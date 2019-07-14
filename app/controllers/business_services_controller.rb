@@ -4,8 +4,11 @@ class BusinessServicesController < ApplicationController
    end
 
    def create
-    @service = BusinessService.new(service_params)
-#not working
+    # binding.pry
+    @service = current_user.business_services.build(service_params)
+    # @service = current_user.business_services.new(params[:name])
+#save and link not working - want it to link to the business service show page
+        #need to make potential_client_id optional
         if @service.save
             redirect_to business_service_path(@service)
         else

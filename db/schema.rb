@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_10_094251) do
     t.string "name"
     t.string "description"
     t.integer "user_id"
-    t.integer "potential_client_id"
+    t.integer "potential_client_id", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

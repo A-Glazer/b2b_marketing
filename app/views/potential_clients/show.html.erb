@@ -1,8 +1,11 @@
 <h1>Potential Client Information </h1>
 
-<p>Name: <%= @client.name %></p>
+<p>Name: </p>
 <p>Last Contacted: </p>
 <p>Reply: </p>
 <p>Follow up: </p>
 <p>Agreed to Meeting: </p>
 <p> Business Service it belongs to:</p>
+
+<%# link not working %>
+<%= link_to "Back to Business Services", business_service_path(@service), class: 'button' %>
