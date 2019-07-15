@@ -17,6 +17,8 @@ class PotentialClientsController < ApplicationController
 
     def show
         @client = PotentialClient.find_by(name: params[:name])
+        @service = current_user.business_services
+  
     end
 
     def index

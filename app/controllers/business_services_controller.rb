@@ -8,7 +8,7 @@ class BusinessServicesController < ApplicationController
     @service = current_user.business_services.build(service_params)
     # @service = current_user.business_services.new(params[:name])
 #save and link not working - want it to link to the business service show page
-        #need to make potential_client_id optional
+        #need to make potential_client_id optional => need to test if working
         if @service.save
             redirect_to business_service_path(@service)
         else
