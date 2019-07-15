@@ -1,13 +1,21 @@
 class PotentialClientsController < ApplicationController
     def new
-        @client = PotentialClient.new
+        # binding.pry
+        @service = BusinessService.find(params[:business_service_id]) 
+        @client = @service.build_potential_client
+        # binding.pry
+        # @client = PotentialClient.new
     end
 
     def create
+        binding.pry
         # @client = current_user.potential_clients.build(client_params)
-        @client = PotentialClient.new(client_params)
+        @service = BusinessService.find(params[:business_service_id]) 
+        @client = @service.build_potential_client(client_params)
+        # @client = PotentialClient.new(client_params)
 
-        if @client.save!
+        if @client.save! 
+            @service.save
             redirect_to potential_client_path(@client)
         else
             render :new
@@ -16,8 +24,9 @@ class PotentialClientsController < ApplicationController
 
 
     def show
-        @client = PotentialClient.find_by(name: params[:name])
-        @service = current_user.business_services
+        @client = PotentialClient.find_by(id: params[:id])
+        # binding.pry
+        # @service = PotentialClient.find()
   
     end
 

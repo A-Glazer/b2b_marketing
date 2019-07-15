@@ -1,6 +1,6 @@
 <h1>Create a new potential client:</h1>
 
-<%= form_for @client do |f| %>
+<%= form_for [@service, @client] do |f| %>
     
     <%= f.label :name %>   
     <%= f.text_field :name %>
@@ -23,6 +23,7 @@
     <br><br>
 
     Select A Business Service
+
     <%#= f.label :business_service_id, "Select a Service" %>   
     <%#= f.collection_select :business_service_id, BusinessService.all, :id, :name %>
     <br><br>

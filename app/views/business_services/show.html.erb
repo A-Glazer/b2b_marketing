@@ -8,10 +8,15 @@ Potential Clients:
 Client #1 More Details => link to potential client page</li> 
 
 <br><br>
-<li>Client #2 Name <%= @potential_clients.name %><br> 
+<li>Client #2 Name 
+<% if @potential_client != nil %>
+    <%= @potential_client %>
+<% end %>
+
+<br> 
 Client #2 More Details => link to potential client page</li> 
 
 </ul>
 
-<%= link_to "Create a New Potential Client", new_potential_client_path, class: 'button' %>
+<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
 <%= link_to "Home", user_path(@user), class: 'button' %>

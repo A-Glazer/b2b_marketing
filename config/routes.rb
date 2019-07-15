@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   
   
   # resources :meetings
-  resources :potential_clients
-  resources :business_services do
-    resources :users
-    # resources :potential_clients
-  end
+  # resources :potential_clients
   resources :users
+
+  resources :business_services do
+    # resources :users
+    resources :potential_clients
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

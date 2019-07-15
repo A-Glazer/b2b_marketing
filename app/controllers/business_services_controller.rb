@@ -18,7 +18,11 @@ class BusinessServicesController < ApplicationController
     def show
         # binding.pry
         @user = BusinessService.find(params[:id]).user
-        # @potential_client = BusinessService.find(params[:id]).potential_client
+        @potential_client = BusinessService.find(params[:id]).potential_client_id
+        @service = BusinessService.find(params[:id])
+            # if @potential_client != nil
+            #     @potential_client
+            # end 
     end
 
     def index
