@@ -6,10 +6,9 @@ class BusinessServicesController < ApplicationController
    def create
     # binding.pry
     @service = current_user.business_services.build(service_params)
-    # @service = current_user.business_services.new(params[:name])
-#save and link not working - want it to link to the business service show page
-        #need to make potential_client_id optional => need to test if working
+    
         if @service.save
+
             redirect_to business_service_path(@service)
         else
             render :new
@@ -17,6 +16,9 @@ class BusinessServicesController < ApplicationController
    end
 
     def show
+        # binding.pry
+        @user = BusinessService.find(params[:id]).user
+        # @potential_client = BusinessService.find(params[:id]).potential_client
     end
 
     def index
@@ -25,6 +27,6 @@ class BusinessServicesController < ApplicationController
 
     private
     def service_params
-        params.require(:business_service).permit(:name, :description)
+        params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
     end
 end
