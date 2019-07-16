@@ -19,12 +19,12 @@ class BusinessServicesController < ApplicationController
         # binding.pry
         @user = BusinessService.find(params[:id]).user
         @potential_client = BusinessService.find(params[:id]).potential_client_id
+        # binding.pry
         @service = BusinessService.find(params[:id])
-            # if @potential_client != nil
-            #     @potential_client
-            # end 
+        # @potential_clients = @service.potential_client
         @potential_clients = PotentialClient.all  
-        # binding.pry  
+
+        binding.pry  
     end
 
     def index
