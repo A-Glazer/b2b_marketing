@@ -8,15 +8,14 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
-        binding.pry
-        # @client = current_user.potential_clients.build(client_params)
+        # binding.pry
+   
         @service = BusinessService.find(params[:business_service_id]) 
         @client = @service.build_potential_client(client_params)
-        # @client = PotentialClient.new(client_params)
 
         if @client.save! 
             @service.save
-            redirect_to potential_client_path(@client)
+            redirect_to business_service_potential_client_path(@service, @client)
         else
             render :new
         end
@@ -26,7 +25,7 @@ class PotentialClientsController < ApplicationController
     def show
         @client = PotentialClient.find_by(id: params[:id])
         # binding.pry
-        # @service = PotentialClient.find()
+        @service = BusinessService.find(params[:business_service_id])
   
     end
 

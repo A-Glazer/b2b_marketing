@@ -8,11 +8,9 @@ Potential Clients:
 Client #1 More Details => link to potential client page</li> 
 
 <br><br>
-<li>Client #2 Name 
-<% if @potential_client != nil %>
-    <%= @potential_client %>
-<% end %>
-
+<%binding.pry%>
+<li>Client #2 Name: <%= @service.potential_client.name %>
+<%# need to figure out how to get all clients %>
 <br> 
 Client #2 More Details => link to potential client page</li> 
 
