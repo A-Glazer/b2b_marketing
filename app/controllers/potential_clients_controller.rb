@@ -26,6 +26,7 @@ class PotentialClientsController < ApplicationController
         @client = PotentialClient.find_by(id: params[:id])
         # binding.pry
         @service = BusinessService.find(params[:business_service_id])
+        # binding.pry
   
     end
 

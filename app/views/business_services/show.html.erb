@@ -2,19 +2,14 @@
 <p>Description</p>
 
 Potential Clients:
-<ul>
 
-<li>Client #1 Name (@potential_clients.name)<br>
-Client #1 More Details => link to potential client page</li> 
 
-<br><br>
-<%binding.pry%>
-<li>Client #2 Name: <%= @service.potential_client.name %>
-<%# need to figure out how to get all clients %>
-<br> 
-Client #2 More Details => link to potential client page</li> 
+<% @potential_clients.each_with_index do |client, i| %>
+    Client #<%= i + 1 %> Name: <%= client.name %><br>
+    URL: <%= link_to "See More", business_service_potential_client_path(client) %>
+<% end %>
 
-</ul>
+
 
 <%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
 <%= link_to "Home", user_path(@user), class: 'button' %>

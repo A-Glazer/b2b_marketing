@@ -23,6 +23,8 @@ class BusinessServicesController < ApplicationController
             # if @potential_client != nil
             #     @potential_client
             # end 
+        @potential_clients = PotentialClient.all  
+        # binding.pry  
     end
 
     def index
