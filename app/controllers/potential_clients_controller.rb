@@ -34,6 +34,10 @@ class PotentialClientsController < ApplicationController
         @clients = PotentialClient.all
     end
 
+    def created_before(time)
+        @created_before = PotentialClient.created_before(Time.zone.now)
+    end
+
     private
     def client_params
         params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting)

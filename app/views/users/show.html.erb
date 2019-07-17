@@ -1,36 +1,31 @@
-<h1>Welcome (@user.username)</h1>
+<h1>Welcome <%= @user.username %></h1>
 
+<%# List all potential_clients
+    each potential_client link to show page
+    business_service that the potential_client would do well with %>
 
-
-<p><b><u>Business Service #1 (@business_services.name) => link to business_sevice page</u></b></h3> 
-<p><i>Business Service Desription (@business_services.description)</i></p>
-
-<p>Potential Clients:</p>
+<h3>Potential Clients</h3>
 <ul>
 
-<li>Client #1 Name (@potential_clients.name)<br>
-Client #1 More Details => link to potential client page</li> 
-
-<br><br>
-<li>Client #2 Name (@potential_clients.name)<br> 
-Client #2 More Details</li> 
+<li> Name: <%= @potential_client.name %></li>
 
 </ul>
 
-<br><br>
-<p><b><u>Business Service #2 (@business_services.name)</u></b></h3>
-<p><i>Business Service Desription (@business_services.description)</i></p>
+<h3>Business Services</h3>
 
-<p>Potential Clients:</p>
 <ul>
+<li>Business Service: <%= @business_service.name %></li>
+    potential_clients of business_service
 
-<li>Client #1 Name (@potential_clients.name)<br>
-Client #1 More Details</li> 
-
-<br><br>
-<li>Client #2 Name (@potential_clients.name)<br> 
-Client #2 More Details</li> 
-
-</ul>
+<br>
 
 <%= link_to "Create a New Business Service", new_business_service_path, class: 'button' %>
+<%#= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
+
+<% @business_services.each do |service| %>
+    <% if service.user_id == @user %>
+        <% binding.pry %>
+    <% end %>
+        
+<% end %>
+

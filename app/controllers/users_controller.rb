@@ -18,10 +18,18 @@ class UsersController < ApplicationController
 
 
     def show
-        # @client = PotentialClient.find_by(id: params[:id])
+        @potential_client = PotentialClient.find_by(id: params[:id])
         # binding.pry
-        # @service = BusinessService.find(params[:business_service_id])
+        @business_service = BusinessService.find_by(id: params[:id])
+        @business_services = BusinessService.all
+    #    session[:user_id] = @user.id
+        # binding.pry
+        @user = current_user
     end
+
+    # def included
+    #     @user_include = User.included
+    # end
 
     private 
 
