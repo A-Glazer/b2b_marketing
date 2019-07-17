@@ -3,12 +3,13 @@
 
 Potential Clients:
 
+<%# need to figure out how to iterate over the potential clients to only bring up the ones belonging to the business service. I though about potential_client.business_service_id == business_service_id %>
+<%# @potential_clients.each_with_index do |client, i| %>
+    Client #<%#= i + 1 %> Name: <%#= client.name %><br>
+    URL: <%#= link_to "See More", business_service_potential_client_path(client) %>
+<%# end %>
 
-<% @potential_clients.each_with_index do |client, i| %>
-    Client #<%= i + 1 %> Name: <%= client.name %><br>
-    URL: <%= link_to "See More", business_service_potential_client_path(client) %>
-<% end %>
-
+<%= @service.potential_client %>
 
 
 <%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
