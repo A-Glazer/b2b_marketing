@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :business_services_potential_clients
   root 'sessions#home'
   
   get '/signup' => 'users#new'

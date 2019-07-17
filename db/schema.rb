@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_094251) do
+ActiveRecord::Schema.define(version: 2019_07_17_202647) do
 
   create_table "business_services", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "user_id"
-    t.integer "potential_client_id", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "business_services_potential_clients", force: :cascade do |t|
+    t.integer "business_service_id"
+    t.integer "potential_client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

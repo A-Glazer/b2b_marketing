@@ -1,0 +1,2 @@
+class BusinessServicesPotentialClientsController < ApplicationController
+end
