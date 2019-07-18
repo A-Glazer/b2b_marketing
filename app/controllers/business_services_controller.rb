@@ -16,11 +16,11 @@ class BusinessServicesController < ApplicationController
    end
 
     def show
-        @user = BusinessService.find(params[:id]).user
+        find_service
         @business_service = BusinessService.find(params[:id])
         # @potential_client = BusinessService.find(params[:id]).potential_client
         # @potential_clients = @business_service.potential_client
-        binding.pry
+        # binding.pry
         @potential_clients = PotentialClient.all  
 
         # binding.pry  
@@ -30,7 +30,34 @@ class BusinessServicesController < ApplicationController
         @business_services = BusinessService.all
     end
 
+    def edit
+        find_service
+    end
+
+    def update
+        find_service
+        if @business_service.update(service_params)
+            redirect_to business_service_path(@business_service)
+        else
+            render :edit
+        end
+    end
+
+    def destroy
+        find_service
+        @business_service.destroy
+        redirect_to business_services_path
+    end
+
     private
+
+    def find_service
+        @business_service = BusinessService.find(params[:id])
+        if !@business_service
+            redirect_to business_services_path
+        end
+    end
+
     def service_params
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
     end

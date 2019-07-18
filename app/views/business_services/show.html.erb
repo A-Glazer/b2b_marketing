@@ -5,5 +5,7 @@ Potential Clients:
 <%= @potential_clients %>
 
 <br>
+<%= link_to "Edit Business Service", edit_business_service_path(@business_service.id) %><br>
+<%= link_to "Delete", business_service_path(@business_service.id), method: :delete %><br>
 <%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service), class: 'button' %>
 <br><%= link_to "Home", user_path(@user), class: 'button' %>
