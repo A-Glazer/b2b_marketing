@@ -22,10 +22,6 @@
 <%= link_to "Create a New Business Service", new_business_service_path, class: 'button' %>
 <%#= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
 
-<% @business_services.each do |service| %>
-    <% if service.user_id == @user %>
-        <% binding.pry %>
-    <% end %>
         
-<% end %>
+
 

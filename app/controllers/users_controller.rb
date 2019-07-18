@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
     def show
         @potential_client = PotentialClient.find_by(id: params[:id])
-        # binding.pry
+
         @business_service = BusinessService.find_by(id: params[:id])
-        @business_services = BusinessService.all
+        # @potential_clients = BusinessServicePotentialClient.find_by(business_service_id: business_service.id)
     #    session[:user_id] = @user.id
-        # binding.pry
+
         @user = current_user
     end
 

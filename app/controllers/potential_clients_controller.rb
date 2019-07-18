@@ -24,7 +24,7 @@ class PotentialClientsController < ApplicationController
 
     def show
         @client = PotentialClient.find_by(id: params[:id])
-        # binding.pry
+        binding.pry
         @service = BusinessService.find(params[:business_service_id])
         # binding.pry
   
@@ -34,12 +34,13 @@ class PotentialClientsController < ApplicationController
         @clients = PotentialClient.all
     end
 
-    def created_before(time)
-        @created_before = PotentialClient.created_before(Time.zone.now)
-    end
-
+    
     private
     def client_params
         params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting)
+    end
+
+    def created_before(date)
+        @created_before = self.created_before(date)
     end
 end
