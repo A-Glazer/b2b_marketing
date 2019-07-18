@@ -4,8 +4,16 @@ class PotentialClient < ApplicationRecord
     
     # has_many :business_services
     # has_many :users, through: :business_services
-    belongs_to :business_services_potential_client
+    has_many :business_services_potential_client
+    has_many :business_services, through: :business_services_potential_client
 
    
-    validates :agreed_to_meeting, inclusion: { in: %w(yes no), message: "Please enter yes or no"}
+    # validates :agreed_to_meeting, inclusion: { in: %w(yes no), message: "Please enter yes or no"}
 end
+
+
+
+# user has potentional clients through business business_services
+# business service belongs to user and potential client (join table)
+
+

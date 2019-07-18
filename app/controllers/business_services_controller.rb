@@ -1,15 +1,15 @@
 class BusinessServicesController < ApplicationController
    def new
-    @service = BusinessService.new
+    @business_service = BusinessService.new
    end
 
    def create
     # binding.pry
-    @service = current_user.business_services.build(service_params)
+    @business_service = current_user.business_services.build(service_params)
     
-        if @service.save
+        if @business_service.save
 
-            redirect_to business_service_path(@service)
+            redirect_to business_service_path(@business_service)
         else
             render :new
         end
@@ -20,15 +20,15 @@ class BusinessServicesController < ApplicationController
         @user = BusinessService.find(params[:id]).user
         @potential_client = BusinessService.find(params[:id]).potential_client
         # binding.pry
-        @service = BusinessService.find(params[:id])
-        # @potential_clients = @service.potential_client
+        @business_service = BusinessService.find(params[:id])
+        # @potential_clients = @business_service.potential_client
         @potential_clients = PotentialClient.all  
 
         # binding.pry  
     end
 
     def index
-        @services = BusinessService.all
+        @business_services = BusinessService.all
     end
 
     private

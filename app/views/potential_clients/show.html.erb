@@ -5,14 +5,14 @@
 <% end %>
 
 <ul>
-<li>Name: <%= @client.name %></li><br>
+<li>Name: <%= @potential_client.name %></li><br>
 
-<li>Last Contacted: <%= @client.last_contacted %></li><br>
-<li>Reply: <%= @client.reply %></li><br>
-<li>Follow up: <%= @client.follow_up %></li><br>
-<li>Agreed to Meeting: <%= @client.agreed_to_meeting %></li><br>
+<li>Last Contacted: <%= @potential_client.last_contacted %></li><br>
+<li>Reply: <%= @potential_client.reply %></li><br>
+<li>Follow up: <%= @potential_client.follow_up %></li><br>
+<li>Agreed to Meeting: <%= @potential_client.agreed_to_meeting %></li><br>
 
-<% @client.business_services.each do |service| %>
+<% @potential_client.business_services.each do |service| %>
     <li>Business Service(s): <%= service.name %></li>
 <% end %>
 
@@ -21,5 +21,5 @@
 
 <br>
 
-<%= link_to "Back to Business Services", business_service_path(@service), class: 'button' %>
+<%= link_to "Back to Business Services", business_service_path(@business_service), class: 'button' %>
 

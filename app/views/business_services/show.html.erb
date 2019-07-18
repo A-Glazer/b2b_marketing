@@ -9,8 +9,8 @@ Potential Clients:
     URL: <%#= link_to "See More", business_service_potential_client_path(client) %>
 <%# end %>
 
-<%= @service.potential_client %>
+<%= @business_service.potential_client %>
 
 
-<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
+<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service), class: 'button' %>
 <%= link_to "Home", user_path(@user), class: 'button' %>

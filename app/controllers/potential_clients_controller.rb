@@ -1,21 +1,23 @@
 class PotentialClientsController < ApplicationController
     def new
-        # binding.pry
-        @service = BusinessService.find(params[:business_service_id]) 
-        @client = @service.build_potential_client
-        # binding.pry
-        # @client = PotentialClient.new
+        @business_service = BusinessService.find(params[:business_service_id]) 
+        @potential_client = @business_service.build_potential_client
+
+        # @potential_client = PotentialClient.new
     end
 
-    def create
+    def create 
         # binding.pry
    
-        @service = BusinessService.find(params[:business_service_id]) 
-        @client = @service.build_potential_client(client_params)
+        @business_service = BusinessService.find(params[:business_service_id]) 
+        @potential_client = @business_service.build_potential_client(client_params)
 
-        if @client.save! 
-            @service.save
-            redirect_to business_service_potential_client_path(@service, @client)
+        # new_post = @author.posts.build(title: "Web Development for Cats")
+        # @potential_client = PotentialClient.build(client_params)
+        # binding.pry
+        if @potential_client.save! 
+            @business_service.save
+            redirect_to business_service_potential_client_path(@business_service, @potential_client)
         else
             render :new
         end
@@ -23,15 +25,15 @@ class PotentialClientsController < ApplicationController
 
 
     def show
-        @client = PotentialClient.find_by(id: params[:id])
+        @potential_client = PotentialClient.find_by(id: params[:id])
         binding.pry
-        @service = BusinessService.find(params[:business_service_id])
+        @business_service = BusinessService.find(params[:business_service_id])
         # binding.pry
   
     end
 
     def index
-        @clients = PotentialClient.all
+        @potential_clients = PotentialClient.all
     end
 
     

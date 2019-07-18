@@ -1,27 +1,9 @@
 <h1>Welcome <%= @user.username %></h1>
 
-<%# List all potential_clients
-    each potential_client link to show page
-    business_service that the potential_client would do well with %>
-
-<h3>Potential Clients</h3>
-<ul>
-
-<li> Name: <%= @potential_client.name %></li>
-
-</ul>
-
-<h3>Business Services</h3>
-
-<ul>
-<li>Business Service: <%= @business_service.name %></li>
-    potential_clients of business_service
-
-<br>
-
-<%= link_to "Create a New Business Service", new_business_service_path, class: 'button' %>
-<%#= link_to "Create a New Potential Client", new_business_service_potential_client_path(@service), class: 'button' %>
-
+<p> Would you to <%= link_to "Create a New Business Service", new_business_service_path %> 
+or  
+<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service) %>?
+</p>
         
 
 

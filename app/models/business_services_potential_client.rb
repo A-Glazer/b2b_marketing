@@ -1,4 +1,4 @@
 class BusinessServicesPotentialClient < ApplicationRecord
-    has_many :potential_clients
-    has_many :business_services
+    belongs_to :potential_client
+    belongs_to :business_service
 end
