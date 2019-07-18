@@ -20,11 +20,11 @@ class UsersController < ApplicationController
     def show
         #/users/1 <<<< param = user.id 
         @user = current_user
-        binding.pry
+        # binding.pry
         # trying to show users potential clients
         @potential_client = @user.potential_clients
         # binding.pry
-        @business_service = BusinessService.find_by(id: params[:id])
+        @business_service = @user.business_services
         # @potential_clients = BusinessServicePotentialClient.find_by(business_service_id: business_service.id)
     #    session[:user_id] = @user.id
 

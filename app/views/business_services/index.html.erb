@@ -1,8 +1,12 @@
+<h1>Business Services You Offer:</h1>
 
+<ol>
  <% @business_services.each do |service| %>
-      <li> <%= link_to "#{service.name}", business_service_path(service) %> </li>
+      <li> Service: <%= service.name %><br>
+      Description: <%= service.description %><br>
+      <%= link_to "See More", business_service_path(service) %> </li>
+      <br>
     <% end %>
+</ol>
 
-    <p>Business Service Name</p>
-    <p>Business Service Desciption</p>
-    <p>Potential Clients</p>
+ <%= link_to 'Log Out', logout_path, method: :delete %>

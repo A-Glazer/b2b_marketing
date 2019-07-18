@@ -16,12 +16,11 @@ class BusinessServicesController < ApplicationController
    end
 
     def show
-        # binding.pry
         @user = BusinessService.find(params[:id]).user
-        @potential_client = BusinessService.find(params[:id]).potential_client
-        # binding.pry
         @business_service = BusinessService.find(params[:id])
+        # @potential_client = BusinessService.find(params[:id]).potential_client
         # @potential_clients = @business_service.potential_client
+        binding.pry
         @potential_clients = PotentialClient.all  
 
         # binding.pry  

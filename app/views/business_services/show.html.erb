@@ -1,16 +1,9 @@
-<h1>Business Service Name</h1>
-<p>Description</p>
+<h1><u><%= @business_service.name %></u></h1>
+<h3><i><%= @business_service.description %></i></h3>
 
 Potential Clients:
+<%= @potential_clients %>
 
-<%# need to figure out how to iterate over the potential clients to only bring up the ones belonging to the business service. I though about potential_client.business_service_id == business_service_id %>
-<%# @potential_clients.each_with_index do |client, i| %>
-    Client #<%#= i + 1 %> Name: <%#= client.name %><br>
-    URL: <%#= link_to "See More", business_service_potential_client_path(client) %>
-<%# end %>
-
-<%= @business_service.potential_client %>
-
-
+<br>
 <%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service), class: 'button' %>
-<%= link_to "Home", user_path(@user), class: 'button' %>
+<br><%= link_to "Home", user_path(@user), class: 'button' %>
