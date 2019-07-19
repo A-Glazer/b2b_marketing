@@ -1,22 +1,25 @@
 class PotentialClientsController < ApplicationController
     def new
         @business_service = BusinessService.find(params[:business_service_id]) 
-        @potential_client = @business_service.build_potential_client
-
-        # @potential_client = PotentialClient.new
+        # if params[:business_service_id] && @business_service
+        #     @potential_client = @business_service.potential_clients.build(client_params)
+        # else     
+            @potential_client = PotentialClient.new
+        # end
     end
 
     def create 
         # binding.pry
-   
+        
         @business_service = BusinessService.find(params[:business_service_id]) 
-        @potential_client = @business_service.build_potential_client(client_params)
-
-        # new_post = @author.posts.build(title: "Web Development for Cats")
-        # @potential_client = PotentialClient.build(client_params)
-        # binding.pry
+        # @potential_client = @business_service.build_potential_client(client_params)
+        @potential_client = PotentialClient.new(client_params)
+        # @potential_client.business_service_id = @business_service.id
+        # @potential_client.user_id = current_user.id
+     
         if @potential_client.save! 
             @business_service.save
+            # binding.pry
             redirect_to business_service_potential_client_path(@business_service, @potential_client)
         else
             render :new
