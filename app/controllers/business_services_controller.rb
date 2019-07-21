@@ -8,7 +8,7 @@ class BusinessServicesController < ApplicationController
     @business_service = current_user.business_services.build(service_params)
     
         if @business_service.save
-            service_clients(@business_service.id)
+            # service_clients(@business_service.id)
             # binding.pry
             redirect_to business_service_path(@business_service)
         else
@@ -23,7 +23,8 @@ class BusinessServicesController < ApplicationController
         # @potential_clients = @business_service.potential_client
         # binding.pry
         @potential_clients = PotentialClient.all  
-
+        # binding.pry
+        @potential_client = PotentialClient.new(business_service_id: @business_service.id)
         # binding.pry  
     end
 
@@ -63,7 +64,7 @@ class BusinessServicesController < ApplicationController
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
     end
 
-    def self.service_clients(id)
-        @service_clients = []
-    end
+    # def self.service_clients(id)
+    #     @service_clients = []
+    # end
 end

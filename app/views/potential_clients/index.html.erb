@@ -1,7 +1,19 @@
+<h1>Potential Clients: </h1>
+ <% @potential_clients.each do |client| %>
+  <ul>
+    <li>Name: <u><%= client.name %></u><br>
+    Last Contacted: <%= client.last_contacted %><br>
+    Reply: <%= client.reply %><br>
+    Follow up: <%= client.follow_up %><br>
+    Agreed to Meeting: <%= client.agreed_to_meeting %><br>
 
- <%# @potential_clients.each do |client| %>
-      <li> <%#= link_to "#{client.name}", business_service_potential_client_path(client.id) %> </li>
-    <%# end %>
+    Business Service(s): *
+      <% client.business_services.each do |service| %>
+        <%= service.name %>*
+      <% end %>
+    </li>
+    <li><%= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id) %></li><br><br>
 
-    <p>Client name</p>
-    <p>Last Contacted</p>
+  </ul>
+  <% end %>
+

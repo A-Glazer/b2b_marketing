@@ -7,7 +7,7 @@ class BusinessService < ApplicationRecord
     has_many :business_services_potential_client
     has_many :potential_clients, through: :business_services_potential_client
     
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 
     
 

@@ -1,10 +1,7 @@
-<h1>Create a new potential client:</h1>
+<h1>Edit a Potential Client:</h1>
 
 <%= form_for ([@business_service, @potential_client]) do |f| %>
- <%#= form_for(@business_service) do |f| %> 
-    <%= f.hidden_field :business_service_id %>
-
-
+    
     <%= f.label :name %>   
     <%= f.text_field :name %>
     <br><br>
@@ -25,7 +22,12 @@
     <%= f.text_field :agreed_to_meeting %>
     <br><br>
 
+    <%# Select A Business Service: %>
+
+    <%#= f.label :business_service_id, "Select a Service" %>   
+    <%#= f.collection_select :business_service_id, BusinessService.all, :id, :name %>
+
 
 <br><br>
-    <%= f.submit "Create New Client" %>
+    <%= f.submit "Submit" %>
 <% end %>
