@@ -18,7 +18,7 @@ class BusinessServicesController < ApplicationController
 
     def show
         find_service
-        # @business_service = BusinessService.find_by(id: params[:id])
+        @business_service = BusinessService.find_by(id: params[:id])
         # @potential_client = BusinessService.find(params[:id]).potential_client
         # @potential_clients = @business_service.potential_client
         # binding.pry

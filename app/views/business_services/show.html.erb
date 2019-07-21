@@ -1,8 +1,22 @@
-<h1><u><%= @business_service.name %></u></h1>
-<h3><i><%= @business_service.description %></i></h3>
+<h1><u>Name: <%= @business_service.name %></u></h1>
+<h3><i>Description: <%= @business_service.description %></i></h3>
 
-Potential Clients:
-<%= @potential_clients %>
+<b><u>Potential Clients:</u></b>
+
+<% @potential_clients.each do |client| %>
+
+    <% client.business_services.each do |service| %>
+        <% if service.id == @business_service.id %>
+            <ul>
+            <li>Name: <%= client.name %><br>
+            Last Contacted: <%= client.last_contacted %><br>
+            Reply: <%= client.reply %><br>
+            Business Service: <%= service.name %><br> 
+            <%= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id) %></li><br><br>
+            </ul>
+        <% end %>
+    <% end %>
+<% end %>
 
 <br>
 <%= link_to "Edit Business Service", edit_business_service_path(@business_service.id) %><br>

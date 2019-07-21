@@ -29,7 +29,7 @@ class PotentialClientsController < ApplicationController
 
     def show
         @potential_client = PotentialClient.find_by(id: params[:id])
-        binding.pry
+        #binding.pry
         @business_service = BusinessService.find(params[:business_service_id])
         # binding.pry
   

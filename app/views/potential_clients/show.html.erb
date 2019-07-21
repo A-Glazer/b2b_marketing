@@ -1,17 +1,19 @@
-<h1>Potential Client Information </h1>
+<h1>Potential Client Information: </h1>
 
+<h3>Name: <%= @potential_client.name %></h3>
 
 <ul>
-<li>Name: <%= @potential_client.name %></li><br>
 
 <li>Last Contacted: <%= @potential_client.last_contacted %></li><br>
 <li>Reply: <%= @potential_client.reply %></li><br>
 <li>Follow up: <%= @potential_client.follow_up %></li><br>
 <li>Agreed to Meeting: <%= @potential_client.agreed_to_meeting %></li><br>
 
+<li>Business Service(s): *
 <% @potential_client.business_services.each do |service| %>
-    <li>Business Service(s): <%= service.name %></li>
+     <%= service.name %>*
 <% end %>
+</li>
 
 </ul>
 
