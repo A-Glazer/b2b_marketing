@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_07_17_202647) do
     t.datetime "last_contacted"
     t.string "reply"
     t.datetime "follow_up"
-    t.boolean "agreed_to_meeting"
+    t.string "agreed_to_meeting"
     t.integer "business_service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

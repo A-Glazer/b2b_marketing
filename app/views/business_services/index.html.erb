@@ -1,12 +1,15 @@
-<h1>Business Services You Offer:</h1>
+<h1>Existing Business Services:</h1>
 
 <ol>
- <% @business_services.each do |service| %>
+<% @business_services.each do |service| %>
+  <%# binding.pry%>
+  <% if @user == service.user_id %>
       <li> Service: <%= service.name %><br>
       Description: <%= service.description %><br>
       <%= link_to "See More", business_service_path(service) %> </li>
       <br>
-    <% end %>
+  <% end %>
+<% end %>
 </ol>
 
 <li><%= link_to "Create a New Business Service", new_business_service_path %> </li> 

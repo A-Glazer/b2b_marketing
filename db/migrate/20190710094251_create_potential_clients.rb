@@ -5,7 +5,7 @@ class CreatePotentialClients < ActiveRecord::Migration[5.2]
       t.datetime :last_contacted
       t.string :reply
       t.datetime :follow_up
-      t.boolean :agreed_to_meeting
+      t.string :agreed_to_meeting
       t.integer :business_service_id
 
       t.timestamps

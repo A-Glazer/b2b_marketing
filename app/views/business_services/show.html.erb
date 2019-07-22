@@ -5,7 +5,9 @@
 
 <% @potential_clients.each do |client| %>
 
+
     <% client.business_services.each do |service| %>
+
         <% if service.id == @business_service.id %>
             <ul>
             <li>Name: <%= client.name %><br>
@@ -17,9 +19,12 @@
         <% end %>
     <% end %>
 <% end %>
-
 <br>
-<%= link_to "Edit Business Service", edit_business_service_path(@business_service.id) %><br>
-<%= link_to "Delete", business_service_path(@business_service.id), method: :delete %><br>
-<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service.id, @potential_client) %>
+<br>
 
+<b><u>Links:</b></u><br>
+
+<%= link_to "Edit Business Service", edit_business_service_path(@business_service.id) %><br>
+
+<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service.id, @potential_client) %><br>
+<%= link_to 'Log Out', logout_path, method: :delete %><br>

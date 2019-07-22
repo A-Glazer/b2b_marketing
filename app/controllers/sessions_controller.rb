@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
     def new
         @user = User.new
         render :login
+        #need alert if can't find user and then send to signup page
     end
 
     def create
