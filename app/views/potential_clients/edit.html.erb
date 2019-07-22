@@ -1,26 +1,6 @@
 <h1>Edit a Potential Client:</h1>
 
-<%= form_for ([@business_service, @potential_client]) do |f| %>
-    
-    <%= f.label :name %>   
-    <%= f.text_field :name %>
-    <br><br>
-
-    <%= f.label :last_contacted %>   
-    <%= f.date_field :last_contacted %>
-    <br><br>
-
-    <%= f.label :reply %>   
-    <%= f.text_area :reply %>
-    <br><br>
-
-    <%= f.label :follow_up %>   
-    <%= f.date_field :follow_up %>
-    <br><br>
-
-    <%= f.label :agreed_to_meeting %>   
-    <%= f.text_field :agreed_to_meeting %>
-    <br><br>
+ <%= render 'form' %>
 
     <%# Select A Business Service: %>
 
@@ -28,6 +8,5 @@
     <%#= f.collection_select :business_service_id, BusinessService.all, :id, :name %>
 
 
-<br><br>
     <%= f.submit "Submit" %>
 <% end %>

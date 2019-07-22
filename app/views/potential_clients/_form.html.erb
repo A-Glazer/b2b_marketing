@@ -1,0 +1,30 @@
+<%= form_for ([@business_service, @potential_client]) do |f| %>
+
+
+     <%= render partial: 'layouts/errors', locals: {object: @potential_client} %>
+
+    <%= f.hidden_field :business_service_id %>
+
+
+    <%= f.label :name %>   
+    <%= f.text_field :name %>
+    <br><br>
+
+    <%= f.label :last_contacted %>   
+    <%= f.date_field :last_contacted %>
+    <br><br>
+
+    <%= f.label :reply %>   
+    <%= f.text_area :reply %>
+    <br><br>
+
+    <%= f.label :follow_up %>   
+    <%= f.date_field :follow_up %>
+    <br><br>
+
+    <%= f.label :agreed_to_meeting %>   
+    <%= f.text_field :agreed_to_meeting %>
+    <br><br>
+    
+    <%= f.submit "Submit" %>
+<% end %>

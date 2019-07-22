@@ -4,9 +4,9 @@ class SessionsController < ApplicationController
     def new
         @user = User.new
         render :login
-        #need alert if can't find user and then send to signup page
+        
     end
-
+    
     def create
         # binding.pry
         @user = User.find_by(username: params[:user][:username])
@@ -16,7 +16,9 @@ class SessionsController < ApplicationController
         else
             #need to add flash[alert] message
             #use redirect here vs render to avoid errors in the form_for
-            redirect_to :login
+            
+            flash[:error] = "Sorry, your username or password was incorrect."
+            redirect_to '/'
 
         end
     end
@@ -27,6 +29,7 @@ class SessionsController < ApplicationController
     #logout
     def destroy
         session.clear
+        flash[:notice] = "You have logged out successfully!"
         redirect_to '/'
     end
 
