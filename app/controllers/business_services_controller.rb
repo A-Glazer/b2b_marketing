@@ -1,5 +1,5 @@
 class BusinessServicesController < ApplicationController
-    before_action :logged_in?
+    before_action :logged_in?, :current_user
 
    def new
     @business_service = BusinessService.new
@@ -8,10 +8,11 @@ class BusinessServicesController < ApplicationController
    def create
     # binding.pry
     @business_service = current_user.business_services.build(service_params)
+    @business_service.save
     # binding.pry
     # @business_services.user_id << @user_id unless @potential_client.business_services.include?(@business_service)
-
-        if @business_service.save
+# binding.pry
+        if @business_service
             # service_clients(@business_service.id)
             # binding.pry
             redirect_to business_service_path(@business_service)
@@ -21,7 +22,9 @@ class BusinessServicesController < ApplicationController
    end
 
     def show
+        # binding.pry
         find_service
+        # binding.pry
         # @business_service = BusinessService.find_by(id: params[:id])
         # @potential_client = BusinessService.find(params[:id]).potential_client
         # @potential_clients = @business_service.potential_client
@@ -44,11 +47,11 @@ class BusinessServicesController < ApplicationController
 
     def index
         # if params[:user_id] && user = User.find_by(id: params[:user_id])
-            @business_services = BusinessService.all
+        @business_services = BusinessService.all
             # @business_services = user.business_services
             # binding.pry
         # end
-        @user = current_user.id
+        @user = current_user
         # binding.pry
             
     end
@@ -77,11 +80,12 @@ class BusinessServicesController < ApplicationController
     def find_service
         if current_user
             @business_service = BusinessService.find_by(id: params[:id])
-            if !@business_service
-                redirect_to business_services_path
-            end
+        
+            # if !@business_service
+            #     redirect_to business_services_path
+            # end
         else
-            redirect_to '/'
+            redirect_to business_services_path
         end
     end
 

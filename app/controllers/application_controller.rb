@@ -3,11 +3,21 @@ class ApplicationController < ActionController::Base
    
 private
         def current_user
-            @current_user ||= User.find(session[:user_id]) if logged_in?
+            @user ||= User.find(session[:user_id]) #if logged_in?
         end
 
         def logged_in?
-            session[:user_id]
+            # if current_user.id != session[:user_id] || session[:user_id] == nil
+            # # if session[:user_id] == nil || session[:user_id] != current_user.id
+            #     redirect_to '/'
+            # else
+            #     current_user
+            # end
+            if current_user.nil? 
+                redirect_to '/'
+            else
+                current_user.id = session[:user_id]
+            end
         end
     
 end

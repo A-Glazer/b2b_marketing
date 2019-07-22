@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :logged_in?, only: [:show]
+    before_action :current_user, only: [:show]
 
     #loading the signup form
     def new
@@ -18,15 +20,14 @@ class UsersController < ApplicationController
 
 
     def show
-        #/users/1 <<<< param = user.id 
-        @user = current_user
-        # binding.pry
-        # trying to show users potential clients
+   
+        # @user = User.find_by(id: params[:id])
+        # @potential_client = @user.potential_clients
+        # @business_service = @user.business_services
+        # @user = current_user
         @potential_client = @user.potential_clients
-        # binding.pry
         @business_service = @user.business_services
-        # @potential_clients = BusinessServicePotentialClient.find_by(business_service_id: business_service.id)
-    #    session[:user_id] = @user.id
+
 
     end
 

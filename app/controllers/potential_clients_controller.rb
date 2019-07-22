@@ -1,10 +1,12 @@
 class PotentialClientsController < ApplicationController
+    before_action :logged_in?, :current_user
+
     def new
         @business_service = BusinessService.find_by(id: params[:business_service_id])
    
         # @potential_client = PotentialClient.new
     
-# binding.pry
+        # binding.pry
         if params[:business_service_id] && !BusinessService.exists?(params[:business_service_id])
             redirect_to business_services_path, alert: "Business service not found."
         else
@@ -51,7 +53,7 @@ class PotentialClientsController < ApplicationController
     end
 
     def edit
-        @business_service = BusinessService.find_by(id: params[:business_service_id])
+        @business_service = BusinessService.find_service
         find_client
     end
 
@@ -81,9 +83,9 @@ class PotentialClientsController < ApplicationController
         @created_before = self.created_before(date)
     end
 
-    def find_service
-        @business_service = BusinessService.find_by(id: params[:id])
-    end
+    # def find_service
+    #     @business_service = BusinessService.find_by(id: params[:id])
+    # end
 
     def find_client
         @potential_client = PotentialClient.find_by(id: params[:id])

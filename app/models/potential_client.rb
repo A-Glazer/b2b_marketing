@@ -10,6 +10,11 @@ class PotentialClient < ApplicationRecord
     # accepts_nested_attributes_for :business_services
     validates :name, presence: true, uniqueness: true
     # validates :agreed_to_meeting, inclusion: { in: %w(true false), true_or_false: "Please enter true or false"}
+
+
+    scope :find_service, -> { where(id: params[:business_service_id]) }
+   
+    
 end
 
 

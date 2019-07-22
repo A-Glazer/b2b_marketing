@@ -25,6 +25,20 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'pry'
 gem 'bcrypt'
+
+#for facebook omniauth
+gem 'thin'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
+
+#for Google omniauth
+gem 'omniauth-google-oauth2'
+
+
+
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password

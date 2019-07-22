@@ -2,8 +2,8 @@
 
 <ol>
 <% @business_services.each do |service| %>
-  <%# binding.pry%>
-  <% if @user == service.user_id %>
+  <% if @user.id == service.user_id %>
+
       <li> Service: <%= service.name %><br>
       Description: <%= service.description %><br>
       <%= link_to "See More", business_service_path(service) %> </li>
