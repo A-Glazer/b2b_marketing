@@ -53,13 +53,14 @@ class PotentialClientsController < ApplicationController
     end
 
     def edit
-        @business_service = BusinessService.find_service
-        find_client
+        @business_service = BusinessService.find_by(id: params[:business_service_id])
+        @potential_client = PotentialClient.find_client(params).last
+        #binding.pry
     end
 
     def update
         @business_service = BusinessService.find_by(id: params[:business_service_id])
-        find_client
+        @potential_client = PotentialClient.find_client(params).last
         if @potential_client.update(client_params)
             redirect_to business_service_potential_client_path(@business_service, @potential_client)
         else
@@ -68,9 +69,9 @@ class PotentialClientsController < ApplicationController
     end
 
     def destroy
-        find_client
+        @potential_client = PotentialClient.find_client(params).last
         @potential_client.destroy
-        redirect_to business_service_potential_clients_path(@business_service)
+        redirect_to business_services_path
     end
 
     
@@ -87,10 +88,10 @@ class PotentialClientsController < ApplicationController
     #     @business_service = BusinessService.find_by(id: params[:id])
     # end
 
-    def find_client
-        @potential_client = PotentialClient.find_by(id: params[:id])
-        if !@potential_client
-            redirect_to business_service_potential_clients_path(@business_service)
-        end
-    end
+    # def find_client2
+    #     @potential_client = PotentialClient.find_by(id: params[:id])
+    #     if !@potential_client
+    #         redirect_to business_service_potential_clients_path(@business_service)
+    #     end
+    # end
 end

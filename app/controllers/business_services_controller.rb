@@ -6,18 +6,16 @@ class BusinessServicesController < ApplicationController
    end
 
    def create
-    # binding.pry
+
     @business_service = current_user.business_services.build(service_params)
-    @business_service.save
-    # binding.pry
-    # @business_services.user_id << @user_id unless @potential_client.business_services.include?(@business_service)
-# binding.pry
-        if @business_service
+
+        if @business_service.save
             # service_clients(@business_service.id)
             # binding.pry
             redirect_to business_service_path(@business_service)
         else
-            render :new
+            flash[:alert] = "Please type in a business name."
+            redirect_to new_business_service_path
         end
    end
 

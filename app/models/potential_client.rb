@@ -12,8 +12,8 @@ class PotentialClient < ApplicationRecord
     # validates :agreed_to_meeting, inclusion: { in: %w(true false), true_or_false: "Please enter true or false"}
 
 
-    scope :find_service, -> { where(id: params[:business_service_id]) }
-   
+    scope :find_client, -> (params) { where(id: params[:id]) }
+    
     
 end
 
