@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
             #use redirect here vs render to avoid errors in the form_for
             
             flash[:error] = "Sorry, your username or password was incorrect."
-            redirect_to '/'
+            redirect_to '/login'
 
         end
     end
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     #logout
     def destroy
         session.clear
-        flash[:notice] = "You have logged out successfully!"
+        # flash[:notice] = "You have logged out successfully!"
         redirect_to '/'
     end
 

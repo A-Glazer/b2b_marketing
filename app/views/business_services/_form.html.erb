@@ -1,5 +1,7 @@
 <%= form_for @business_service do |f| %>
 
+<%= flash[:error] %>
+
     <%= render partial: 'layouts/errors', locals: {object: @business_service} %>
 
     

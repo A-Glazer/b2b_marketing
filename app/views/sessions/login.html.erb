@@ -1,4 +1,6 @@
-<h1>Login Page</h1>
+<h1>Log in Page</h1>
+
+<%= flash[:error] %>
 
 <%= form_for @user, url: '/login' do |f| %>
 
@@ -17,3 +19,5 @@
 <br><br>
     <%= f.submit "Sign In" %>
 <% end %>
+
+<p>Don't have an account? <%= link_to "Sign up", signup_path %></p>
