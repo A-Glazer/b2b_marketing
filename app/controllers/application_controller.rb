@@ -7,12 +7,6 @@ private
         end
 
         def logged_in?
-            # if current_user.id != session[:user_id] || session[:user_id] == nil
-            # # if session[:user_id] == nil || session[:user_id] != current_user.id
-            #     redirect_to '/'
-            # else
-            #     current_user
-            # end
             if current_user.nil? 
                 redirect_to '/'
             else

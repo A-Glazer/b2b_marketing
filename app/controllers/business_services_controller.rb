@@ -6,12 +6,9 @@ class BusinessServicesController < ApplicationController
    end
 
    def create
-
     @business_service = current_user.business_services.build(service_params)
 
         if @business_service.save
-            # service_clients(@business_service.id)
-            # binding.pry
             redirect_to business_service_path(@business_service)
         else
             flash[:alert] = "Please type in a business name."
@@ -20,38 +17,23 @@ class BusinessServicesController < ApplicationController
    end
 
     def show
-        # binding.pry
         find_service
-        # binding.pry
-        # @business_service = BusinessService.find_by(id: params[:id])
-        # @potential_client = BusinessService.find(params[:id]).potential_client
-        # @potential_clients = @business_service.potential_client
-        # binding.pry
         @potential_clients = [] 
+
         @all_clients = PotentialClient.all
             @all_clients.each do |client|
-                # binding.pry
                 if client.business_service_id == @business_service.id
                     if !@potential_clients.include?(client) 
                         @potential_clients << client
                     end
                 end
             end
-        # binding.pry
         @potential_client = PotentialClient.new(business_service_id: @business_service.id)
-          
-
     end
 
     def index
-        # if params[:user_id] && user = User.find_by(id: params[:user_id])
         @business_services = BusinessService.all
-            # @business_services = user.business_services
-            # binding.pry
-        # end
-        @user = current_user
-        # binding.pry
-            
+        @user = current_user            
     end
 
     def edit
@@ -78,10 +60,7 @@ class BusinessServicesController < ApplicationController
     def find_service
         if current_user
             @business_service = BusinessService.find_by(id: params[:id])
-        
-            # if !@business_service
-            #     redirect_to business_services_path
-            # end
+
         else
             redirect_to business_services_path
         end
@@ -91,7 +70,4 @@ class BusinessServicesController < ApplicationController
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
     end
 
-    # def self.service_clients(id)
-    #     @service_clients = []
-    # end
 end
