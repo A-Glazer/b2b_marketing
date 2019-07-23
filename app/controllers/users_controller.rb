@@ -20,20 +20,9 @@ class UsersController < ApplicationController
 
 
     def show
-   
-        # @user = User.find_by(id: params[:id])
-        # @potential_client = @user.potential_clients
-        # @business_service = @user.business_services
-        # @user = current_user
         @potential_client = @user.potential_clients
         @business_service = @user.business_services
-
-
     end
-
-    # def included
-    #     @user_include = User.included
-    # end
 
     private 
 
