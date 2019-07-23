@@ -30,10 +30,10 @@ class PotentialClientsController < ApplicationController
         @business_service = @potential_client.business_service_id
     end
 
+    #not for deployment, just for debugging
     def index
         @potential_clients = PotentialClient.all
         @potential_client = PotentialClient.find_client(params).last
-        # @potential_client = PotentialClient.find_by(id: params[:id])
         find_service
     end
 
