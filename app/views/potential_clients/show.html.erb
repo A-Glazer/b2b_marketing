@@ -4,17 +4,16 @@
 
 <ul>
 
-<li>Last Contacted: <%= @potential_client.last_contacted %></li><br>
-<li>Reply: <%= @potential_client.reply %></li><br>
-<li>Follow up: <%= @potential_client.follow_up %></li><br>
-<li>Agreed to Meeting: <%= @potential_client.agreed_to_meeting %></li><br>
+    <li>Last Contacted: <%= @potential_client.last_contacted %></li><br>
+    <li>Reply: <%= @potential_client.reply %></li><br>
+    <li>Follow up: <%= @potential_client.follow_up %></li><br>
+    <li>Agreed to Meeting: <%= @potential_client.agreed_to_meeting %></li><br>
 
-<li>Business Service(s): 
-<% @potential_client.business_services.each do |service| %>
-    <%# binding.pry%>
-     <%= service.name %>
-<% end %>
-</li>
+    <li>Business Service(s): 
+    <% @potential_client.business_services.each do |service| %>
+        <%= service.name %>
+    <% end %>
+    </li>
 
 </ul>
 
@@ -22,12 +21,11 @@
 <br>
 
 <%= link_to "Back to Business Services", business_service_path(@business_service)%><br>
-<%#binding.pry%>
 <%= link_to "Edit Potential Client", edit_business_service_potential_client_path(@business_service, @potential_client) %><br>
 
-<%#= link_to "Edit Potential Client", edit_business_service_potential_client_path(@business_service.id, @potential_client) %><br>
+<br>
 <%= link_to "Delete", business_service_potential_client_path(@business_service, @potential_client), method: :delete %><br>
 
-<%#= link_to "Delete", business_service_potential_client_path(@business_service.id, @potential_client), method: :delete %><br>
+<br>
 
 <%= link_to 'Log Out', logout_path, method: :delete %><br>
