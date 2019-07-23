@@ -6,17 +6,14 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
+ 
   #omniauth callback
   get '/auth/facebook/callback' => 'sessions#facebook_create'
   
-  
-  # resources :meetings
-  # resources :potential_clients
   resources :users
-
   resources :business_services do
-    # resources :users
     resources :potential_clients
   end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

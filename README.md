@@ -1,31 +1,23 @@
 # README
 
-** Need to create error messages
+Welcome to B2B Marketing App. The point of this is app is to help business users connect with potential clients, through the services they offer.
 
-** Need to be able to edit each client's info
-** Need to be able to delete client's info
+## Usage
+Welcome to B2B Marketing App, where you can have an organized way to keep track of potential clients! This application allows a user to create an business service and then connect with a potential client through the service. You can keep track of when they were last contacted, their reply, if they agreed to a meeting, and when would be a good time to follow up.
 
-** Need to be able to edit Business Service Info
-** Need to be able to delete Business Service Info
+## Installation
+1. Fork and clone the app 
+2. Run Bundle Install
+3. Run Rake db:migrate 
 
-** Create validations
+## Contributing
 
-** Create Scope
-
-users has p.clients
-users has b.services
-
-p.clients has 
-
-services has clients thru b.services
-
-all clients belonging to service
-    query the join table 
+Bug reports and pull requests are welcome on GitHub at https://github.com/A-Glazer/b2b_marketing
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant [code of conduct.](https://www.contributor-covenant.org/)
 
 
-      create_table "business_services_potential_clients", force: :cascade do |t|
-    t.integer "potential_client_id"
-    t.integer "business_service_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
