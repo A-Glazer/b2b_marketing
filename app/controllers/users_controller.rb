@@ -10,12 +10,17 @@ class UsersController < ApplicationController
     #signup
     def create
         @user = User.new(user_params)
+        if params[:user][:password] == params[:user][:password_confirmation]
             if @user.save
                 session[:user_id] = @user.id
                 redirect_to user_path(@user)
             else
                 render :new
             end
+        else
+            flash[:error] = "Password and password confirmation must match."
+            redirect_to signup_path 
+        end
     end
 
 
