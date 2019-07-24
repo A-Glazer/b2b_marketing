@@ -25,22 +25,18 @@ class PotentialClientsController < ApplicationController
 
 
     def show
-        # @potential_client = PotentialClient.find_client(params).last #scope being called
         @business_service = @potential_client.business_service_id
     end
 
     #not for deployment, just for debugging
     def index
         @potential_clients = PotentialClient.all
-        # @potential_client = PotentialClient.find_client(params).last
     end
 
     def edit
-        # @potential_client = PotentialClient.find_client(params).last
     end
 
     def update
-        # @potential_client = PotentialClient.find_client(params).last
         if @potential_client.update(client_params)
             redirect_to business_service_potential_client_path(@business_service, @potential_client)
         else
@@ -49,7 +45,6 @@ class PotentialClientsController < ApplicationController
     end
 
     def destroy
-        # @potential_client = PotentialClient.find_client(params).last
         @potential_client.destroy
         redirect_to business_services_path
     end
@@ -59,8 +54,9 @@ class PotentialClientsController < ApplicationController
     def client_params
         params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting, :business_service_id)
     end
-
-    # def created_before(date)
-    #     @created_before = self.created_before(date)
-    # end
+    
 end
+
+# def created_before(date)
+#     @created_before = self.created_before(date)
+# end
