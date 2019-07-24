@@ -1,7 +1,8 @@
 <h1>Edit a Potential Client:</h1>
 
  <%#= render 'form' %>
- <%= render 'form', locals: {object1: @business_service} %>
+ <%= render partial: 'form', locals: {object1: @business_service, object2: @potential_client} %>
+
 
     <%# Select A Business Service: %>
 
