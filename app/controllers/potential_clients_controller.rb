@@ -1,6 +1,7 @@
 class PotentialClientsController < ApplicationController
     before_action :logged_in?, :current_user
     before_action :find_service_for_client, only: [:new, :create, :index, :edit, :update]
+    before_action :find_client_scope, only: [:show, :index, :edit, :update, :destroy]
 
     def new
         if params[:business_service_id] && !BusinessService.exists?(params[:business_service_id])
@@ -24,22 +25,22 @@ class PotentialClientsController < ApplicationController
 
 
     def show
-        @potential_client = PotentialClient.find_client(params).last #scope being called
+        # @potential_client = PotentialClient.find_client(params).last #scope being called
         @business_service = @potential_client.business_service_id
     end
 
     #not for deployment, just for debugging
     def index
         @potential_clients = PotentialClient.all
-        @potential_client = PotentialClient.find_client(params).last
+        # @potential_client = PotentialClient.find_client(params).last
     end
 
     def edit
-        @potential_client = PotentialClient.find_client(params).last
+        # @potential_client = PotentialClient.find_client(params).last
     end
 
     def update
-        @potential_client = PotentialClient.find_client(params).last
+        # @potential_client = PotentialClient.find_client(params).last
         if @potential_client.update(client_params)
             redirect_to business_service_potential_client_path(@business_service, @potential_client)
         else
@@ -48,7 +49,7 @@ class PotentialClientsController < ApplicationController
     end
 
     def destroy
-        @potential_client = PotentialClient.find_client(params).last
+        # @potential_client = PotentialClient.find_client(params).last
         @potential_client.destroy
         redirect_to business_services_path
     end

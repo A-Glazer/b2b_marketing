@@ -26,5 +26,9 @@ private
         def find_service_for_client
             @business_service = BusinessService.find_by(id: params[:business_service_id])
         end
+
+        def find_client_scope
+            @potential_client = PotentialClient.find_client(params).last
+        end
     
 end
