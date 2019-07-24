@@ -3,9 +3,9 @@
  <% @potential_clients.each do |client| %>
   <ul>
     <li>Name: <u><%= client.name %></u><br>
-    Last Contacted: <%= client.last_contacted %><br>
+    Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br>
     Reply: <%= client.reply %><br>
-    Follow up: <%= client.follow_up %><br>
+    Follow up: <%= client.follow_up.strftime("%b %d, %Y") %><br>
     Agreed to Meeting: <%= client.agreed_to_meeting %><br>
 
     Business Service(s): *

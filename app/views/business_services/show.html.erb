@@ -11,7 +11,7 @@
         <% if service.id == @business_service.id %>
             <ul>
             <li>Name: <%= client.name %><br>
-            Last Contacted: <%= client.last_contacted %><br>
+            Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br>
             Reply: <%= client.reply %><br>
             Business Service: <%= service.name %><br> 
             <%= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id) %></li><br><br>

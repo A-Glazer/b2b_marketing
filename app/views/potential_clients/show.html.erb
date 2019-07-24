@@ -4,9 +4,9 @@
 
 <ul>
 
-    <li>Last Contacted: <%= @potential_client.last_contacted %></li><br>
+    <li>Last Contacted: <%= @potential_client.last_contacted.strftime("%b %d, %Y") %></li><br>
     <li>Reply: <%= @potential_client.reply %></li><br>
-    <li>Follow up: <%= @potential_client.follow_up %></li><br>
+    <li>Follow up: <%= @potential_client.follow_up.strftime("%b %d, %Y") %></li><br>
     <li>Agreed to Meeting: <%= @potential_client.agreed_to_meeting %></li><br>
 
     <li>Business Service(s): 
