@@ -1,5 +1,6 @@
 class BusinessServicesController < ApplicationController
-    before_action :logged_in?, :current_user
+    before_action :logged_in?, :current_user 
+    before_action :find_service, only: [:show, :edit, :update, :destroy]
 
    def new
     @business_service = BusinessService.new
@@ -17,7 +18,7 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
-        find_service
+        # find_service
         @potential_clients = [] 
 
         @all_clients = PotentialClient.all
@@ -37,11 +38,11 @@ class BusinessServicesController < ApplicationController
     end
 
     def edit
-        find_service
+        # find_service
     end
 
     def update
-        find_service
+        # find_service
         if @business_service.update(service_params)
             redirect_to business_service_path(@business_service)
         else
@@ -50,21 +51,21 @@ class BusinessServicesController < ApplicationController
     end
 
     def destroy
-        find_service
+        # find_service
         @business_service.destroy
         redirect_to business_services_path
     end
 
     private
 
-    def find_service
-        if current_user
-            @business_service = BusinessService.find_by(id: params[:id])
+    # def find_service
+    #     if current_user
+    #         @business_service = BusinessService.find_by(id: params[:id])
 
-        else
-            redirect_to business_services_path
-        end
-    end
+    #     else
+    #         redirect_to business_services_path
+    #     end
+    # end
 
     def service_params
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
