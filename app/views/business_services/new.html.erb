@@ -2,5 +2,5 @@
 
 <%= flash[:alert] %>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {object: @business_service} %>
 

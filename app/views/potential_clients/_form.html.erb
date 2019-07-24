@@ -1,5 +1,6 @@
-     <%# why does it need @potential_client.last? %>
-<%= form_for ([@business_service, @potential_client]), :html => { :multipart => true } do |f| %>
+
+<%#= form_for ([object1, @potential_client]), :html => { :multipart => true } do |f| %>
+<%= form_for (object1, @potential_client) do |f| %>
 
 <%= flash[:error] %>
 

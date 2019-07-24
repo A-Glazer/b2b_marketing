@@ -14,7 +14,7 @@ class BusinessServicesController < ApplicationController
             flash[:alert] = "Please type in a business name."
             redirect_to new_business_service_path
         end
-   end
+    end
 
     def show
         find_service
