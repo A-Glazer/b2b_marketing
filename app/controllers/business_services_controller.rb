@@ -18,7 +18,6 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
-        # find_service
         @potential_clients = [] 
 
         @all_clients = PotentialClient.all
@@ -38,11 +37,9 @@ class BusinessServicesController < ApplicationController
     end
 
     def edit
-        # find_service
     end
 
     def update
-        # find_service
         if @business_service.update(service_params)
             redirect_to business_service_path(@business_service)
         else
@@ -51,21 +48,11 @@ class BusinessServicesController < ApplicationController
     end
 
     def destroy
-        # find_service
         @business_service.destroy
         redirect_to business_services_path
     end
 
     private
-
-    # def find_service
-    #     if current_user
-    #         @business_service = BusinessService.find_by(id: params[:id])
-
-    #     else
-    #         redirect_to business_services_path
-    #     end
-    # end
 
     def service_params
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)

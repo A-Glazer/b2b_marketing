@@ -22,5 +22,9 @@ private
                 redirect_to business_services_path
             end
         end
+
+        def find_service_for_client
+            @business_service = BusinessService.find_by(id: params[:business_service_id])
+        end
     
 end
