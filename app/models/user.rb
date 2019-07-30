@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
     validates :username, presence: true, uniqueness: true
     
-    validates :password, confirmation: true #checking if password matches
-    validates :password_confirmation, presence: true
+    validates :password, presence: true #, confirmation: true #checking if password matches
+    # validates :password_confirmation, presence: true
 
     def self.find_or_create_by_omniauth(auth)
         self.where(uid: auth['uid']).first_or_create do |user|
@@ -17,8 +17,8 @@ class User < ApplicationRecord
         end
     end
 
-    def password_match?(password, password_confirmation)
+    # def password_match?(password, password_confirmation)
         
-    end
+    # end
 end
 
