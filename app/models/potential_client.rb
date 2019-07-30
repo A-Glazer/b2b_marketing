@@ -7,6 +7,9 @@ class PotentialClient < ApplicationRecord
     validates :name, presence: true, uniqueness: true
     
     scope :find_client, -> (params) { where(id: params[:id]) }
+
+    scope :meeting_yes, -> { where(agreed_to_meeting: 'yes') }
+
     
 end
 

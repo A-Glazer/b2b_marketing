@@ -49,6 +49,11 @@ class PotentialClientsController < ApplicationController
         redirect_to business_services_path
     end
 
+    def meetings
+        @meeting = PotentialClient.meeting_yes 
+        # binding.pry
+    end
+
     
     private
     def client_params
