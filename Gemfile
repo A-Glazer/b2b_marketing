@@ -26,6 +26,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'pry'
 gem 'bcrypt'
 gem 'jquery-rails'
+gem 'active_model_serializers'
 
 #for facebook omniauth
 gem 'thin'
