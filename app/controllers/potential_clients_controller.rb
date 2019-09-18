@@ -26,6 +26,7 @@ class PotentialClientsController < ApplicationController
 
     def show
         @business_service = @potential_client.business_service_id
+       
     end
 
     #not for deployment, just for debugging

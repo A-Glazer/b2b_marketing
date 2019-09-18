@@ -1,8 +1,25 @@
-To accomplish:
+Good places to add js:
 
-1. create scope in potential client model that returns all the clients that have agreed for a meeting
-2. create a route that will render these clients 
-    and create a link on the business service show page that takes you to the new route
+1. business_services index page:
+    See More button should be js clickable
+
+2. business_services show page
+    See More should be js clickable and info appears on page
+
+3. business_services/new page
+    submit should submit on click
+
+4. Potential Clients show page
+    Create next and previous button for potential clients show page
+
+5. Potenial clients new 
+    when click create new potential client, the form should pop up on the page (instead of rerouting)
+    -when you click submit, it should add new client to the page
 
 
-    Write a blog on the process of the assessment, and what the best order would have been
+Find out about this requirement: 
+1. Must translate JSON responses from your Rails app into JavaScript Model Objects using either ES6 class or constructor syntax. The Model Objects must have at least one method on the prototype. (Formatters work really well for this.)
+
+4. Your Rails application must dynamically render on the page at least one serialized 'has_many' relationship through JSON using JavaScript.
+
+** change names in js folder to .js (not .coffee)
