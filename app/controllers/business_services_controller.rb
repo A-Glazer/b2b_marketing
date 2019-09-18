@@ -32,8 +32,15 @@ class BusinessServicesController < ApplicationController
     end
 
     def index
+        # @business_services = BusinessService.all
+        # @user = current_user          
+        
         @business_services = BusinessService.all
-        @user = current_user            
+        respond_to do |format|
+            format.html
+            format.json { render json: @business_services}
+        end
+        # render json: business_services 
     end
 
     def edit

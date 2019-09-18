@@ -20,6 +20,5 @@ Good places to add js:
 Find out about this requirement: 
 1. Must translate JSON responses from your Rails app into JavaScript Model Objects using either ES6 class or constructor syntax. The Model Objects must have at least one method on the prototype. (Formatters work really well for this.)
 
-4. Your Rails application must dynamically render on the page at least one serialized 'has_many' relationship through JSON using JavaScript.
 
 ** change names in js folder to .js (not .coffee)
