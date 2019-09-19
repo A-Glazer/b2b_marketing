@@ -19,6 +19,9 @@ Good places to add js:
 
 Find out about this requirement: 
 1. Must translate JSON responses from your Rails app into JavaScript Model Objects using either ES6 class or constructor syntax. The Model Objects must have at least one method on the prototype. (Formatters work really well for this.)
-
+-add prototype -> add on using json
+- turn response into js object
+- use serializer 
+(new coment let comment = new comment, comment has a constructor => look at recips.js link 19, 22) and then protype method is called on it
 
 ** change names in js folder to .js (not .coffee)
