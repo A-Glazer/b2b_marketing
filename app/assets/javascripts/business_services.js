@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:3000'
 
-function displayService() {
+function getService() {
     // if there is a form on this page, I want to clear it
     // let id = this.dataset.id
    
@@ -12,7 +12,29 @@ function displayService() {
         info.innerHTML += business_services.map(business_service => `<li><a href="#" data-id="${business_service.id}">${business_service.name}</a> - ${business_service.description}</li>`).join('')
         info.innerHTML += '</ul>'
         
+        showServiceOnClick()
         // create eventListener on a click to see more button
         // looking at getTodos()
     }) 
+
+function showServiceOnClick() {
+    let urlTitle = document.querySelectorAll('li a')
+    for (let i = 0; i < urlTitle.length; i++) {
+        let title = urlTitle[i].text
+        title.addEventListener('click', displayService)
+    }
+}
+
+function displayService() {
+    
+}
+
+
+
+
+
+
+
+
+
 }
