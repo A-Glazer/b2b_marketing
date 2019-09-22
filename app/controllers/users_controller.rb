@@ -27,6 +27,11 @@ class UsersController < ApplicationController
     def show
         @potential_client = @user.potential_clients
         @business_service = @user.business_services
+        # @business_services = BusinessService.all
+        # respond_to do |format|
+        #     format.html
+        #     format.json { render json: @business_services}
+        # end
     end
 
     private 
