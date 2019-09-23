@@ -30,7 +30,7 @@ function showServiceOnClick() {
 }
 
 function newService() {
-    let form = document.getElementById('business-service-form')
+    let businessServiceForm = document.getElementById('business-service-form')
     let html = `
         <form onsubmit="createBusinessService(); return false;">
             <label>Name: </label>
@@ -42,8 +42,12 @@ function newService() {
             <input type="submit" value="Create Business Service"></input>
         </form>
     `
+    businessServiceForm.innerHTML = html
+}
 
+function createBusinessService() {
 
 }
 
+// end bracket
 }
