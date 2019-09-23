@@ -16,6 +16,7 @@ function getService() {
         // create eventListener on a click to see more button
         // looking at getTodos()
     }) 
+}
     
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
@@ -36,7 +37,7 @@ function newService() {
             <label>Name: </label>
             <input type="text" id="name"></input>
             <br>
-            <label>Description</label>
+            <label>Description: </label>
             <input type="text" id="description"></input>
             <br>
             <input type="submit" value="Create Business Service"></input>
@@ -46,8 +47,25 @@ function newService() {
 }
 
 function createBusinessService() {
+    const businessService = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value 
+    }
 
+    fetch(BASE_URL + '/business_services', {
+        method: 'POST',
+        body: JSON.stringify({ businessService }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }).then(resp => resp.json())
+    .then(businessService => {
+        debugger
+        document.querySelector("#info ol").innerHTML += `<li><a href="#" data-id="${businessService.id}">${businessService.name}</a> - ${businessService.description}</li>`
+
+    })
 }
 
-// end bracket
-}
+
+
