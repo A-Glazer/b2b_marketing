@@ -1,19 +1,10 @@
-<h1>Existing Business Services:</h1>
+<h1>Would you like to:</h1>
 <a href="#" onclick="getService(); return false;">Display Business Services</a>
-
+<p>Create a new business service</p>
+<p>Display Potential Clients</p>
 
 <div id="info">
 
-<ol>
-<% @business_services.each do |service| %>
-  <% if @user.id == service.user_id %>
-      <li> Service: <%= service.name %><br>
-      Description: <%= service.description %><br>
-      <%= link_to "See More", business_service_path(service) %> </li>
-      <br>
-  <% end %>
-<% end %>
-</ol>
 
 
 
