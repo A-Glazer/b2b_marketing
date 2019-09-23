@@ -3,7 +3,7 @@ const BASE_URL = 'http://localhost:3000'
 function getService() {
     // if there is a form on this page, I want to clear it
     // let id = this.dataset.id
-   
+    
     let info = document.getElementById('info')
     info.innerHTML = '<ol>'
     fetch(BASE_URL + '/business_services.json')
@@ -16,24 +16,18 @@ function getService() {
         // create eventListener on a click to see more button
         // looking at getTodos()
     }) 
-
+    
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
     for (let i = 0; i < urlTitle.length; i++) {
-        let title = urlTitle[i].text
-        title.addEventListener('click', displayService)
+        let titleId = urlTitle[i].dataset.id
+        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
+        
+    urlTitle[i].addEventListener('click', function(){
+        window.location.href = businessServiceShowURL
+    })
     }
 }
-
-function displayService() {
-    
-}
-
-
-
-
-
-
 
 
 
