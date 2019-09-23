@@ -29,6 +29,9 @@ function showServiceOnClick() {
     }
 }
 
-
+function newService() {
+    let form = document.getElementById('business-service-form')
+    
+}
 
 }
