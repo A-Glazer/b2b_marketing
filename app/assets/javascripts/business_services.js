@@ -31,7 +31,19 @@ function showServiceOnClick() {
 
 function newService() {
     let form = document.getElementById('business-service-form')
-    
+    let html = `
+        <form onsubmit="createBusinessService(); return false;">
+            <label>Name: </label>
+            <input type="text" id="name"></input>
+            <br>
+            <label>Description</label>
+            <input type="text" id="description"></input>
+            <br>
+            <input type="submit" value="Create Business Service"></input>
+        </form>
+    `
+
+
 }
 
 }
