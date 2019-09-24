@@ -2,13 +2,14 @@ class BusinessServicesController < ApplicationController
     before_action :logged_in?, :current_user 
     before_action :find_service, only: [:show, :edit, :update, :destroy]
 
-   def new
-    @business_service = BusinessService.new
-   end
+#    def new
+#     @business_service = BusinessService.new
+#    end
 
    def create
+    # binding.pry
     @business_service = current_user.business_services.build(service_params)
-# binding.pry
+    # save not working
         if @business_service.save
             # redirect_to business_service_path(@business_service)
             render json: @business_service, status: 201

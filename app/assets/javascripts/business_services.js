@@ -40,7 +40,7 @@ function newService() {
             <label>Description: </label>
             <input type="text" id="description"></input>
             <br>
-            <input type="submit" value="Create Business Service"></input>
+            <input type="submit" value="Submit"></input>
         </form>
     `
     businessServiceForm.innerHTML = html
@@ -52,22 +52,25 @@ function createBusinessService() {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value 
     }
-
+    // console.log(businessService, "will we hit this?")
     // fetch request isnt working
+    // http://localhost:3000/business_services
     fetch((BASE_URL + '/business_services'), { 
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
-            // 'Accept': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
         },
-        body: JSON.stringify(businessService),
+        body: JSON.stringify(businessService)
 
     }).then(resp => resp.json())
-    // .then(businessService => {
+    .then(data => {
         // debugger
         // document.querySelector("#info ol").innerHTML += `<li><a href="#" data-id="${businessService.id}">${businessService.name}</a> - ${businessService.description}</li>`
-
-    // })
+        console.log(data)
+    })
 }
 
 
