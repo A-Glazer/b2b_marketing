@@ -72,3 +72,46 @@ function createBusinessService() {
 
 
 
+function getClient() {
+    // if there is a form on this page, I want to clear it
+    $(".")
+    let id = this.dataset.id
+    
+    let info = document.getElementById('client-info')
+    info.innerHTML = '<ol>'
+    fetch(BASE_URL + '/business_services/' + `${id}` + '.json')
+    .then(resp => resp.json())
+    .then(data => {
+        client-info.innerHTML('') 
+        let newList = client-info.innerHTML(`<ul class= "text-primary"></ul>`) 
+        data =>{
+            let newClientInfo = new ClientInfo(client)
+        }
+        
+     
+        
+        // showClientOnClick()
+        
+    }) 
+}
+
+function ClientInfo(client){
+    this.id = client.id
+    this.name = client.name
+    this.last_contacted = client.last_contacted
+    this.reply = client.reply
+    this.follow_up = client.follow_up
+    this.agreed_to_meeting = client.agreed_to_meeting
+}
+    
+// function showClientOnClick() {
+//     let urlTitle = document.querySelectorAll('li a')
+//     for (let i = 0; i < urlTitle.length; i++) {
+//         let titleId = urlTitle[i].dataset.id
+//         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
+        
+//     urlTitle[i].addEventListener('click', function(){
+//         window.location.href = businessServiceShowURL
+//     })
+//     }
+// }
