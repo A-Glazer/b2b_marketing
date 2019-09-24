@@ -13,6 +13,17 @@
 <p>Display Potential Clients</p>
 
 
+<ol>
+<% @business_services.each do |service| %>
+  <% if @user.id == service.user_id %>
+      <li> Service: <%= service.name %><br>
+      Description: <%= service.description %><br>
+      </li>
+      <br>
+  <% end %>
+<% end %>
+</ol>
+
 
 
 

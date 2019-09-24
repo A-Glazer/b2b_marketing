@@ -14,13 +14,23 @@
             Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br>
             Reply: <%= client.reply %><br>
             Business Service: <%= service.name %><br> 
-            <%= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id) %></li><br><br>
+            <a href="#" onclick="getClient(); return false;">Show More</a>
+            <%#= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id)</li><br><br> %>
             </ul>
 
         <% end %>
     <% end %>
 <% end %>
 <br><br>
+
+<a href="#" onclick="newClient(); return false;">Create a New Potential Client</a>
+<br>
+<div id="potential-client-form"></div>
+<br>
+
+
+<div id="client-info"></div>
+<br>
 
 <b><u>Links:</b></u><br>
 

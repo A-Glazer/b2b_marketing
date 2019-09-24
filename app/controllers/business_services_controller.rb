@@ -8,12 +8,14 @@ class BusinessServicesController < ApplicationController
 
    def create
     @business_service = current_user.business_services.build(service_params)
-
+# binding.pry
         if @business_service.save
-            redirect_to business_service_path(@business_service)
+            # redirect_to business_service_path(@business_service)
+            render json: @business_service, status: 201
         else
-            flash[:alert] = "Please type in a business name."
-            redirect_to new_business_service_path
+            # flash[:alert] = "Please type in a business name."
+            # redirect_to new_business_service_path
+            render json: { errors: @business_service.errors.full_message }, status: :bad_request
         end
     end
 
@@ -40,6 +42,7 @@ class BusinessServicesController < ApplicationController
             format.html
             format.json { render json: @business_services}
         end
+   
         # render json: business_services 
     end
 

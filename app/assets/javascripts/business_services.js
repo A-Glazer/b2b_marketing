@@ -44,6 +44,7 @@ function newService() {
         </form>
     `
     businessServiceForm.innerHTML = html
+    
 }
 
 function createBusinessService() {
@@ -52,19 +53,21 @@ function createBusinessService() {
         description: document.getElementById('description').value 
     }
 
-    fetch(BASE_URL + '/business_services', {
+    // fetch request isnt working
+    fetch((BASE_URL + '/business_services'), { 
         method: 'POST',
-        body: JSON.stringify({ businessService }),
         headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
-    }).then(resp => resp.json())
-    .then(businessService => {
-        debugger
-        document.querySelector("#info ol").innerHTML += `<li><a href="#" data-id="${businessService.id}">${businessService.name}</a> - ${businessService.description}</li>`
+            'Content-Type': 'application/json'
+            // 'Accept': 'application/json'
+        },
+        body: JSON.stringify(businessService),
 
-    })
+    }).then(resp => resp.json())
+    // .then(businessService => {
+        // debugger
+        // document.querySelector("#info ol").innerHTML += `<li><a href="#" data-id="${businessService.id}">${businessService.name}</a> - ${businessService.description}</li>`
+
+    // })
 }
 
 
