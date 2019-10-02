@@ -1,24 +1,33 @@
-$(function () {
-   console.log('business_service.js is loaded...') 
-   listenForClick()
-   listenForNewServiceForm()
-});
+// function () {
+//    console.log('business_service.js is loaded...') 
+//    listenForClick()
+//    listenForNewServiceForm()
+// });
 
+function listenForClick() {
+    $('button#info-data').on('click', function(event) {
+        event.preventDefault()
+        getServices()
+    })
+}
 
+function getServices() {
+    $.ajax({
+        url: 'http://localhost:3000/business_services',
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+            console.log("the data is: ", data)
+            data.map(business_service => {
+                const newService = new BusinessService(business_service)
+                const newServiceHtml = newService.businessServiceHtml()
+                document.getElementById('info').innerHTML += newServiceHtml
+            })
+        }
+    })
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// up to line 30 in ajax
 
 
 
