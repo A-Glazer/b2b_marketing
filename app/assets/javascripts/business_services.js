@@ -1,4 +1,4 @@
-// function () {
+// $(document).ready() (function() {
 //    console.log('business_service.js is loaded...') 
 //    listenForClick()
 //    listenForNewServiceForm()
@@ -27,7 +27,13 @@ function getServices() {
     })
 }
 
-// up to line 30 in ajax
+function listenForNewServiceForm() {
+    $('button#business-service-form').on('click', function (event)  {
+        event.preventDefault()
+        let newServiceForm = BusinessService.newServiceForm()
+        document.querySelector('div#business-service-form').innerHTML = newServiceForm
+    })
+}
 
 
 
