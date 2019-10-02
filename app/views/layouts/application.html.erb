@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>B2bMarketing</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+    <title>B2B Marketing App</title>
   </head>
 
   <body>
+    <section class="section">
+      <div class="container">
+        <h1 class='subtitle'>Welcome to the B2B Marketing App
+</h1>
+      </div>
+
+      <div class="column">
+        Links:
+       <%= link_to "Create a New Business Service", new_business_service_path %>
+       <%= link_to "Display Business Services", business_services_path	%> 
+       
+      </div>
+
+    </section>
+
+<br>
+DELETE BELOW:
   <% unless controller_name == "sessions" || controller_name == "users"%>
     <%= link_to "Home",  user_path(current_user) %>
     <%= link_to "Create a New Business Service", new_business_service_path %>
