@@ -1,3 +1,33 @@
+$(function () {
+   console.log('business_service.js is loaded...') 
+   listenForClick()
+   listenForNewServiceForm()
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 const BASE_URL = 'http://localhost:3000'
 
 function getService() {
@@ -137,3 +167,4 @@ function ClientInfo(client){
 //     })
 //     }
 // }
+*/
