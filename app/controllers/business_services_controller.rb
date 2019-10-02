@@ -1,27 +1,30 @@
 class BusinessServicesController < ApplicationController
     before_action :logged_in?, :current_user 
     before_action :find_service, only: [:show, :edit, :update, :destroy]
+    
+       def new
+        @business_service = BusinessService.new
+       end
 
-#    def new
-#     @business_service = BusinessService.new
-#    end
-
-   def create
-    @business_service = current_user.business_services.build(service_params)
-    # save not working
-        if @business_service.save
-            # redirect_to business_service_path(@business_service)
-            render json: @business_service, status: 201
-        else
-            # flash[:alert] = "Please type in a business name."
-            # redirect_to new_business_service_path
-            render json: { errors: @business_service.errors.full_message }, status: :bad_request
-        end
+    def index
+        # @user = current_user          
+        @business_services = BusinessService.all
+        # if @user.id == @business_services.user_id
+            respond_to do |format|
+                format.html {render :index}
+                format.json { render json: @business_services}
+            end
+        # end
     end
 
     def show
+        respond_to do |format|
+            format.html {render :show}
+            format.json { render json: @business_services}
+        end
+        
+        # need to fix
         @potential_clients = [] 
-
         @all_clients = PotentialClient.all
             @all_clients.each do |client|
                 if client.business_service_id == @business_service.id
@@ -33,22 +36,31 @@ class BusinessServicesController < ApplicationController
         @potential_client = PotentialClient.new(business_service_id: @business_service.id)
     end
 
-    def index
-        # @business_services = BusinessService.all
-        # @user = current_user          
-        
-        @business_services = BusinessService.all
-        # if @user.id == @business_services.user_id
+
+   def create
+    @business_service = current_user.business_services.build(service_params)
+    # save not working
+        if @business_service.save
+            # redirect_to business_service_path(@business_service)
             respond_to do |format|
-                format.html {render :index}
-                format.json { render json: @business_services}
+                format.html {redirect_to :business_service_path}
+                format.json { render json: @business_service}
             end
-        # end
-   
-        # render json: business_services 
+        else
+            # flash[:alert] = "Please type in a business name."
+            # redirect_to new_business_service_path
+            render json: { errors: @business_service.errors.full_message }, status: :bad_request
+        end
     end
 
+   
+
     def edit
+        @business_services = BusinessService.find(params["id"])
+        respond_to do |format|
+            format.html {render :edit}
+            format.json { render json: @business_services}
+        end
     end
 
     def update

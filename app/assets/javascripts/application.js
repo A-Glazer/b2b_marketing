@@ -18,5 +18,4 @@
 //= require jquery_ujs
 
 
-$(document).ready(function () {
-})
+
