@@ -2,10 +2,13 @@
 <%# comment out section below using if false %>
 <%# if false %>
 
+<div id="business-service-index">
+
 <ol>
 <% @business_services.each do |service| %>
+
   <% if @user.id == service.user_id %>
-      <li> Service: <a href="#" onclick="getService(); return false;"><%= service.name %></a><br>
+      <li> Service: <a href="#" onclick="getServices(); return false;"><%= service.name %></a><br>
       Description: <%= service.description %><br>
       
       </li>
@@ -13,6 +16,8 @@
   <% end %>
 <% end %>
 </ol>
+
+</div>
 
 <%# end %>
 

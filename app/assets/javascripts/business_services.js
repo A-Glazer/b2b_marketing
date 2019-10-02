@@ -1,8 +1,8 @@
-// $(document).ready() (function() {
-//    console.log('business_service.js is loaded...') 
-//    listenForClick()
-//    listenForNewServiceForm()
-// });
+$(document).ready() (function() {
+   console.log('business_service.js is loaded...') 
+   listenForClick()
+   listenForNewServiceForm()
+});
 
 function listenForClick() {
     $('button#info-data').on('click', function(event) {
@@ -54,7 +54,9 @@ class BusinessService {
     }
 }
 
-
+// BusinessService.prototype.newServiceHtml = function () {
+//     let 
+// }
 
 
 

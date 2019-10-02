@@ -35,12 +35,12 @@ class BusinessServicesController < ApplicationController
 
     def index
         # @business_services = BusinessService.all
-        @user = current_user          
+        # @user = current_user          
         
         @business_services = BusinessService.all
         # if @user.id == @business_services.user_id
             respond_to do |format|
-                format.html
+                format.html {render :index}
                 format.json { render json: @business_services}
             end
         # end
