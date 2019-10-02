@@ -19,7 +19,8 @@
       <div class="column">
         Links:
        <%= link_to "Create a New Business Service", new_business_service_path %>
-       <%= link_to "Display Business Services", business_services_path	%> 
+       <%= link_to "Display Business Services", business_services_path	%>
+      <%= link_to 'Log Out', logout_path, method: :delete %> 
       </div>
       <hr>
 
@@ -27,13 +28,13 @@
 
       <br>
 
-      <button id="business-service-new-form">Create a Business Service</button>
-      <div id="business-service-form">[form here]</div>
+      <%# <button id="business-service-new-form">Create a Business Service</button> %>
+      <%# <div id="business-service-form">[form here]</div> %>
 
       <br>
 
-      <button id="info-data">Display Business Services</button>
-      <div id="info">[business services listed here]</div>
+      <%# <button id="info-data">Display Business Services</button> %>
+      <%# <div id="info">[business services listed here]</div> %>
 
     </section>
 

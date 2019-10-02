@@ -7,7 +7,6 @@ class BusinessServicesController < ApplicationController
 #    end
 
    def create
-    # binding.pry
     @business_service = current_user.business_services.build(service_params)
     # save not working
         if @business_service.save
@@ -36,13 +35,15 @@ class BusinessServicesController < ApplicationController
 
     def index
         # @business_services = BusinessService.all
-        # @user = current_user          
+        @user = current_user          
         
         @business_services = BusinessService.all
-        respond_to do |format|
-            format.html
-            format.json { render json: @business_services}
-        end
+        # if @user.id == @business_services.user_id
+            respond_to do |format|
+                format.html
+                format.json { render json: @business_services}
+            end
+        # end
    
         # render json: business_services 
     end

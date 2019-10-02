@@ -1,3 +1,21 @@
+<h1>Business Services Offered: </h1>
+<%# comment out section below using if false %>
+<%# if false %>
+
+<ol>
+<% @business_services.each do |service| %>
+  <% if @user.id == service.user_id %>
+      <li> Service: <a href="#" onclick="getService(); return false;"><%= service.name %></a><br>
+      Description: <%= service.description %><br>
+      
+      </li>
+      <br>
+  <% end %>
+<% end %>
+</ol>
+
+<%# end %>
+
 <h1>Would you like to:</h1>
 
 <a href="#" onclick="newService(); return false;">Create a New Business Service</a>
@@ -10,19 +28,10 @@
 <div id="info"></div>
 <br>
 
-<p>Display Potential Clients</p>
-
-
-<ol>
-<% @business_services.each do |service| %>
-  <% if @user.id == service.user_id %>
-      <li> Service: <%= service.name %><br>
-      Description: <%= service.description %><br>
-      </li>
-      <br>
-  <% end %>
-<% end %>
-</ol>
+<a href="#" onclick="getClient(); return false;">Display Potential Clients</a>
+<br>
+<div id="client-info"></div>
+<br>
 
 
 
