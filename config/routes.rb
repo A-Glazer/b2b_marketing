@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :business_services_potential_clients
-  root 'sessions#home'
+  root 'sessions#index'
   
   get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
