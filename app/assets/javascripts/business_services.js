@@ -35,7 +35,24 @@ function listenForNewServiceForm() {
     })
 }
 
+class BusinessService {
+    constructor(obj) {
+        this.id = obj.id
+        this.name = obj.name
+        this.description = obj.description
+    }
 
+    static newServiceForm() {
+        return (`
+        <strong>New Business Service Form</strong>
+            <form>
+                <input id="name" type="text" name="name></input>
+                <input type="text" name="description"></input><br>
+                <input type="submit">
+            </form>
+        `)
+    }
+}
 
 
 
