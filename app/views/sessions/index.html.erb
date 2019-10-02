@@ -1,14 +1,8 @@
-<h1>Business Services You Offer</h1>
+<h1>Welcome to the B2B Marketing App</h1>
 
-@business_services
+<p>Would you like to <%= link_to "Sign up", signup_path %> or <%= link_to "Login", login_path %>? </p>
 
-<ol>
-<% @business_services.each do |service| %>
-  <% if @user.id == service.user_id %>
-      <li> Service: <%= service.name %><br>
-      Description: <%= service.description %><br>
-      </li>
-      <br>
-  <% end %>
-<% end %>
-</ol>
+or
+
+<%= link_to "Sign in Through Facebook", '/auth/facebook' %>
+
