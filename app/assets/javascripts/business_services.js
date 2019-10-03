@@ -35,6 +35,7 @@ function getServices() {
                 const newServiceHtml = newService.newServiceHtml()
            
                 document.getElementById('info').innerHTML += newServiceHtml
+                showServiceOnClick()
             })
         }
     })
@@ -78,10 +79,23 @@ BusinessService.prototype.newServiceHtml = function () {
     return (`
     <div>
     <ul>
-        <li>${this.name} - ${this.description}</li>
+        <li><a href="#" data-id="${this.id}">${this.name}</a> - ${this.description}</li>
     </ul>
     </div>
     `)
+}
+
+
+function showServiceOnClick() {
+    let urlTitle = document.querySelectorAll('li a')
+    for (let i = 0; i < urlTitle.length; i++) {
+        let titleId = urlTitle[i].dataset.id
+        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
+        
+    urlTitle[i].addEventListener('click', function(){
+        window.location.href = businessServiceShowURL
+    })
+    }
 }
 
 function createBusinessService() {
