@@ -39,11 +39,12 @@ function getServices() {
 }
 
 function listenForNewServiceForm() {
-    $('button#business-service-form').on('click', function (event)  {
-        event.preventDefault()
+    // $('button#business-service-form').on('click', function (event)  {
+        // event.preventDefault()
         let newServiceForm = BusinessService.newServiceForm()
         document.querySelector('div#business-service-form').innerHTML = newServiceForm
-    })
+        
+    // })
 }
 
 class BusinessService {
@@ -55,11 +56,17 @@ class BusinessService {
 
     static newServiceForm() {
         return (`
+        <br>
         <strong>New Business Service Form</strong>
+        <br>
             <form>
-                <input id="name" type="text" name="name></input>
-                <input type="text" name="description"></input><br>
-                <input type="submit">
+            <label>Name: </label>
+            <input type="text" id="name"></input>
+            <br>
+            <label>Description: </label>
+            <input type="text" id="description"></input>
+            <br>
+            <input type="submit" value="Submit"></input>
             </form>
         `)
     }
@@ -71,7 +78,7 @@ class BusinessService {
 BusinessService.prototype.newServiceHtml = function () {
     return (`
     <div>
-        <p><strong>${this.name}<strong> - ${this.description}</p>
+        <strong>${this.name}<strong> <p>- ${this.description}</p>
     </div>
     `)
 }
