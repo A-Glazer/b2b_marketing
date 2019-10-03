@@ -12,7 +12,6 @@
             <ul>
             <li>Name: <%= client.name %><br>
             Last Contacted: <%= client.last_contacted %><br>
-            <%# Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br> 
             Reply: <%= client.reply %><br>
             Business Service: <%= service.name %><br> 
             <a href="#" onclick="getClients(); return false;">Show More</a>
@@ -24,15 +23,19 @@
 <% end %>
 <br><br>
 
-<a href="#" onclick="newClient(); return false;">Create a New Potential Client</a>
+<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
+</button>
+<div id="potential-client-form">
+</div>
 <br>
-<div id="potential-client-form"></div>
 <br>
+
 
 
 <div id="client-info"></div>
 <br>
 
+<% if false %>
 <b><u>Links:</b></u><br>
 
 <%= link_to "View Business Services", business_services_path %><br>
@@ -41,3 +44,4 @@
 <%= link_to "View Agreed To Meeting", meetings_path %><br>
 <%= link_to "Delete",  business_service_path(@business_service.id), method: :delete %><br>
 <%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service.id, @potential_client) %>
+<% end %>

@@ -27,15 +27,15 @@ class BusinessServicesController < ApplicationController
         end
         
         # need to fix
-        @potential_clients = [] 
-            @all_clients.each do |client|
-                if client.business_service_id == @business_service.id
-                    if !@potential_clients.include?(client) 
-                        @potential_clients << client
-                    end
-                end
-            end
-        @potential_client = PotentialClient.new(business_service_id: @business_service.id)
+        # @potential_clients = [] 
+        #     @all_clients.each do |client|
+        #         if client.business_service_id == @business_service.id
+        #             if !@potential_clients.include?(client) 
+        #                 @potential_clients << client
+        #             end
+        #         end
+        #     end
+        # @potential_client = PotentialClient.new(business_service_id: @business_service.id)
     end
 
 
@@ -53,6 +53,17 @@ class BusinessServicesController < ApplicationController
             # redirect_to new_business_service_path
             render json: { errors: @business_service.errors.full_message }, status: :bad_request
         end
+# need to create save for potential clients
+        @potential_client = PotentialClient.new(client_params)   
+        
+        if @potential_client
+            @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
+            @potential_client.save
+            redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
+        else
+            render :new
+        end
+
     end
 
    
