@@ -77,7 +77,9 @@ class BusinessService {
 BusinessService.prototype.newServiceHtml = function () {
     return (`
     <div>
-        <p>${this.name} - ${this.description}</p>
+    <ul>
+        <li>${this.name} - ${this.description}</li>
+    </ul>
     </div>
     `)
 }
@@ -105,16 +107,18 @@ function createBusinessService() {
     })
 }
 
-// add potential clients button
+// potential clients button
+// potential clients is displaying business_services instead of clients
 function getClients() {
-    document.querySelector('div#business-service-form').innerHTML = ""
+    document.querySelector('div#potential-clients-form').innerHTML = ""
     $.ajax({
-        url: 'http://localhost:3000/business_services',
+        // url is wrong
+        url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
         method: 'get',
         dataType: 'json',
         success: function(data) {
             console.log("the data is: ", data)
-            document.getElementById('client-info').innerHTML = ""
+            // document.getElementById('client-info').innerHTML = ""
             data.map(potential_client => {
               
                 const newClient = new PotentialClient(potential_client)
@@ -167,7 +171,7 @@ class PotentialClient {
         `)
     }
 }
-
+// business service id should be a drop down
 PotentialClient.prototype.newClientHtml = function () {
     return (`
     <div>
@@ -181,6 +185,39 @@ PotentialClient.prototype.newClientHtml = function () {
     `)
 }
 
+function listenForNewClientForm() {
+        let newClientForm = PotentialClient.newClientForm()
+        document.querySelector('div#potential-client-form').innerHTML = newClientForm
+        
+    // })
+}
+
+function createPotentialClient() {
+    const potentialClient = {
+        name: document.getElementById('name').value,
+        last_contacted: document.getElementById('last_contacted').value, 
+        reply: document.getElementById('reply').value,
+        follow_up: document.getElementById('follow_up').value,
+        agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
+        business_service_id: document.getElementById('business_service_id').value
+    }
+
+    fetch((BASE_URL + '/business_services'), { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
+        },
+        body: JSON.stringify(potentialClient)
+
+    }).then(resp => resp.json())
+    .then(data => {
+        console.log(data)
+        getClients()
+    })
+}
 // function createBusinessService() {
 //     // const businessService = {
 //     //     name: document.getElementById('name').value,
