@@ -140,12 +140,13 @@ function getClients() {
         method: 'get',
         dataType: 'json',
         success: function(data) {
-            debugger
-            console.log("the data is: ", data)
+            
+            console.log("the data is: ", data[1].potential_clients)
             // document.getElementById('client-info').innerHTML = ""
             // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
-            data.map(potential_client => {
-              
+            businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+            data[businessServiceId].potential_clients.map(potential_client => {
+            //   debugger
                 const newClient = new PotentialClient(potential_client)
                 const newClientHtml = newClient.newClientHtml()
            
@@ -200,12 +201,11 @@ class PotentialClient {
 PotentialClient.prototype.newClientHtml = function () {
     return (`
     <div id='client-details'>
-        <h4>${this.name}</h4> 
-        <p>${this.last_contacted}</p>
-        <p>${this.reply}</p> 
-        <p>${this.follow_up}</p>
-        <p>${this.agreed_to_meeting}</p> 
-        <p>${this.business_service_id}</p> 
+        <h4>Name: ${this.name}</h4> 
+        <p>Last Contacted: ${this.last_contacted}</p>
+        <p>Reply: ${this.reply}</p> 
+        <p>Follow up: ${this.follow_up}</p>
+        <p>Agreed to Meeting? ${this.agreed_to_meeting}</p> 
     </div>
     `)
 }
