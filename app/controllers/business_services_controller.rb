@@ -59,9 +59,13 @@ class BusinessServicesController < ApplicationController
         if @potential_client
             @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
             @potential_client.save
-            redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
+            # redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
+            respond_to do |format|
+                format.html {render :show}
+                format.json (render json: @potential_client)
+            end
         else
-            render :new
+            render :show
         end
 
     end
@@ -93,6 +97,10 @@ class BusinessServicesController < ApplicationController
 
     def service_params
         params.require(:business_service).permit(:name, :description, :user_id, :potential_client_id)
+    end
+
+    def client_params
+        params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting, :business_service_id)
     end
 
 end

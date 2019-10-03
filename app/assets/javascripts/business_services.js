@@ -102,6 +102,7 @@ function createBusinessService() {
     const businessService = {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value 
+       
     }
 
     fetch((BASE_URL + '/business_services'), { 
@@ -124,10 +125,18 @@ function createBusinessService() {
 // potential clients button
 // potential clients is displaying business_services instead of clients
 function getClients() {
-    document.querySelector('div#potential-clients-form').innerHTML = ""
+    // document.querySelector('div#potential-clients-form').innerHTML = ""
+    let service_list = document.querySelectorAll('li a')
+    // for (let i = 0; i < service_list.length; i++) {
+    //     let serviceId = service_list[i].dataset.id
+    idNum = (service_list.length -1)
+
+    const businessServiceIdURL = (`http://localhost:3000//business_services/${idNum}/potential_clients`)
+    
     $.ajax({
         // url is wrong
-        url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
+        // url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
+        url: 'http://localhost:3000//business_services/2/potential_clients',
         method: 'get',
         dataType: 'json',
         success: function(data) {
@@ -143,6 +152,7 @@ function getClients() {
         }
     })
 }
+
 
 class PotentialClient {
     constructor(obj) {
@@ -160,7 +170,7 @@ class PotentialClient {
         <br>
         <strong>New Potential Client Form</strong>
         <br>
-            <form onsubmit="createBusinessService(); return false;">
+            <form onsubmit="createPotentialClient(); return false;">
             <label>Name: </label>
             <input type="text" id="name"></input>
             <br>
