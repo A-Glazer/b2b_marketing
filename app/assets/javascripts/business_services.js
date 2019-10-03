@@ -21,6 +21,7 @@ function listenForClick() {
 }
 
 function getServices() {
+    document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
         url: 'http://localhost:3000/business_services',
         method: 'get',
