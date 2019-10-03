@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2019_07_22_163233) do
 
   create_table "potential_clients", force: :cascade do |t|
     t.string "name"
-    t.datetime "last_contacted"
+    t.string "last_contacted"
     t.string "reply"
-    t.datetime "follow_up"
+    t.string "follow_up"
     t.string "agreed_to_meeting"
     t.integer "business_service_id"
     t.datetime "created_at", null: false
