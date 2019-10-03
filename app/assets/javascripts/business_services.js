@@ -105,6 +105,82 @@ function createBusinessService() {
     })
 }
 
+// add potential clients button
+function getClients() {
+    document.querySelector('div#business-service-form').innerHTML = ""
+    $.ajax({
+        url: 'http://localhost:3000/business_services',
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+            console.log("the data is: ", data)
+            document.getElementById('client-info').innerHTML = ""
+            data.map(potential_client => {
+              
+                const newClient = new PotentialClient(potential_client)
+                const newClientHtml = newClient.newClientHtml()
+           
+                document.getElementById('client-info').innerHTML += newClientHtml
+            })
+        }
+    })
+}
+
+class PotentialClient {
+    constructor(obj) {
+        this.id = obj.id
+        this.name = obj.name
+        this.last_contacted = obj.last_contacted
+        this.reply = obj.reply
+        this.follow_up = obj.follow_up
+        this.agreed_to_meeting = obj.agreed_to_meeting
+        this.business_service_id = obj.business_service_id
+    }
+
+    static newClientForm() {
+        return (`
+        <br>
+        <strong>New Potential Client Form</strong>
+        <br>
+            <form onsubmit="createBusinessService(); return false;">
+            <label>Name: </label>
+            <input type="text" id="name"></input>
+            <br>
+            <label>Last Contacted: </label>
+            <input type="text" id="last_contacted"></input>
+            <br>
+            <label>Reply: </label>
+            <input type="text" id="reply"></input>
+            <br>
+            <label>Follow_up: </label>
+            <input type="text" id="follow_up"></input>
+            <br>
+            <label>Agreed to Meeting?: </label>
+            <input type="text" id="agreed_to_meeting"></input>
+            <br>
+            <label>Business Service ID: </label>
+            <input type="text" id="business_service_id"></input>
+            <br>
+
+            <input type="submit" value="Submit"></input>
+            </form>
+        `)
+    }
+}
+
+PotentialClient.prototype.newClientHtml = function () {
+    return (`
+    <div>
+        <h4>${this.name}</h4> 
+        <p>${this.last_contacted}</p>
+        <p>${this.reply}</p> 
+        <p>${this.follow_up}</p>
+        <p>${this.agreed_to_meeting}</p> 
+        <p>${this.business_service_id}</p> 
+    </div>
+    `)
+}
+
 // function createBusinessService() {
 //     // const businessService = {
 //     //     name: document.getElementById('name').value,

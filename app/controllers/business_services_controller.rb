@@ -9,6 +9,7 @@ class BusinessServicesController < ApplicationController
     def index
         # @user = current_user          
         @business_services = BusinessService.all
+        @potential_clients = PotentialClient.all
         # if @user.id == @business_services.user_id
             respond_to do |format|
                 format.html {render :index}
