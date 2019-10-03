@@ -3,7 +3,7 @@
 
 <b><u>Potential Clients:</u></b>
 
-<% @potential_clients.each do |client| %>
+<% @all_clients.each do |client| %>
 
 
     <% client.business_services.each do |service| %>
@@ -11,10 +11,11 @@
         <% if service.id == @business_service.id %>
             <ul>
             <li>Name: <%= client.name %><br>
-            Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br>
+            Last Contacted: <%= client.last_contacted %><br>
+            <%# Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br> 
             Reply: <%= client.reply %><br>
             Business Service: <%= service.name %><br> 
-            <a href="#" onclick="getClient(); return false;">Show More</a>
+            <a href="#" onclick="getClients(); return false;">Show More</a>
             <%#= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id)</li><br><br> %>
             </ul>
 

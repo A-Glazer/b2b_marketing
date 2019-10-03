@@ -19,6 +19,8 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
+        @all_clients = PotentialClient.all
+        binding.pry
         respond_to do |format|
             format.html {render :show}
             format.json { render json: @business_services}
@@ -26,7 +28,6 @@ class BusinessServicesController < ApplicationController
         
         # need to fix
         @potential_clients = [] 
-        @all_clients = PotentialClient.all
             @all_clients.each do |client|
                 if client.business_service_id == @business_service.id
                     if !@potential_clients.include?(client) 
