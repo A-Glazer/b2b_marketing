@@ -11,6 +11,7 @@
 //    listenForClick()
 //    listenForNewServiceForm()
 // })(jQuery);
+const BASE_URL = 'http://localhost:3000'
 
 function listenForClick() {
     $('button#info-data').on('click', function(event) {
@@ -59,7 +60,7 @@ class BusinessService {
         <br>
         <strong>New Business Service Form</strong>
         <br>
-            <form>
+            <form onsubmit="createBusinessService(); return false;">
             <label>Name: </label>
             <input type="text" id="name"></input>
             <br>
@@ -72,17 +73,58 @@ class BusinessService {
     }
 }
 
-// need prototype - that will show it on the page. 
-// need to create an ajax post to show the info
-
 BusinessService.prototype.newServiceHtml = function () {
     return (`
     <div>
-        <strong>${this.name}<strong> <p>- ${this.description}</p>
+        <p>${this.name} - ${this.description}</p>
     </div>
     `)
 }
 
+function createBusinessService() {
+    const businessService = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value 
+    }
+
+    fetch((BASE_URL + '/business_services'), { 
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
+        },
+        body: JSON.stringify(businessService)
+
+    }).then(resp => resp.json())
+    .then(data => {
+        console.log(data)
+        getServices()
+    })
+}
+
+// function createBusinessService() {
+//     // const businessService = {
+//     //     name: document.getElementById('name').value,
+//     //     description: document.getElementById('description').value 
+//     // }
+
+//     $('div#business-service-form').on("submit", function(event) {
+//             $.ajax({
+//                 url: 'http://localhost:3000/business_services',
+//                 type: 'POST',
+//                 data: $(this).serialize(),
+//                 success: function(response) {
+//                     $(document.getElementById('info')).innerHTML 
+//                     let businessService = new BusinessService(response)
+//                     businessService.newServiceHtml()
+                    
+//                 }
+//             })
+//             event.preventDefault()
+//         })
+// }
 // })
 
 
