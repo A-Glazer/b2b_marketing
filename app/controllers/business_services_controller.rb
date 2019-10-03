@@ -43,7 +43,7 @@ class BusinessServicesController < ApplicationController
         if @business_service.save
             # redirect_to business_service_path(@business_service)
             respond_to do |format|
-                format.html {redirect_to :business_service_path}
+                format.html { render :new}
                 format.json { render json: @business_service}
             end
         else

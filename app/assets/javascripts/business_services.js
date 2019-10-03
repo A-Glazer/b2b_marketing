@@ -1,9 +1,16 @@
-// document.ready()
-// $(function(){
+{/* <script src="jquery.min.js"></script>  */}
+
+{/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> */}
+
+{/* <script type="text/javascript" src="js/script.js"></script> */}
+
+
+// $(document).ready(function () {
+// (function($){
 //    console.log('business_service.js is loaded...') 
 //    listenForClick()
 //    listenForNewServiceForm()
-// });
+// })(jQuery);
 
 function listenForClick() {
     $('button#info-data').on('click', function(event) {
@@ -19,9 +26,12 @@ function getServices() {
         dataType: 'json',
         success: function(data) {
             console.log("the data is: ", data)
+            document.getElementById('info').innerHTML = ""
             data.map(business_service => {
+              
                 const newService = new BusinessService(business_service)
-                const newServiceHtml = newService.businessServiceHtml()
+                const newServiceHtml = newService.newServiceHtml()
+           
                 document.getElementById('info').innerHTML += newServiceHtml
             })
         }
@@ -55,11 +65,18 @@ class BusinessService {
     }
 }
 
-// BusinessService.prototype.newServiceHtml = function () {
-//     let 
-// }
+// need prototype - that will show it on the page. 
+// need to create an ajax post to show the info
 
+BusinessService.prototype.newServiceHtml = function () {
+    return (`
+    <div>
+        <p><strong>${this.name}<strong> - ${this.description}</p>
+    </div>
+    `)
+}
 
+// })
 
 
 /*
