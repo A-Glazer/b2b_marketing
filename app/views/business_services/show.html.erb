@@ -3,6 +3,7 @@
 
 <b><u>Potential Clients:</u></b>
 
+<div id="potential-client-list">
 <% @all_clients.each do |client| %>
 
 
@@ -21,7 +22,15 @@
         <% end %>
     <% end %>
 <% end %>
+</div>
 <br><br>
+
+<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
+</button>
+<br>
+<div id="client-info"></div>
+<br>
+<br>
 
 <button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
 </button>

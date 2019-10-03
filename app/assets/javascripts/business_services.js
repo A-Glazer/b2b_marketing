@@ -126,22 +126,24 @@ function createBusinessService() {
 // potential clients is displaying business_services instead of clients
 function getClients() {
     // document.querySelector('div#potential-clients-form').innerHTML = ""
-    let service_list = document.querySelectorAll('li a')
+    // let service_list = document.querySelectorAll('li a')
     // for (let i = 0; i < service_list.length; i++) {
     //     let serviceId = service_list[i].dataset.id
-    idNum = (service_list.length -1)
+    // idNum = (service_list.length -1)
 
-    const businessServiceIdURL = (`http://localhost:3000//business_services/${idNum}/potential_clients`)
+    // const businessServiceIdURL = (`http://localhost:3000//business_services/${idNum}/potential_clients`)
     
     $.ajax({
         // url is wrong
         // url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
-        url: 'http://localhost:3000//business_services/2/potential_clients',
+        url: 'http://localhost:3000//business_services',
         method: 'get',
         dataType: 'json',
         success: function(data) {
+            debugger
             console.log("the data is: ", data)
             // document.getElementById('client-info').innerHTML = ""
+            // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
             data.map(potential_client => {
               
                 const newClient = new PotentialClient(potential_client)
@@ -162,7 +164,7 @@ class PotentialClient {
         this.reply = obj.reply
         this.follow_up = obj.follow_up
         this.agreed_to_meeting = obj.agreed_to_meeting
-        this.business_service_id = obj.business_service_id
+        // this.business_service_id = obj.business_service_id
     }
 
     static newClientForm() {
@@ -186,8 +188,7 @@ class PotentialClient {
             <label>Agreed to Meeting?: </label>
             <input type="text" id="agreed_to_meeting"></input>
             <br>
-            <label>Business Service ID: </label>
-            <input type="text" id="business_service_id"></input>
+            
             <br>
 
             <input type="submit" value="Submit"></input>
@@ -198,7 +199,7 @@ class PotentialClient {
 // business service id should be a drop down
 PotentialClient.prototype.newClientHtml = function () {
     return (`
-    <div>
+    <div id='client-details'>
         <h4>${this.name}</h4> 
         <p>${this.last_contacted}</p>
         <p>${this.reply}</p> 
@@ -239,9 +240,25 @@ function createPotentialClient() {
     }).then(resp => resp.json())
     .then(data => {
         console.log(data)
+        debugger
         getClients()
     })
 }
+
+// in middle of
+// function showClientOnClick() {
+    // let clientListLocation = document.querySelector('div#potential-client-list ul li')
+    // for (let i = 0; i < urlTitle.length; i++) {
+    //     let titleId = urlTitle[i].dataset.id
+    //     const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
+        
+    // urlTitle[i].addEventListener('click', function(){
+        // window.location.href = businessServiceShowURL
+    // })
+    // }
+// }
+
+
 // function createBusinessService() {
 //     // const businessService = {
 //     //     name: document.getElementById('name').value,
