@@ -20,7 +20,6 @@ class BusinessServicesController < ApplicationController
 
     def show
         @all_clients = PotentialClient.all
-        # binding.pry
         respond_to do |format|
             format.html {render :show}
             format.json { render json: @business_services}
@@ -41,7 +40,6 @@ class BusinessServicesController < ApplicationController
 
    def create
     @business_service = current_user.business_services.build(service_params)
-    # save not working
         if @business_service.save
             # redirect_to business_service_path(@business_service)
             respond_to do |format|

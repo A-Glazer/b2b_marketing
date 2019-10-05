@@ -1,3 +1,6 @@
+// ** NEED TO FIGURE OUT WHY POTENTIAL CLIENTS NEW FORM ISN"T SAVING AND ADDING TO POTENTIAL CLIENT LIST**
+
+
 {/* <script src="jquery.min.js"></script>  */}
 
 {/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> */}
@@ -11,6 +14,7 @@
 //    listenForClick()
 //    listenForNewServiceForm()
 // })(jQuery);
+
 const BASE_URL = 'http://localhost:3000'
 
 function listenForClick() {
@@ -136,7 +140,8 @@ function getClients() {
     $.ajax({
         // url is wrong
         // url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
-        url: 'http://localhost:3000//business_services',
+        // url: (BASE_URL + `/business_services/${businessServiceId}`),
+        url: (BASE_URL + `/business_services`),
         method: 'get',
         dataType: 'json',
         success: function(data) {
@@ -144,7 +149,7 @@ function getClients() {
             console.log("the data is: ", data[1].potential_clients)
             // document.getElementById('client-info').innerHTML = ""
             // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
-            businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+            const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
             data[businessServiceId].potential_clients.map(potential_client => {
             //   debugger
                 const newClient = new PotentialClient(potential_client)
@@ -173,7 +178,7 @@ class PotentialClient {
         <br>
         <strong>New Potential Client Form</strong>
         <br>
-            <form onsubmit="createPotentialClient(); return false;">
+            <form onsubmit="createPotentialClient();">
             <label>Name: </label>
             <input type="text" id="name"></input>
             <br>
@@ -197,7 +202,7 @@ class PotentialClient {
         `)
     }
 }
-// business service id should be a drop down
+
 PotentialClient.prototype.newClientHtml = function () {
     return (`
     <div id='client-details'>
@@ -218,31 +223,57 @@ function listenForNewClientForm() {
 }
 
 function createPotentialClient() {
+    // debugger
     const potentialClient = {
         name: document.getElementById('name').value,
         last_contacted: document.getElementById('last_contacted').value, 
         reply: document.getElementById('reply').value,
         follow_up: document.getElementById('follow_up').value,
         agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
-        business_service_id: document.getElementById('business_service_id').value
+        business_service_id: document.querySelector('div#about_business_service p').innerHTML
     }
 
-    fetch((BASE_URL + '/business_services'), { 
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-
-        },
-        body: JSON.stringify(potentialClient)
-
-    }).then(resp => resp.json())
-    .then(data => {
-        console.log(data)
-        debugger
-        getClients()
+    
+    const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+    // debugger
+    $.ajax({
+        url: (BASE_URL + `/business_services/${businessServiceId}`),
+        method: 'post',
+        dataType: 'json',
+        success: function(data) {
+           
+            console.log(data)
+        }
     })
+
+    // function listenForClientClick() {
+    //     $('button#info-data').on('click', function(event) {
+    //         event.preventDefault()
+    //         getServices()
+    //     })
+    // }
+
+
+
+
+
+
+    // fetch((BASE_URL + `/business_services/${businessServiceId}`), { 
+    // fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Accept': 'application/json',
+    //         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+
+    //     },
+    //     body: JSON.stringify(potentialClient)
+
+    // }).then(resp => resp.json())
+    // .then(data => {
+    //     console.log(data)
+        // getClients()
+    // })
 }
 
 // in middle of
