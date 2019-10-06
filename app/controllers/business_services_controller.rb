@@ -39,32 +39,35 @@ class BusinessServicesController < ApplicationController
 
 
    def create
+    # @business_service = BusinessService.new(service_params)
+    # binding.pry
     @business_service = current_user.business_services.build(service_params)
-        if @business_service.save
-            # redirect_to business_service_path(@business_service)
+    # if current_user.save
+    if @business_service.save
             respond_to do |format|
-                format.html { render :new}
+                format.html { redirect_to new_business_service_path }
                 format.json { render json: @business_service}
             end
         else
             # flash[:alert] = "Please type in a business name."
             # redirect_to new_business_service_path
-            render json: { errors: @business_service.errors.full_message }, status: :bad_request
+            # render json: { errors: @business_service.errors.full_message }, status: :bad_request
+            render :new
         end
 # need to create save for potential clients
-        @potential_client = PotentialClient.new(client_params)   
+        # @potential_client = PotentialClient.new(client_params)   
         
-        if @potential_client
-            @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
-            @potential_client.save
-            # redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
-            respond_to do |format|
-                format.html {render :show}
-                format.json (render json: @potential_client)
-            end
-        else
-            render :show
-        end
+        # if @potential_client
+        #     @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
+        #     @potential_client.save
+        #     # redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
+        #     respond_to do |format|
+        #         format.html {render :show}
+        #         format.json (render json: @potential_client)
+        #     end
+        # else
+        #     render :show
+        # end
 
     end
 
@@ -98,7 +101,7 @@ class BusinessServicesController < ApplicationController
     end
 
     def client_params
-        params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting, :business_service_id)
+        params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting)
     end
 
 end

@@ -102,29 +102,46 @@ function showServiceOnClick() {
     }
 }
 
+// not working - earlier version was
 function createBusinessService() {
-    const businessService = {
+    // debugger
+    const business_service = {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value 
        
     }
-
-    fetch((BASE_URL + '/business_services'), { 
+    fetch('http://localhost:3000/business_services', { 
         method: 'POST',
+        // body: JSON.parse(businessService),
+        body: JSON.stringify({ business_service }),
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-
-        },
-        body: JSON.stringify(businessService)
-
-    }).then(resp => resp.json())
+        } 
+    })
+    // .then(resp => resp.text())
+    .then(resp => resp.json())
     .then(data => {
         console.log(data)
-        getServices()
+        // getServices()
+    // .then(text => {
+        // console.log(text)
     })
 }
+
+// function createBusinessService() {
+//     $.ajax({
+//         url: 'http://localhost:3000/business_services',
+//         method: 'POST',
+//         dataType: 'json',
+//         success: function(data) {
+//             console.log("the data is: ", data)
+//             getServices()
+           
+//         }
+//     })
+// }
 
 // potential clients button
 // potential clients is displaying business_services instead of clients
@@ -150,7 +167,7 @@ function getClients() {
             // document.getElementById('client-info').innerHTML = ""
             // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
             const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
-            data[businessServiceId].potential_clients.map(potential_client => {
+            data[`${businessServiceId}`].potential_clients.map(potential_client => {
             //   debugger
                 const newClient = new PotentialClient(potential_client)
                 const newClientHtml = newClient.newClientHtml()
@@ -235,10 +252,10 @@ function createPotentialClient() {
 
     
     const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
-    // debugger
+    debugger
     $.ajax({
         url: (BASE_URL + `/business_services/${businessServiceId}`),
-        method: 'post',
+        method: 'POST',
         dataType: 'json',
         success: function(data) {
            
