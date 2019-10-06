@@ -250,9 +250,9 @@ function createPotentialClient() {
         business_service_id: document.querySelector('div#about_business_service p').innerHTML
     }
 
-    
+    console.log(potential_client)
     const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
-    debugger
+    // debugger
     // $.ajax({
     //     url: (BASE_URL + `/business_services/${businessServiceId}`),
     //     method: 'POST',
@@ -264,10 +264,11 @@ function createPotentialClient() {
     // })
     
     // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
-    fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
+    // fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
+        fetch((`http://localhost:3000/business_services`), { 
         method: 'POST',
-        // body: JSON.stringify({ potential_client }),
-        body: potential_client,
+        body: JSON.stringify( potential_client ),
+        // body: potential_client,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -278,7 +279,7 @@ function createPotentialClient() {
     }).then(resp => resp.json())
     .then(data => {
         console.log(data)
-        debugger
+        // debugger
         getClients()
     })
 }
