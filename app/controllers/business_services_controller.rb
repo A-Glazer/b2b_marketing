@@ -19,6 +19,7 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
+        binding.pry
         @all_clients = PotentialClient.all
         respond_to do |format|
             format.html {render :show}

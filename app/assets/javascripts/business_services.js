@@ -102,7 +102,7 @@ function showServiceOnClick() {
     }
 }
 
-// not working - earlier version was
+// working 
 function createBusinessService() {
     // debugger
     const business_service = {
@@ -124,7 +124,7 @@ function createBusinessService() {
     .then(resp => resp.json())
     .then(data => {
         console.log(data)
-        // getServices()
+        getServices()
     // .then(text => {
         // console.log(text)
     })
@@ -241,7 +241,7 @@ function listenForNewClientForm() {
 
 function createPotentialClient() {
     // debugger
-    const potentialClient = {
+    const potential_client = {
         name: document.getElementById('name').value,
         last_contacted: document.getElementById('last_contacted').value, 
         reply: document.getElementById('reply').value,
@@ -253,16 +253,35 @@ function createPotentialClient() {
     
     const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
     debugger
-    $.ajax({
-        url: (BASE_URL + `/business_services/${businessServiceId}`),
-        method: 'POST',
-        dataType: 'json',
-        success: function(data) {
+    // $.ajax({
+    //     url: (BASE_URL + `/business_services/${businessServiceId}`),
+    //     method: 'POST',
+    //     dataType: 'json',
+    //     success: function(data) {
            
-            console.log(data)
-        }
-    })
+    //         console.log(data)
+    //     }
+    // })
+    
+    // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
+    fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
+        method: 'POST',
+        // body: JSON.stringify({ potential_client }),
+        body: potential_client,
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 
+        }
+
+    }).then(resp => resp.json())
+    .then(data => {
+        console.log(data)
+        debugger
+        getClients()
+    })
+}
     // function listenForClientClick() {
     //     $('button#info-data').on('click', function(event) {
     //         event.preventDefault()
@@ -275,23 +294,6 @@ function createPotentialClient() {
 
 
 
-    // fetch((BASE_URL + `/business_services/${businessServiceId}`), { 
-    // fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-
-    //     },
-    //     body: JSON.stringify(potentialClient)
-
-    // }).then(resp => resp.json())
-    // .then(data => {
-    //     console.log(data)
-        // getClients()
-    // })
-}
 
 // in middle of
 // function showClientOnClick() {
