@@ -26,7 +26,7 @@ class PotentialClientsController < ApplicationController
     def create
         @business_service = BusinessService.all
     
-        # binding.pry
+        binding.pry
             @potential_client = @business_service.potential_client.build(client_params)
             if @potential_client.save
                 respond_to do |f|
@@ -49,6 +49,7 @@ class PotentialClientsController < ApplicationController
         @business_services = BusinessService.all
         # binding.pry
         @potential_clients = PotentialClient.all
+        binding.pry
         # if @user.id == @business_services.user_id
             respond_to do |format|
                 format.html {render :index}

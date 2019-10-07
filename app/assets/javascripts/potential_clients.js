@@ -101,11 +101,11 @@ function createPotentialClient() {
         reply: document.getElementById('reply').value,
         follow_up: document.getElementById('follow_up').value,
         agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
-        business_service_id: document.querySelector('div#about_business_service p').innerHTML
+        // business_service_id: document.querySelector('div#about_business_service p').innerHTML
     }
 
     console.log(potential_client)
-    const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+    // const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
     // debugger
     // $.ajax({
     //     url: (BASE_URL + `/business_services/${businessServiceId}`),
@@ -139,25 +139,26 @@ function createPotentialClient() {
 }
 
 // dropdown of bs
-function dropdowns(){
-    document.getElementById("dropdownList").classList.toggle("show");
-}
-
-window.onclick = function(event) {
-    if (!event.target.matches('dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            
-            }
-        } 
-    }
-}
-   
-
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+// function myFunction() {
+//     document.getElementById("myDropdown").classList.toggle("show");
+    
+//     // Close the dropdown menu if the user clicks outside of it
+//     window.onclick = function(event) {
+//         if (!event.target.matches('.dropbtn')) {
+//             var dropdowns = document.getElementsByClassName("dropdown-content");
+//             var i;
+//             for (i = 0; i < dropdowns.length; i++) {
+//                 var openDropdown = dropdowns[i];
+//                 if (openDropdown.classList.contains('show')) {
+//                     openDropdown.classList.remove('show');
+//                 }
+//             }
+//         }
+//     }
+// }
+    
 
 
 // function listenForClientClick() {
