@@ -11,18 +11,31 @@ class PotentialClientsController < ApplicationController
         end
     end
 
-    def create 
-        @potential_client = PotentialClient.new(client_params)   
+    # def create 
+    #     @potential_client = PotentialClient.new(client_params)   
         
-        if @potential_client
-            @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
-            @potential_client.save
-            redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
-        else
-            render :new
-        end
-    end
+    #     if @potential_client
+    #         @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
+    #         @potential_client.save
+    #         redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
+    #     else
+    #         render :new
+    #     end
+    # end
 
+    def create
+        @business_service = BusinessService.all
+        # binding.pry
+            @potential_client = @business_service.potential_client.build(client_params)
+            if @potential_client.save
+                respond_to do |f|
+                    f.html {render :index}
+                    f.json {render json: @potential_client}
+                end
+            else
+                render :index
+            end
+    end
 
     def show
         @business_service = @potential_client.business_service_id
@@ -31,8 +44,17 @@ class PotentialClientsController < ApplicationController
 
     #not for deployment, just for debugging
     def index
+        # @user = current_user          
+        @business_services = BusinessService.all
         @potential_clients = PotentialClient.all
+        # if @user.id == @business_services.user_id
+            respond_to do |format|
+                format.html {render :index}
+                format.json { render json: @potential_clients}
+            end
+        # end
     end
+
 
     def edit
     end
