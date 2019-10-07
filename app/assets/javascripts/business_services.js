@@ -114,7 +114,7 @@ function createBusinessService() {
     }
     fetch('http://localhost:3000/business_services', { 
         method: 'POST',
-        // body: JSON.parse(businessService),
+
         body: JSON.stringify({ business_service }),
         headers: {
             'Content-Type': 'application/json',

@@ -24,10 +24,11 @@ class PotentialClientsController < ApplicationController
     # end
 
     def create
-        @business_service = BusinessService.all
+        # @business_service = BusinessService.all
     
         binding.pry
-            @potential_client = @business_service.potential_client.build(client_params)
+        @business_service = BusinessService.find(params[:business_service_id])
+            @potential_client = @business_service.potential_clients.build(client_params)
             if @potential_client.save
                 respond_to do |f|
                     f.html {render :index}
@@ -55,7 +56,8 @@ class PotentialClientsController < ApplicationController
                 format.html {render :index}
                 format.json { render json: @potential_clients}
             end
-        # end
+        
+           
     end
 
 
@@ -83,7 +85,7 @@ class PotentialClientsController < ApplicationController
     
     private
     def client_params
-        params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting, :business_service_id)
+        params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting)
     end
     
 end
