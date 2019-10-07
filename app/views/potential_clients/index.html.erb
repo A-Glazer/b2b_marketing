@@ -1,25 +1,52 @@
 <h1>Potential Clients: </h1>
 
+<div id="business_service_main">
+<% @business_services.each do |service|%>
+  <h2><%= service.id %>: <%= service.name %></h2>
+  <div id="clients-belonging">
+       <% @potential_clients.each do |client| %>
+          <% client.business_services.each do |business| %>
+            <% if service.name == business.name %>
+              <li>Name: <u><%= client.name %></u><br>
+                  Last Contacted: <%= client.last_contacted %><br>
+                  Reply: <%= client.reply %><br>
+                  Follow up: <%= client.follow_up %><br>
+                  Agreed to Meeting: <%= client.agreed_to_meeting %><br>
+                  <br>
+              </li>
+            <% end %>
+          <%end %>
+       <% end %> 
+  </div>
+<% end %>
+</div>
+
+
+
+
+
+<% if false %>
+<%# main potential clients should only display clients belonging to that business service %>
  <% @potential_clients.each do |client| %>
+
   <ul>
     <li>Name: <u><%= client.name %></u><br>
-    Last Contacted: <%= client.last_contacted.strftime("%b %d, %Y") %><br>
+    Last Contacted: <%= client.last_contacted %><br>
     Reply: <%= client.reply %><br>
-    Follow up: <%= client.follow_up.strftime("%b %d, %Y") %><br>
+    Follow up: <%= client.follow_up %><br>
     Agreed to Meeting: <%= client.agreed_to_meeting %><br>
-
     Business Service(s): *
       <% client.business_services.each do |service| %>
         <%= service.name %>*
       <% end %>
     </li>
-    <li><%= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id) %></li><br><br>
+    
 
   </ul>
   <% end %>
-
-
-<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
+<% end %>
+<%# getClients() should display all potential clients (including those belonging to other services) %>
+<button><a href="#" onclick="getClients(); return false;">Display all Potential Clients</a>
 </button>
 <br>
 <div id="client-info"></div>

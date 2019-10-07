@@ -25,6 +25,7 @@ class PotentialClientsController < ApplicationController
 
     def create
         @business_service = BusinessService.all
+    
         # binding.pry
             @potential_client = @business_service.potential_client.build(client_params)
             if @potential_client.save
@@ -46,6 +47,7 @@ class PotentialClientsController < ApplicationController
     def index
         # @user = current_user          
         @business_services = BusinessService.all
+        # binding.pry
         @potential_clients = PotentialClient.all
         # if @user.id == @business_services.user_id
             respond_to do |format|
