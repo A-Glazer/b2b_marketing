@@ -94,7 +94,7 @@ function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
     for (let i = 0; i < urlTitle.length; i++) {
         let titleId = urlTitle[i].dataset.id
-        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
+        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}/potential_clients`)
         
     urlTitle[i].addEventListener('click', function(){
         window.location.href = businessServiceShowURL
