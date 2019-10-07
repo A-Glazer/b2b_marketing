@@ -67,7 +67,7 @@ then the form should automatically place add the pc to that bs</p>
 
 <% if false %>
 <div class="business_service_dropdown">
-  <button onclick="dropdowns()" class="dropbtn">Business Service Dropdown</button>
+  <button class="dropbtn">Business Service Dropdown</button>
     <div id="dropdownList" class="dropdown-content">
       <% @business_services.each do |service|%>
         <%= service.id %>: <%= service.name %>
@@ -77,3 +77,14 @@ then the form should automatically place add the pc to that bs</p>
 <% end %>
 
 
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>

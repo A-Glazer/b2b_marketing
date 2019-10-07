@@ -28,6 +28,7 @@ gem 'bcrypt'
 gem 'jquery-rails'
 gem 'active_model_serializers'
 gem 'bootstrap', '~> 4.3.1'
+gem 'popper_js'
 
 #for facebook omniauth
 gem 'thin'

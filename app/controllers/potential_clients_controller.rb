@@ -49,7 +49,7 @@ class PotentialClientsController < ApplicationController
         @business_services = BusinessService.all
         # binding.pry
         @potential_clients = PotentialClient.all
-        binding.pry
+        # binding.pry
         # if @user.id == @business_services.user_id
             respond_to do |format|
                 format.html {render :index}
