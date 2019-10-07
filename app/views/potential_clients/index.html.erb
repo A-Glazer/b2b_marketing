@@ -44,7 +44,6 @@
 
   </ul>
   <% end %>
-<% end %>
 <%# getClients() should display all potential clients (including those belonging to other services) %>
 <button><a href="#" onclick="getClients(); return false;">Display all Potential Clients</a>
 </button>
@@ -53,9 +52,24 @@
 <br>
 <br>
 
+<% end %>
+
 <button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
 </button>
 <div id="potential-client-form">
 </div>
 <br>
 <br>
+
+<p> when user clicks on Create a new potential client, 
+it should first give a dropdown allowing them to select with business service
+then the form should automatically place add the pc to that bs</p>  
+
+<div class="business_service_dropdown">
+  <button onclick="dropdowns()" class="dropbtn">Business Service Dropdown</button>
+    <div id="dropdownList" class="dropdown-content">
+      <% @business_services.each do |service|%>
+        <%= service.id %>: <%= service.name %>
+      <% end %>
+    </div>
+</div>

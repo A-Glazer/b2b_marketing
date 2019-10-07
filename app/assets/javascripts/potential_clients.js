@@ -72,6 +72,7 @@ class PotentialClient {
         `)
     }
 }
+// need business service dropdown in pc form
 
 PotentialClient.prototype.newClientHtml = function () {
     return (`
@@ -136,7 +137,30 @@ function createPotentialClient() {
         getClients()
     })
 }
-    // function listenForClientClick() {
+
+// dropdown of bs
+function dropdowns(){
+    document.getElementById("dropdownList").classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            
+            }
+        } 
+    }
+}
+   
+
+
+
+// function listenForClientClick() {
     //     $('button#info-data').on('click', function(event) {
     //         event.preventDefault()
     //         getServices()
