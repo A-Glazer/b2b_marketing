@@ -1,5 +1,8 @@
 <h1>Potential Clients: </h1>
 
+
+
+<div id="bs_id"><%= @business_service_id %></div>
 <div id="business_service_main">
 <% @business_services.each do |service|%>
   <h2><%= service.id %>: <%= service.name %></h2>

@@ -22,7 +22,7 @@ class BusinessServicesController < ApplicationController
         # binding.pry
         @all_clients = PotentialClient.all
         @potential_client = PotentialClient.all
-        # binding.pry
+        binding.pry
         respond_to do |format|
             format.html {render :show}
             format.json { render json: @potential_client}

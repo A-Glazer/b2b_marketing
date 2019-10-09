@@ -101,15 +101,17 @@ function createPotentialClient() {
         reply: document.getElementById('reply').value,
         follow_up: document.getElementById('follow_up').value,
         agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
-        // business_service_id: document.querySelector('div#about_business_service p').innerHTML
+        business_service_id: document.querySelector('div#bs_id').innerHTML
     }
 
     console.log(potential_client)
-    // const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+    // let business_service_id: document.querySelector('div#bs_id').innerHTML
     // debugger
+
+    let businessServiceId = potential_client["business_service_id"]
     // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
-    // fetch((`http://localhost:3000/business_services/${businessServiceId}`), { 
-        fetch('http://localhost:3000/business_services/1/potential_clients', { 
+    fetch((`http://localhost:3000/business_services/${businessServiceId}/potential_clients`), { 
+        // fetch('http://localhost:3000/business_services/1/potential_clients', { 
         method: 'POST',
         body: JSON.stringify({ potential_client }),
         // body: potential_client,

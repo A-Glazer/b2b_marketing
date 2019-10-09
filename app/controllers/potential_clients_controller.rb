@@ -28,7 +28,8 @@ class PotentialClientsController < ApplicationController
     
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = @business_service.potential_clients.build(client_params)
-        # binding.pry
+        binding.pry
+        # I need to save business service id from the page as the bs id 
             if @potential_client.save
                 respond_to do |f|
                     f.html {render :index}
@@ -44,13 +45,13 @@ class PotentialClientsController < ApplicationController
        
     end
 
-    #not for deployment, just for debugging
     def index
         # @user = current_user          
         @business_services = BusinessService.all
         # binding.pry
         @potential_clients = PotentialClient.all
         # binding.pry
+        @business_service_id = params[:business_service_id]
         # if @user.id == @business_services.user_id
             respond_to do |format|
                 format.html {render :index}
