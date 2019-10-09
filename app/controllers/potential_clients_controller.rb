@@ -28,7 +28,7 @@ class PotentialClientsController < ApplicationController
     
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = @business_service.potential_clients.build(client_params)
-        binding.pry
+        # binding.pry
         # I need to save business service id from the page as the bs id 
             if @potential_client.save
                 respond_to do |f|

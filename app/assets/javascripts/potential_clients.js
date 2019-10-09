@@ -125,7 +125,6 @@ function createPotentialClient() {
     }).then(resp => resp.json())
     .then(data => {
         console.log(data)
-        debugger
         getClients()
     })
 }
