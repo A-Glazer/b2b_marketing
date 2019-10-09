@@ -25,3 +25,17 @@ Find out about this requirement:
 (new coment let comment = new comment, comment has a constructor => look at recips.js link 19, 22) and then protype method is called on it
 
 ** change names in js folder to .js (not .coffee)
+
+-----
+
+Go to show page for that specific business service
+then have a button to show all the potential clients
+
+First make show page work to make sure only seeing one
+Have button to add new client  
+append 
+
+look at line 14 on recipes.js
+put form in show page
+*simplify what I already wrote
+-need the form to be dynamic so dont need to refresh when submit

@@ -72,7 +72,7 @@ class PotentialClient {
         `)
     }
 }
-// need business service dropdown in pc form
+
 
 PotentialClient.prototype.newClientHtml = function () {
     return (`
@@ -93,8 +93,8 @@ function listenForNewClientForm() {
     // })
 }
 
-function createPotentialClient() {
-    // debugger
+function createPotentialClient(e) {
+    // e.preventDefault
     const potential_client = {
         name: document.getElementById('name').value,
         last_contacted: document.getElementById('last_contacted').value, 
@@ -106,7 +106,7 @@ function createPotentialClient() {
 
     console.log(potential_client)
     // let business_service_id: document.querySelector('div#bs_id').innerHTML
-    // debugger
+    debugger
 
     let businessServiceId = potential_client["business_service_id"]
     // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 

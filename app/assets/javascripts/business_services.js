@@ -99,7 +99,7 @@ function showServiceOnClick() {
         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}/potential_clients`)
         urlTitle[i].addEventListener('click', function(){   
             const business_service_id = titleId
-            debugger
+            // debugger
             window.location.href = businessServiceShowURL
             
     })
@@ -128,7 +128,7 @@ function createBusinessService() {
     // .then(resp => resp.text())
     .then(resp => resp.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
         getServices()
     // .then(text => {
         // console.log(text)
