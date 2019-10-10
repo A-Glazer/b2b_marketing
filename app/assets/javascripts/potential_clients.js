@@ -19,7 +19,7 @@ function getClients() {
             console.log("the data is: ", data[1].potential_clients)
             // document.getElementById('client-info').innerHTML = ""
             // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
-            const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
+            // const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
             data[`${businessServiceId}`].potential_clients.map(potential_client => {
             //   debugger
                 const newClient = new PotentialClient(potential_client)

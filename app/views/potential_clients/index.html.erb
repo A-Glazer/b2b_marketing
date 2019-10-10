@@ -1,4 +1,3 @@
-<h1>Potential Clients: </h1>
 
 
 
@@ -6,22 +5,28 @@
 
 <div id="business_service_main">
 <% @business_services.each do |service|%>
-  <h2><%= service.id %>: <%= service.name %></h2>
-  <div id="clients-belonging">
-       <% @potential_clients.each do |client| %>
-          <% client.business_services.each do |business| %>
-            <% if service.name == business.name %>
-              <li>Name: <u><%= client.name %></u><br>
-                  Last Contacted: <%= client.last_contacted %><br>
-                  Reply: <%= client.reply %><br>
-                  Follow up: <%= client.follow_up %><br>
-                  Agreed to Meeting: <%= client.agreed_to_meeting %><br>
-                  <br>
-              </li>
-            <% end %>
-          <%end %>
-       <% end %> 
-  </div>
+<% if service.id == @business_service_id.to_i %>
+
+<h2>Business Service: <u><%= service.name %></u></h2>
+<h3><i>Potential Clients: </i></h3>
+<div id="clients-belonging">
+  <% @potential_clients.each do |client| %>
+    <% client.business_services.each do |business| %>
+      <% if service.name == business.name %>
+        <li>Name: <u><%= client.name %></u><br>
+            Last Contacted: <%= client.last_contacted %><br>
+            Reply: <%= client.reply %><br>
+            Follow up: <%= client.follow_up %><br>
+            Agreed to Meeting: <%= client.agreed_to_meeting %><br>
+            <br>
+        </li>
+      <% end %>
+ 
+    <% end %>
+  <% end %>
+         
+</div>
+<% end %>
 <% end %>
 </div>
 
@@ -49,14 +54,16 @@
   </ul>
   <% end %>
 <%# getClients() should display all potential clients (including those belonging to other services) %>
+
 <button><a href="#" onclick="getClients(); return false;">Display all Potential Clients</a>
 </button>
 <br>
 <div id="client-info"></div>
 <br>
 <br>
+  <%end %>
 
-<% end %>
+
 
 <button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
 </button>
@@ -65,30 +72,28 @@
 <br>
 <br>
 
-<p> when user clicks on Create a new potential client, 
-it should first give a dropdown allowing them to select with business service
-then the form should automatically place add the pc to that bs</p>  
 
-<% if false %>
-<div class="business_service_dropdown">
-  <button class="dropbtn">Business Service Dropdown</button>
-    <div id="dropdownList" class="dropdown-content">
-      <% @business_services.each do |service|%>
-        <%= service.id %>: <%= service.name %>
-      <% end %>
-    </div>
-</div>
-<% end %>
-
-
-
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+<%if false%>
+<%# view all clients %>
+<% @business_services.each do |service|%>
+  <h2><%= service.id %>: <%= service.name %></h2>
+  <%= binding.pry %>
+  <div id="clients-belonging">
+       <% @potential_clients.each do |client| %>
+          <% client.business_services.each do |business| %>
+            <% if service.name == business.name %>
+              <li>Name: <u><%= client.name %></u><br>
+                  Last Contacted: <%= client.last_contacted %><br>
+                  Reply: <%= client.reply %><br>
+                  Follow up: <%= client.follow_up %><br>
+                  Agreed to Meeting: <%= client.agreed_to_meeting %><br>
+                  <br>
+              </li>
+            <% end %>
+          <%end %>
+       <% end %> 
   </div>
+<% end %>
 </div>
+
+<%end %>
