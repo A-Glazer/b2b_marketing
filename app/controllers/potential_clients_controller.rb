@@ -11,18 +11,6 @@ class PotentialClientsController < ApplicationController
         end
     end
 
-    # def create 
-    #     @potential_client = PotentialClient.new(client_params)   
-        
-    #     if @potential_client
-    #         @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
-    #         @potential_client.save
-    #         redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
-    #     else
-    #         render :new
-    #     end
-    # end
-
     def create
         # @business_service = BusinessService.all
     

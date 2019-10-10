@@ -1,6 +1,3 @@
-
-
-
 <div id="bs_id"><%=@business_service_id%></div>
 
 <div id="business_service_main">
@@ -31,9 +28,45 @@
 </div>
 
 
+<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
+</button>
+<div id="potential-client-form">
+</div>
+<br>
+<br>
 
 
 
+<%= form_for:@potential_client do |f| %>
+
+    <%= f.hidden_field :business_service_id %>
+
+
+    <%= f.label :name %>   
+    <%= f.text_field :name %>
+    <br><br>
+
+    <%= f.label :last_contacted %>   
+    <%= f.date_field :last_contacted %>
+    <br><br>
+
+    <%= f.label :reply %>   
+    <%= f.text_area :reply %>
+    <br><br>
+
+    <%= f.label :follow_up %>   
+    <%= f.date_field :follow_up %>
+    <br><br>
+
+    <%= f.label :agreed_to_meeting %>   
+    <%= f.text_field :agreed_to_meeting %>
+    <br><br>
+    
+    <%= f.submit "Submit" %>
+<% end %>
+
+
+<%# old code %>
 <% if false %>
 <%# main potential clients should only display clients belonging to that business service %>
  <% @potential_clients.each do |client| %>
@@ -63,14 +96,6 @@
 <br>
   <%end %>
 
-
-
-<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
-</button>
-<div id="potential-client-form">
-</div>
-<br>
-<br>
 
 
 <%if false%>
