@@ -1,16 +1,61 @@
-function getClients() {
-    // document.querySelector('div#potential-clients-form').innerHTML = ""
-    // let service_list = document.querySelectorAll('li a')
-    // for (let i = 0; i < service_list.length; i++) {
-    //     let serviceId = service_list[i].dataset.id
-    // idNum = (service_list.length -1)
+$(function() {
+    $("a.load_clients").on("click", function(e){
+        $.get(this.href).success(function(json){
+            let allClients = $('#pc_new_form ol')
+            allClients.text('')
 
-    // const businessServiceIdURL = (`http://localhost:3000//business_services/${idNum}/potential_clients`)
+            json.forEach(function(client){
+                allClients.append('<li>' + client + '</li>')
+            })
+        })
+        e.preventDefault()
+    })
+     
+    $("#new_potential_client").on("submit", function(e) {
+        $.ajax({
+            type: "POST",
+            url: (this).attr('action'),
+            data: $(this).serialize(),
+            success: function(response){
+                // $('#pc_new_form').val('')
+
+                let newClient = new PotentialClient(response) 
+                newClient.newClientHtml()
+            }
+        })
+        e.preventDefault()
+    })
+
+
+})
+
+PotentialClient.prototype.newClientHtml = function () {
+    let html = '<li>' +
+        (`
+        Name: ${this.name}
+        Last Contacted: ${this.last_contacted}
+        Reply: ${this.reply}
+        Follow up: ${this.follow_up}
+        Agreed to Meeting? ${this.agreed_to_meeting}
+        `) +
+        '</li>'
+    $('#business_service_main').append(html)
+}
+
+
+
+
+
+
+
+
+
+
+
+function getClients() {
+    
     
     $.ajax({
-        // url is wrong
-        // url: `http://localhost:3000//business_services/${business_service.id}/potential_clients`,
-        // url: (BASE_URL + `/business_services/${businessServiceId}`),
         url: (BASE_URL + `/business_services`),
         method: 'get',
         dataType: 'json',
@@ -30,6 +75,7 @@ function getClients() {
         }
     })
 }
+
 
 
 class PotentialClient {
@@ -74,18 +120,6 @@ class PotentialClient {
 }
 
 
-PotentialClient.prototype.newClientHtml = function () {
-    return (`
-    <div id='client-details'>
-        <h4>Name: ${this.name}</h4> 
-        <p>Last Contacted: ${this.last_contacted}</p>
-        <p>Reply: ${this.reply}</p> 
-        <p>Follow up: ${this.follow_up}</p>
-        <p>Agreed to Meeting? ${this.agreed_to_meeting}</p> 
-    </div>
-    `)
-}
-
 function listenForNewClientForm() {
         let newClientForm = PotentialClient.newClientForm()
         document.querySelector('div#potential-client-form').innerHTML = newClientForm
@@ -106,7 +140,7 @@ function createPotentialClient(e) {
 
     console.log(potential_client)
     // let business_service_id: document.querySelector('div#bs_id').innerHTML
-    debugger
+    // debugger
 
     let businessServiceId = potential_client["business_service_id"]
     // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
@@ -129,32 +163,4 @@ function createPotentialClient(e) {
     })
 }
 
-// dropdown of bs
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-// function myFunction() {
-//     document.getElementById("myDropdown").classList.toggle("show");
-    
-//     // Close the dropdown menu if the user clicks outside of it
-//     window.onclick = function(event) {
-//         if (!event.target.matches('.dropbtn')) {
-//             var dropdowns = document.getElementsByClassName("dropdown-content");
-//             var i;
-//             for (i = 0; i < dropdowns.length; i++) {
-//                 var openDropdown = dropdowns[i];
-//                 if (openDropdown.classList.contains('show')) {
-//                     openDropdown.classList.remove('show');
-//                 }
-//             }
-//         }
-//     }
-// }
-    
 
-
-// function listenForClientClick() {
-    //     $('button#info-data').on('click', function(event) {
-    //         event.preventDefault()
-    //         getServices()
-    //     })
-    // }

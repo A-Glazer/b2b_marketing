@@ -35,9 +35,13 @@
 <br>
 <br>
 
+<div id="pc_new_form">
+  <ol>
+  </ol>
+</div>
 
-
-<%= form_for:@potential_client do |f| %>
+<h3><i> Create a New Potential Client Form: </i></h3>
+<%= form_for([@business_service, @potential_client]) do |f| %>
 
     <%= f.hidden_field :business_service_id %>
 

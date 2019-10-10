@@ -29,6 +29,8 @@ gem 'jquery-rails'
 gem 'active_model_serializers'
 gem 'bootstrap', '~> 4.3.1'
 gem 'popper_js'
+gem 'simple_form'
+
 
 #for facebook omniauth
 gem 'thin'
