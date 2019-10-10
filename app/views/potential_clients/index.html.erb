@@ -41,10 +41,7 @@
 </div>
 
 <h3><i> Create a New Potential Client Form: </i></h3>
-<%= form_for([@business_service, @potential_client]) do |f| %>
-
-    <%= f.hidden_field :business_service_id %>
-
+<%= form_for([@business_service, @potential_client], :url => {:action => :create}) do |f| %>
 
     <%= f.label :name %>   
     <%= f.text_field :name %>

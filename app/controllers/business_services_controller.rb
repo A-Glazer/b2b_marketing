@@ -21,7 +21,8 @@ class BusinessServicesController < ApplicationController
     def show
         # binding.pry
         @all_clients = PotentialClient.all
-        @potential_client = PotentialClient.all
+        @business_service = BusinessService.find(params["id"])
+        @potential_client = @business_service.potential_clients.build
         # binding.pry
         respond_to do |format|
             format.html {render :show}

@@ -29,6 +29,33 @@
 </div>
 <br><br>
 
+<h3><i> Create a New Potential Client Form: </i></h3>
+<%# need action to redirect to potential client create page %>
+<%= form_for([@business_service, @potential_client], :url => {action: :create}) do |f| %>
+
+    <%= f.label :name %>   
+    <%= f.text_field :name %>
+    <br><br>
+
+    <%= f.label :last_contacted %>   
+    <%= f.date_field :last_contacted %>
+    <br><br>
+
+    <%= f.label :reply %>   
+    <%= f.text_area :reply %>
+    <br><br>
+
+    <%= f.label :follow_up %>   
+    <%= f.date_field :follow_up %>
+    <br><br>
+
+    <%= f.label :agreed_to_meeting %>   
+    <%= f.text_field :agreed_to_meeting %>
+    <br><br>
+    
+    <%= f.submit "Submit" %>
+<% end %>
+
 <button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
 </button>
 <br>

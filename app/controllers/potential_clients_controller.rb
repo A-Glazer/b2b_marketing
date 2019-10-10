@@ -20,8 +20,8 @@ class PotentialClientsController < ApplicationController
         # I need to save business service id from the page as the bs id 
             if @potential_client.save
                 respond_to do |f|
-                    f.html {render :index}
                     f.json {render json: @potential_client}
+                    # f.html {render :index}
                 end
             else
                 render :index
@@ -42,12 +42,17 @@ class PotentialClientsController < ApplicationController
         # binding.pry
         @business_service_id = params[:business_service_id]
         # if @user.id == @business_services.user_id
-            respond_to do |format|
-                format.html {render :index}
-                format.json { render json: @potential_clients}
+        @business_services.each do |service|
+            if service.id == @business_service_id.to_i    
+                # respond_to do |f|
+                    # render json: @potential_clients
+                    # f.json {render json: @potential_clients}
+                render "potential_clients/index"
+                # end
             end
+        end
         
-           
+             
     end
 
 

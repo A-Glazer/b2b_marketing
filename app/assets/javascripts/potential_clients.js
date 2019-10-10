@@ -1,24 +1,26 @@
 $(function() {
-    $("a.load_clients").on("click", function(e){
-        $.get(this.href).success(function(json){
-            let allClients = $('#pc_new_form ol')
-            allClients.text('')
+    // $("a.load_clients").on("click", function(e){
+    //     $.get(this.href).success(function(json){
+    //         let allClients = $('#pc_new_form ol')
+    //         allClients.text('')
 
-            json.forEach(function(client){
-                allClients.append('<li>' + client + '</li>')
-            })
-        })
-        e.preventDefault()
-    })
+    //         json.forEach(function(client){
+    //             debugger
+    //             allClients.append('<li>' + client + '</li>')
+    //         })
+    //     })
+    //     e.preventDefault()
+    // })
      
     $("#new_potential_client").on("submit", function(e) {
+        // debugger
         $.ajax({
             type: "POST",
-            url: (this).attr('action'),
+            url: this.action,
             data: $(this).serialize(),
             success: function(response){
                 // $('#pc_new_form').val('')
-
+                // debugger
                 let newClient = new PotentialClient(response) 
                 newClient.newClientHtml()
             }
@@ -27,16 +29,27 @@ $(function() {
     })
 
 
+
 })
 
-PotentialClient.prototype.newClientHtml = function () {
+function PotentialClient(obj) {
+        this.id = obj.id
+        this.name = obj.name
+        this.last_contacted = obj.last_contacted
+        this.reply = obj.reply
+        this.follow_up = obj.follow_up
+        this.agreed_to_meeting = obj.agreed_to_meeting
+        // this.business_service_id = obj.business_service_id
+}
+
+PotentialClient.prototype.newClientHtml = function() {
     let html = '<li>' +
         (`
-        Name: ${this.name}
-        Last Contacted: ${this.last_contacted}
-        Reply: ${this.reply}
-        Follow up: ${this.follow_up}
-        Agreed to Meeting? ${this.agreed_to_meeting}
+        Name: ${this.name},
+        Last Contacted: ${this.last_contacted},
+        Reply: ${this.reply},
+        Follow up: ${this.follow_up},
+        Agreed to Meeting? ${this.agreed_to_meeting},
         `) +
         '</li>'
     $('#business_service_main').append(html)
@@ -78,46 +91,46 @@ function getClients() {
 
 
 
-class PotentialClient {
-    constructor(obj) {
-        this.id = obj.id
-        this.name = obj.name
-        this.last_contacted = obj.last_contacted
-        this.reply = obj.reply
-        this.follow_up = obj.follow_up
-        this.agreed_to_meeting = obj.agreed_to_meeting
-        // this.business_service_id = obj.business_service_id
-    }
+// class PotentialClient {
+//     constructor(obj) {
+//         this.id = obj.id
+//         this.name = obj.name
+//         this.last_contacted = obj.last_contacted
+//         this.reply = obj.reply
+//         this.follow_up = obj.follow_up
+//         this.agreed_to_meeting = obj.agreed_to_meeting
+//         // this.business_service_id = obj.business_service_id
+//     }
 
-    static newClientForm() {
-        return (`
-        <br>
-        <strong>New Potential Client Form</strong>
-        <br>
-            <form onsubmit="createPotentialClient();">
-            <label>Name: </label>
-            <input type="text" id="name"></input>
-            <br>
-            <label>Last Contacted: </label>
-            <input type="text" id="last_contacted"></input>
-            <br>
-            <label>Reply: </label>
-            <input type="text" id="reply"></input>
-            <br>
-            <label>Follow_up: </label>
-            <input type="text" id="follow_up"></input>
-            <br>
-            <label>Agreed to Meeting?: </label>
-            <input type="text" id="agreed_to_meeting"></input>
-            <br>
+//     static newClientForm() {
+//         return (`
+//         <br>
+//         <strong>New Potential Client Form</strong>
+//         <br>
+//             <form onsubmit="createPotentialClient();">
+//             <label>Name: </label>
+//             <input type="text" id="name"></input>
+//             <br>
+//             <label>Last Contacted: </label>
+//             <input type="text" id="last_contacted"></input>
+//             <br>
+//             <label>Reply: </label>
+//             <input type="text" id="reply"></input>
+//             <br>
+//             <label>Follow_up: </label>
+//             <input type="text" id="follow_up"></input>
+//             <br>
+//             <label>Agreed to Meeting?: </label>
+//             <input type="text" id="agreed_to_meeting"></input>
+//             <br>
             
-            <br>
+//             <br>
 
-            <input type="submit" value="Submit"></input>
-            </form>
-        `)
-    }
-}
+//             <input type="submit" value="Submit"></input>
+//             </form>
+//         `)
+//     }
+// }
 
 
 function listenForNewClientForm() {
