@@ -12,6 +12,7 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
+        binding.pry
         @business_services = BusinessService.all
         # @potential_client = PotentialClient.new(client_params)
         @business_service = BusinessService.find(params[:business_service_id])

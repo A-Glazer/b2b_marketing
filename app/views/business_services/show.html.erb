@@ -31,7 +31,10 @@
 
 <h3><i> Create a New Potential Client Form: </i></h3>
 <%# need action to redirect to potential client create page %>
-<%= form_for([@business_service, @potential_client], :url => {action: :create}) do |f| %>
+<%# /business_services/:business_service_id/potential_clients(.:format)	 %>
+<%= form_for([@business_service, @potential_client], :url => {action: business_service_potential_clients_path(@business_service)}, :method => {"post"}) do |f| %>
+
+<%# <%= form_for([@business_service, @potential_client], :url => {action: :create}) do |f| %> 
 
     <%= f.label :name %>   
     <%= f.text_field :name %>
