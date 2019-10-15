@@ -96,7 +96,7 @@ function showServiceOnClick() {
     for (let i = 0; i < urlTitle.length; i++) {
         let titleId = urlTitle[i].dataset.id
         // const businessServiceShowURL = (`${BASE_URL}/business_services/1/potential_clients`)
-        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}/potential_clients`)
+        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
         urlTitle[i].addEventListener('click', function(){   
             const business_service_id = titleId
             // debugger
