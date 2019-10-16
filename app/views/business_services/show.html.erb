@@ -8,32 +8,25 @@
 
 <div id="potential-client-list">
 <% @all_clients.each do |client| %>
-
     <% client.business_services.each do |service| %>
-
-
         <% if service.id == @business_service.id %>
             <ul>
             <li>Name: <%= client.name %><br>
             Last Contacted: <%= client.last_contacted %><br>
             Reply: <%= client.reply %><br>
-            Business Service: <%= service.name %><br> 
-            <a href="#" onclick="getClients(); return false;">Show More</a>
-            <%#= link_to "See More",  business_service_potential_client_path(@business_service.id, client.id)</li><br><br> %>
+            Follow Up: <%= client.follow_up %><br>
+            Agreed To Meeting: <%= client.agreed_to_meeting %> <br>
+            
             </ul>
-
         <% end %>
     <% end %>
 <% end %>
 </div>
 <br><br>
 
-<h3><i> Create a New Potential Client Form: </i></h3>
-<%# need action to redirect to potential client create page %>
-<%# /business_services/:business_service_id/potential_clients(.:format)	 %>
-<%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
 
-<%# <%= form_for([@business_service, @potential_client], :url => {action: :create}) do |f| %> 
+<h3><i> Create a New Potential Client Form: </i></h3>
+<%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
 
     <%= f.label :name %>   
     <%= f.text_field :name %>
@@ -77,15 +70,4 @@
 <br>
 <br>
 
-
-
-
-<b><u>Links:</b></u><br>
-
-<%= link_to "View Business Services", business_services_path %><br>
-
-<%= link_to "Edit Business Service", edit_business_service_path(@business_service.id) %><br>
-<%= link_to "View Agreed To Meeting", meetings_path %><br>
-<%= link_to "Delete",  business_service_path(@business_service.id), method: :delete %><br>
-<%= link_to "Create a New Potential Client", new_business_service_potential_client_path(@business_service.id, @potential_client) %>
 <% end %>

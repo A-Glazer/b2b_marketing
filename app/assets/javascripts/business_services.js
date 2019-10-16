@@ -1,20 +1,3 @@
-// ** NEED TO FIGURE OUT WHY POTENTIAL CLIENTS NEW FORM ISN"T SAVING AND ADDING TO POTENTIAL CLIENT LIST**
-
-
-{/* <script src="jquery.min.js"></script>  */}
-
-{/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script> */}
-
-{/* <script type="text/javascript" src="js/script.js"></script> */}
-
-
-// $(document).ready(function () {
-// (function($){
-//    console.log('business_service.js is loaded...') 
-//    listenForClick()
-//    listenForNewServiceForm()
-// })(jQuery);
-
 const BASE_URL = 'http://localhost:3000'
 
 function listenForClick() {
@@ -46,8 +29,6 @@ function getServices() {
 }
 
 function listenForNewServiceForm() {
-    // $('button#business-service-form').on('click', function (event)  {
-        // event.preventDefault()
         let newServiceForm = BusinessService.newServiceForm()
         document.querySelector('div#business-service-form').innerHTML = newServiceForm
         
@@ -89,27 +70,20 @@ BusinessService.prototype.newServiceHtml = function () {
     `)
 }
 
-
-
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
     for (let i = 0; i < urlTitle.length; i++) {
         let titleId = urlTitle[i].dataset.id
-        // const businessServiceShowURL = (`${BASE_URL}/business_services/1/potential_clients`)
         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
         urlTitle[i].addEventListener('click', function(){   
             const business_service_id = titleId
-            // debugger
             window.location.href = businessServiceShowURL
             
     })
     }
 }
 
-
-// working 
 function createBusinessService() {
-    // debugger
     const business_service = {
         name: document.getElementById('name').value,
         description: document.getElementById('description').value 
@@ -125,12 +99,8 @@ function createBusinessService() {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
         } 
     })
-    // .then(resp => resp.text())
     .then(resp => resp.json())
     .then(data => {
-        // console.log(data)
         getServices()
-    // .then(text => {
-        // console.log(text)
     })
 }

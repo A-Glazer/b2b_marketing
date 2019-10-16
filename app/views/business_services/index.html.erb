@@ -1,32 +1,4 @@
-<%# comment out section below using if false %>
-<% if false %>
-<h1>Business Services Offered: </h1>
-
-<div id="business-service-index">
-
-<ol>
-<% @business_services.each do |service| %>
-
-  <% if @user.id == service.user_id %>
-      <li> Service: <a href="#" onclick="getServices(); return false;"><%= service.name %></a><br>
-      Description: <%= service.description %><br>
-      
-      </li>
-      <br>
-  <% end %>
-<% end %>
-</ol>
-
-</div>
-
-<% end %>
-<%# end of commented out section%>
-
-
-
 <h1>Would you like to:</h1>
-
-
 
 <button><a href="#" onclick="listenForNewServiceForm(); return false;">Create a New Business Service</a>
 </button>
@@ -48,25 +20,4 @@
 </div>
 <br>
 <br>
-
-
-
-
-<% if false %>
-<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
-</button>
-<br>
-<div id="client-info"></div>
-<br>
-<br>
-
-<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
-</button>
-<div id="potential-client-form">
-</div>
-<br>
-<br>
-
-<% end %>
-
 
