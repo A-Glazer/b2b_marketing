@@ -12,23 +12,22 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
-        @business_services = BusinessService.all
-        # @potential_client = PotentialClient.new(client_params)
+        # @business_services = BusinessService.all
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = PotentialClient.new(client_params)
         @potential_client.business_service_id = @business_service.id
-        # @potential_client = @business_service.potential_clients.build
-        # binding.pry
-        # I need to save business service id from the page as the bs id 
-        # binding.pry
         if @potential_client.save
-                respond_to do |f|
-                    # f.json {render json: @potential_client}
-                    f.html {render :index}
-                end
-            else
-                render :index
-            end
+            # respond_to do |f|
+        # binding.pry
+            # render json: @potential_client
+                # f.json {render json: @potential_client}
+                # f.html {render :index}
+            # end
+            render business_services_path(@potential_client.business_service_id)
+        end
+        # else
+            # render :index
+        # end
     end
 
     def show

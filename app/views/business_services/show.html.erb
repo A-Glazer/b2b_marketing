@@ -5,13 +5,12 @@
 </div>
 <b><u>Potential Clients:</u></b>
 
-<p> Put list of clients here belonging to business_service</p>
 
 <div id="potential-client-list">
 <% @all_clients.each do |client| %>
 
-
     <% client.business_services.each do |service| %>
+
 
         <% if service.id == @business_service.id %>
             <ul>
@@ -59,6 +58,11 @@
     <%= f.submit "Submit" %>
 <% end %>
 
+
+
+
+
+<% if false %>
 <button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
 </button>
 <br>
@@ -76,7 +80,6 @@
 
 
 
-<% if false %>
 <b><u>Links:</b></u><br>
 
 <%= link_to "View Business Services", business_services_path %><br>

@@ -25,8 +25,8 @@ class BusinessServicesController < ApplicationController
         @potential_client = @business_service.potential_clients.build
         # binding.pry
         respond_to do |format|
-            format.html {render :show}
-            format.json { render json: @potential_client}
+            format.json { render json: @business_service}
+            format.html { render :show }
         end
         
         # need to fix
