@@ -16,14 +16,16 @@ class PotentialClientsController < ApplicationController
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = PotentialClient.new(client_params)
         @potential_client.business_service_id = @business_service.id
+        binding.pry
         if @potential_client.save
             # respond_to do |f|
         # binding.pry
-            # render json: @potential_client
+            render json: @potential_client
                 # f.json {render json: @potential_client}
                 # f.html {render :index}
             # end
-            render business_services_path(@potential_client.business_service_id)
+            # binding.pry
+            # redirect_to `business_service/@potential_client.id`
         end
         # else
             # render :index

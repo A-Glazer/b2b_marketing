@@ -19,12 +19,15 @@ $(function() {
             url: this.action,
             data: $(this).serialize(),
             success: function(response){
-                // $('#pc_new_form').val('')
                 // debugger
                 let newClient = new PotentialClient(response) 
                 newClient.newClientHtml()
+                
+                $("#new_potential_client")[0].reset()
+                $("#submit-button").attr("disabled", false)
             }
         })
+        
         e.preventDefault()
     })
 
@@ -45,29 +48,18 @@ function PotentialClient(obj) {
 PotentialClient.prototype.newClientHtml = function() {
     let html = '<li>' +
         (`
-        Name: ${this.name},
+        Name: ${this.name}, 
         Last Contacted: ${this.last_contacted},
         Reply: ${this.reply},
         Follow up: ${this.follow_up},
         Agreed to Meeting? ${this.agreed_to_meeting},
         `) +
         '</li>'
-    $('#business_service_main').append(html)
+    $('#potential-client-list').append(html)
 }
 
 
-
-
-
-
-
-
-
-
-
 function getClients() {
-    
-    
     $.ajax({
         url: (BASE_URL + `/business_services`),
         method: 'get',
@@ -140,40 +132,41 @@ function listenForNewClientForm() {
     // })
 }
 
-function createPotentialClient(e) {
-    // e.preventDefault
-    const potential_client = {
-        name: document.getElementById('name').value,
-        last_contacted: document.getElementById('last_contacted').value, 
-        reply: document.getElementById('reply').value,
-        follow_up: document.getElementById('follow_up').value,
-        agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
-        business_service_id: document.querySelector('div#bs_id').innerHTML
-    }
+// function createPotentialClient(e) {
+//     // e.preventDefault
+//     const potential_client = {
+//         name: document.getElementById('name').value,
+//         last_contacted: document.getElementById('last_contacted').value, 
+//         reply: document.getElementById('reply').value,
+//         follow_up: document.getElementById('follow_up').value,
+//         agreed_to_meeting: document.getElementById('agreed_to_meeting').value,
+//         business_service_id: document.querySelector('div#bs_id').innerHTML
+//     }
 
-    console.log(potential_client)
-    // let business_service_id: document.querySelector('div#bs_id').innerHTML
-    // debugger
+//     console.log(potential_client)
+//     // let business_service_id: document.querySelector('div#bs_id').innerHTML
+//     // debugger
 
-    let businessServiceId = potential_client["business_service_id"]
-    // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
-    fetch((`http://localhost:3000/business_services/${businessServiceId}/potential_clients`), { 
-        // fetch('http://localhost:3000/business_services/1/potential_clients', { 
-        method: 'POST',
-        body: JSON.stringify({ potential_client }),
-        // body: potential_client,
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+//     let businessServiceId = potential_client["business_service_id"]
+//     // fetch(BASE_URL + `/business_services/${businessServiceId}`), { 
+//     fetch((`http://localhost:3000/business_services/${businessServiceId}/potential_clients`), { 
+//         // fetch('http://localhost:3000/business_services/1/potential_clients', { 
+//         method: 'POST',
+//         body: JSON.stringify({ potential_client }),
+//         // body: potential_client,
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Accept': 'application/json',
+//             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
 
-        }
+//         }
 
-    }).then(resp => resp.json())
-    .then(data => {
-        console.log(data)
-        getClients()
-    })
-}
+//     }).then(resp => resp.json())
+//     .then(data => {
+//         console.log(data)
+//         getClients()
+
+//     })
+// }
 
 
