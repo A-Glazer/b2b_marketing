@@ -16,7 +16,7 @@ class PotentialClientsController < ApplicationController
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = PotentialClient.new(client_params)
         @potential_client.business_service_id = @business_service.id
-        binding.pry
+        # binding.pry
         if @potential_client.save
             # respond_to do |f|
         # binding.pry
