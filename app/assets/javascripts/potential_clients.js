@@ -26,6 +26,7 @@ function PotentialClient(obj) {
     this.follow_up = obj.follow_up
     this.agreed_to_meeting = obj.agreed_to_meeting
     // this.business_service_id = obj.business_service_id
+    
 }
 
 PotentialClient.prototype.newClientHtml = function() {
@@ -43,7 +44,7 @@ PotentialClient.prototype.newClientHtml = function() {
 
 
 
-
+// trying to create a new pc form
 
 
 
@@ -87,11 +88,18 @@ PotentialClient.prototype.newClientHtml = function() {
 
 
 // function listenForNewClientForm() {
-//         let newClientForm = PotentialClient.newClientForm()
-//         document.querySelector('div#potential-client-form').innerHTML = newClientForm
+//         let newClientForm = document.querySelector('div#potential-client-form')
+//         // document.querySelector('div#potential-client-form').innerHTML = newClientForm
+//         let html = `
+//         <form 
+//         `
+
+    
         
-//     // })
 // }
+
+
+
 
 // function createPotentialClient(e) {
 //     // e.preventDefault
