@@ -47,6 +47,28 @@ PotentialClient.prototype.newClientHtml = function() {
     $('#potential-client-list').append(html)
 }
 
+function getClients() {
+    // document.querySelector('div#potential-client-list').innerHTML = ""
+    $.ajax({
+        url: this.action,
+        method: 'GET',
+        dataType: 'JSON',
+        success: function(data) {
+            console.log("the data is: ", data)
+            // document.getElementById('info').innerHTML = ""
+            let BSId = data["id"]
+            data["potential_clients"].map(potential_client => {
+                let newClient = new PotentialClient(potential_client)
+                newClient.business_service_id = BSId
+                newClient.newClientHtml()
+            })
+        }
+    })
+}
+
+
+// trying to create a new pc form
+
 // $("#potential-client-list").on("click", function(e){
 //     $.ajax({
 //         type: "GET",
@@ -60,64 +82,6 @@ PotentialClient.prototype.newClientHtml = function() {
 //     })
 //     e.preventDefault()    
 // })
-
-function getClients() {
-    // document.querySelector('div#potential-client-list').innerHTML = ""
-    $.ajax({
-        url: this.action,
-        method: 'GET',
-        dataType: 'JSON',
-        success: function(data) {
-            console.log("the data is: ", data)
-            // document.getElementById('info').innerHTML = ""
-            let BSId = data["id"]
-            data["potential_clients"].map(potential_client => {
-                let newClient = new PotentialClient(potential_client) 
-                newClient.newClientHtml()
-
-                
-            })
-            
-            
-            // data.map(business_service => {
-            //     const newService = new BusinessService(business_service)
-            //     const newServiceHtml = newService.newServiceHtml()
-           
-            //     document.getElementById('info').innerHTML += newServiceHtml
-            //     showServiceOnClick()
-            // })
-        }
-    })
-}
-
-
-// trying to create a new pc form
-
-
-
-
-
-// function getClients() {
-    //         $.ajax({
-//                 url: (BASE_URL + `/business_services`),
-//                 method: 'get',
-//                 dataType: 'json',
-//                 success: function(data) {
-    
-//                         console.log("the data is: ", data[1].potential_clients)
-//                         // document.getElementById('client-info').innerHTML = ""
-//                         // I want it to display: data[business_service id#].potential_clients. I can't figure out how to find the id
-//                         // const businessServiceId = document.querySelector('div#about_business_service p').innerHTML
-//                         data[`${businessServiceId}`].potential_clients.map(potential_client => {
-    //                             //   debugger
-//                                 const newClient = new PotentialClient(potential_client)
-//                                 const newClientHtml = newClient.newClientHtml()
-                
-//                 document.getElementById('client-info').innerHTML += newClientHtml
-//             })
-//         }
-//     })
-// }
 
 
 
