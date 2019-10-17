@@ -6,24 +6,13 @@
 <b><u>Potential Clients:</u></b>
 
 
-<div id="potential-client-list">
-<% @all_clients.each do |client| %>
-    <% client.business_services.each do |service| %>
-        <% if service.id == @business_service.id %>
-            <ul>
-            <li>Name: <%= client.name %><br>
-            Last Contacted: <%= client.last_contacted %><br>
-            Reply: <%= client.reply %><br>
-            Follow Up: <%= client.follow_up %><br>
-            Agreed To Meeting: <%= client.agreed_to_meeting %> <br>
-            
-            </ul>
-        <% end %>
-    <% end %>
-<% end %>
-</div>
-<br><br>
 
+<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
+</button>
+<br>
+<div id="potential-client-list"></div>
+<br>
+<br>
 
 <h3><i> Create a New Potential Client Form: </i></h3>
 <%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
@@ -56,12 +45,6 @@
 
 
 <% if false %>
-<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
-</button>
-<br>
-<div id="client-info"></div>
-<br>
-<br>
 
 <button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
 </button>
@@ -70,4 +53,21 @@
 <br>
 <br>
 
+<div id="potential-client-list">
+<% @all_clients.each do |client| %>
+    <% client.business_services.each do |service| %>
+        <% if service.id == @business_service.id %>
+            <ul>
+            <li>Name: <%= client.name %><br>
+            Last Contacted: <%= client.last_contacted %><br>
+            Reply: <%= client.reply %><br>
+            Follow Up: <%= client.follow_up %><br>
+            Agreed To Meeting: <%= client.agreed_to_meeting %> <br>
+            
+            </ul>
+        <% end %>
+    <% end %>
+<% end %>
+</div>
+<br><br>
 <% end %>
