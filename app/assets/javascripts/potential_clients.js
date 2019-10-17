@@ -44,7 +44,7 @@ PotentialClient.prototype.newClientHtml = function() {
 }
 
 function getClients() {
-    // document.querySelector('div#potential-client-list').innerHTML = ""
+    document.querySelector('div#potential-client-list').innerHTML = ""
     $.ajax({
         url: this.action,
         method: 'GET',
@@ -56,7 +56,9 @@ function getClients() {
             data["potential_clients"].map(potential_client => {
                 let newClient = new PotentialClient(potential_client)
                 newClient.business_service_id = BSId
-                newClient.newClientHtml()
+                if (newClient["name"] !== null) {
+                    newClient.newClientHtml()
+                }
             })
         }
     })
