@@ -1,9 +1,5 @@
 $(function() {
 
-    
-    
-    
-    
     $("#new_potential_client").on("submit", function(e) {
         // debugger
         $.ajax({

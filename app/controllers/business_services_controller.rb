@@ -19,7 +19,6 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
-        # binding.pry
         @all_clients = PotentialClient.all
         @business_service = BusinessService.find(params["id"])
         @potential_client = @business_service.potential_clients.build
@@ -29,21 +28,11 @@ class BusinessServicesController < ApplicationController
             format.html { render :show }
         end
         
-        # need to fix
-        # @potential_clients = [] 
-        #     @all_clients.each do |client|
-        #         if client.business_service_id == @business_service.id
-        #             if !@potential_clients.include?(client) 
-        #                 @potential_clients << client
-        #             end
-        #         end
-        #     end
-        # @potential_client = PotentialClient.new(business_service_id: @business_service.id)
     end
 
 
    def create
-# need to comment in 46-54 for bs index page
+    # binding.pry
     @business_service = current_user.business_services.build(service_params)
     if @business_service.save
         respond_to do |format|
