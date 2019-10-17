@@ -42,33 +42,3 @@
 <% end %>
 
 
-
-
-
-<% if false %>
-
-<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
-</button>
-<div id="potential-client-form">
-</div>
-<br>
-<br>
-
-<div id="potential-client-list">
-<% @all_clients.each do |client| %>
-    <% client.business_services.each do |service| %>
-        <% if service.id == @business_service.id %>
-            <ul>
-            <li>Name: <%= client.name %><br>
-            Last Contacted: <%= client.last_contacted %><br>
-            Reply: <%= client.reply %><br>
-            Follow Up: <%= client.follow_up %><br>
-            Agreed To Meeting: <%= client.agreed_to_meeting %> <br>
-            
-            </ul>
-        <% end %>
-    <% end %>
-<% end %>
-</div>
-<br><br>
-<% end %>

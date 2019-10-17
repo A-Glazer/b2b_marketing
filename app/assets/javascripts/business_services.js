@@ -10,14 +10,12 @@ function listenForClick() {
 function getServices() {
     document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
-        url: 'http://localhost:3000/business_services',
+        url: `${BASE_URL}/business_services/`,
         method: 'get',
         dataType: 'json',
         success: function(data) {
-            console.log("the data is: ", data)
             document.getElementById('info').innerHTML = ""
             data.map(business_service => {
-              
                 const newService = new BusinessService(business_service)
                 const newServiceHtml = newService.newServiceHtml()
            
@@ -31,8 +29,6 @@ function getServices() {
 function listenForNewServiceForm() {
         let newServiceForm = BusinessService.newServiceForm()
         document.querySelector('div#business-service-form').innerHTML = newServiceForm
-        
-    // })
 }
 
 class BusinessService {
@@ -76,9 +72,7 @@ function showServiceOnClick() {
         let titleId = urlTitle[i].dataset.id
         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
         urlTitle[i].addEventListener('click', function(){   
-            const business_service_id = titleId
-            window.location.href = businessServiceShowURL
-            
+            window.location.href = businessServiceShowURL       
     })
     }
 }
@@ -89,9 +83,8 @@ function createBusinessService() {
         description: document.getElementById('description').value 
        
     }
-    fetch('http://localhost:3000/business_services', { 
+    fetch(`${BASE_URL}/business_services`, { 
         method: 'POST',
-
         body: JSON.stringify({ business_service }),
         headers: {
             'Content-Type': 'application/json',
