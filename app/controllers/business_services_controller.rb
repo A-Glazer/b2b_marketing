@@ -20,7 +20,7 @@ class BusinessServicesController < ApplicationController
         @business_service = BusinessService.find(params["id"])
         @potential_client = @business_service.potential_clients.build
         respond_to do |format|
-            format.json { render json: @business_service}
+            # format.json { render json: @business_service}
             format.html { render :show }
         end
     end

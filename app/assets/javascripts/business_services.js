@@ -72,7 +72,7 @@ function showServiceOnClick() {
         let titleId = urlTitle[i].dataset.id
         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
         urlTitle[i].addEventListener('click', function(){   
-            window.location.href = businessServiceShowURL       
+            window.location.href = businessServiceShowURL  
     })
     }
 }
@@ -97,3 +97,5 @@ function createBusinessService() {
         getServices()
     })
 }
+
+

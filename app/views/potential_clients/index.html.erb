@@ -1,6 +1,8 @@
 <%# view all clients %>
+  <div id="service-info"> 
 <% @business_services.each do |service|%>
   <h2><%= service.id %>: <%= service.name %></h2>
+  </div>
 
   <div id="clients-belonging">
        <% @potential_clients.each do |client| %>
