@@ -7,6 +7,7 @@ function listenForClick() {
     })
 }
 
+
 function getServices() {
     document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
@@ -58,23 +59,64 @@ class BusinessService {
 
 BusinessService.prototype.newServiceHtml = function () {
     return (`
-    <div>
+    <div id="services">
     <ul>
-        <li><a href="#" data-id="${this.id}">${this.name}</a> - ${this.description}</li>
+    <li><a href="#" data-id="${this.id}">${this.name}</a> - ${this.description}</li>
     </ul>
-    </div>
     `)
 }
 
+{/* <li><a href="${BASE_URL}/business_services/${this.id}.json" data-id="${this.id}">${this.name}</a> - ${this.description}</li> */}
+
+
+// function showServiceOnClick() {
+//     let urlTitle = document.querySelectorAll('li a')
+//     for (let i = 0; i < urlTitle.length; i++) {
+//         let titleId = urlTitle[i].dataset.id
+//         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
+//         urlTitle[i].addEventListener('click', function() {
+//             debugger
+
+//         })  
+            // window.location.href = businessServiceShowURL
+        
+        // testing link
+        // fetch(BASE_URL + '/business_services/' + titleId + '.json')
+            // .then(resp => resp.json())
+            // .then (data => {
+                // alert("Did this work?")
+            // })
+        
+//     }
+// }
+
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
+    // debugger
     for (let i = 0; i < urlTitle.length; i++) {
-        let titleId = urlTitle[i].dataset.id
-        const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}`)
-        urlTitle[i].addEventListener('click', function(){   
-            window.location.href = businessServiceShowURL  
-    })
+//         let titleId = urlTitle[i].dataset.id
+//         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
+    // debugger        
+    urlTitle[i].addEventListener('click', showServices)  
+//             debugger 
+//             window.location.href = businessServiceShowURL       
+//     })
     }
+}
+
+function showServices(e) {
+    e.preventDefault()
+    let id = this.dataset.id
+    let location = document.querySelector("#showInfo")
+    location.innerHTML = ''
+
+    fetch(BASE_URL + '/business_services/' + id + '.json')
+        .then(resp => resp.json())
+        .then(data => {
+            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+            location.innerHTML += `<p>${data.description}</p>`
+        }) 
+
 }
 
 function createBusinessService() {
@@ -99,3 +141,48 @@ function createBusinessService() {
 }
 
 
+// next button
+// $(function () {
+//     $("#next").on("click", function(e) {
+//         debugger
+//         let nextId = parseInt($("#next").attr("data-id")) + 1;
+//         $.get("/business_services/" + nextId, function(json){
+//             alert("next page has loaded")
+//         })
+//         event.preventDefault()
+//     })
+// })
+
+
+
+
+
+// not working
+// $(function() {
+//     getServices()
+//     $('#services u').on('click', function() {
+//         debugger
+//         alert("Testing if button2 works")
+//     })
+// })
+
+
+
+
+// $(function() {
+//     $("#new_potential_client").on("submit", function(e) {
+//         $.ajax({
+//             type: "POST",
+//             url: this.action,
+//             data: $(this).serialize(),
+//             success: function(response){
+//                 let newClient = new PotentialClient(response) 
+//                 newClient.newClientHtml()
+                
+//                 $("#new_potential_client")[0].reset()
+//                 $("#submit-button").attr("disabled", false)
+//             }
+//         })
+//         e.preventDefault()
+//     })    
+// })

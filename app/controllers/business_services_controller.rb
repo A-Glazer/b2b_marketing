@@ -2,9 +2,9 @@ class BusinessServicesController < ApplicationController
     before_action :logged_in?, :current_user 
     before_action :find_service, only: [:show, :edit, :update, :destroy]
     
-       def new
+    def new
         @business_service = BusinessService.new
-       end
+    end
 
     def index         
         @business_services = BusinessService.all
@@ -19,8 +19,9 @@ class BusinessServicesController < ApplicationController
         @all_clients = PotentialClient.all
         @business_service = BusinessService.find(params["id"])
         @potential_client = @business_service.potential_clients.build
+        # binding.pry
         respond_to do |format|
-            # format.json { render json: @business_service}
+            format.json { render json: @business_service}
             format.html { render :show }
         end
     end
