@@ -117,11 +117,13 @@ function showServices(e) {
             location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
             location.innerHTML += `<h2>Potential Clients:</h2>`
             for (let i = 0; i < data.potential_clients.length; i++) {
+                if (data.potential_clients[i].name !== null) {
                 location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
                 location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+                }
             }
         }) 
 
