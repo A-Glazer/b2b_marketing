@@ -22,7 +22,7 @@ class BusinessServicesController < ApplicationController
         # binding.pry
         respond_to do |format|
             format.json { render json: @business_service}
-            # format.html { render :show }
+            format.html { render :show }
         end
     end
 

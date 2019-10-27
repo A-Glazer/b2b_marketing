@@ -104,17 +104,46 @@ function showServiceOnClick() {
     }
 }
 
+// rendering show page info on index page 
+// function showServices(e) {
+//     e.preventDefault()
+//     let id = this.dataset.id
+//     let location = document.querySelector("#showInfo")
+//     location.innerHTML = ''
+
+//     fetch(BASE_URL + '/business_services/' + id + '.json')
+//         .then(resp => resp.json())
+//         .then(data => {
+//             location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+//             location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+//             location.innerHTML += `<h2>Potential Clients:</h2>`
+//             for (let i = 0; i < data.potential_clients.length; i++) {
+//                 if (data.potential_clients[i].name !== null) {
+//                 location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
+//                 location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
+//                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
+//                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
+//                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+//                 }
+//             }
+//         }) 
+// }
+
+// trying to the showServices to render the show page via json
 function showServices(e) {
     e.preventDefault()
     let id = this.dataset.id
-    let location = document.querySelector("#showInfo")
-    location.innerHTML = ''
+    // let location2 = document.querySelector("#showInfo")
+    // location2.innerHTML = ''
 
     fetch(BASE_URL + '/business_services/' + id + '.json')
-        .then(resp => resp.json())
-        .then(data => {
-            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-            location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+    .then(resp => resp.json())
+    .then(data => {
+        window.location = (BASE_URL + '/business_services/' + data.id + '.json')
+        
+        
+        location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+        location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
             location.innerHTML += `<h2>Potential Clients:</h2>`
             for (let i = 0; i < data.potential_clients.length; i++) {
                 if (data.potential_clients[i].name !== null) {
@@ -123,11 +152,11 @@ function showServices(e) {
                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-                }
             }
-        }) 
-
+        }
+    }) 
 }
+    
 
 function createBusinessService() {
     const business_service = {
@@ -152,17 +181,31 @@ function createBusinessService() {
 
 
 // next button
-// $(function () {
-//     $("#next").on("click", function(e) {
-//         debugger
-//         let nextId = parseInt($("#next").attr("data-id")) + 1;
-//         $.get("/business_services/" + nextId, function(json){
-//             alert("next page has loaded")
-//         })
-//         event.preventDefault()
-//     })
-// })
+$(function () {
+    $(".js-next").on("click", function(event) {
+        let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+        $.get("/business_services/" + nextId + ".json", function(data) {
+            let service = data;
+            $(".serviceName").text(service["name"]);
+            $(".serviceDescription").text(service["description"]);
+            $(".potential-client-list").text("Potential Clients")
 
+            $(".pcName").text(service["potential_clients"][0].name)
+            $(".pcLastContacted").text(service["potential_clients"][0].last_contacted)
+            $(".pcReply").text(service["potential_clients"][0].reply)
+            $(".pcFollowUp").text(service["potential_clients"][0].follow_up)
+            $(".pcAgreedToMeeting").text(service["potential_clients"][0].agreed_to_meeting)
+
+
+            // getClients()
+            
+            // re-set the id to current on the link
+            $(".js-next").attr("data-id", service["id"]);
+        });
+        event.preventDefault()
+    });
+  });
+// })
 
 
 
