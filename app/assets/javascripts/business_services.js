@@ -124,12 +124,14 @@ function showServices(e) {
                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-                }
             }
+            
+        }
+        location.innerHTML += `<button class="loadShow">View More</button>`    
         }) 
 }
 
-// trying to the showServices to render the show page via json
+// trying to get the showServices to render the show page via json
 // function showServices(e) {
 //     e.preventDefault()
 //     let id = this.dataset.id
@@ -193,18 +195,22 @@ $(function () {
         });
         event.preventDefault()
     });
-})
-
-
-$(function () {
+    
+    
+  // back button not working - that data-id is reseting itself to the original number. It needs to be the number of the webpage
     $(".js-back").on("click", function(event) {
         event.preventDefault()
         window.history.back()
+        let backId = parseInt($(".js-back").attr("data-id"));
+        console.log(backId);
+        $.get("/business_services/" + backId + ".json", function(data) {
         showPC(data)
+        })
     })
 })
 
-//         let backId = parseInt($(".js-back").attr("data-id"));
+
+    //         let backId = parseInt($(".js-back").attr("data-id"));
 //         $.get("/business_services/" + backId + ".json", function(data) {
 //            showPC(data)
             
