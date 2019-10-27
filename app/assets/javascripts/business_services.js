@@ -180,31 +180,63 @@ function createBusinessService() {
 }
 
 
-// next button
+// next button original
 $(function () {
     $(".js-next").on("click", function(event) {
         let nextId = parseInt($(".js-next").attr("data-id")) + 1;
         $.get("/business_services/" + nextId + ".json", function(data) {
-            let service = data;
-            $(".serviceName").text(service["name"]);
-            $(".serviceDescription").text(service["description"]);
-            $(".potential-client-list").text("Potential Clients")
-
-            $(".pcName").text(service["potential_clients"][0].name)
-            $(".pcLastContacted").text(service["potential_clients"][0].last_contacted)
-            $(".pcReply").text(service["potential_clients"][0].reply)
-            $(".pcFollowUp").text(service["potential_clients"][0].follow_up)
-            $(".pcAgreedToMeeting").text(service["potential_clients"][0].agreed_to_meeting)
-
+            // $(".serviceName").text(data["name"]);
+            // $(".serviceDescription").text(data["description"]);
+            // $(".potential-client-list").text("Potential Clients")
+            // for (let i = 0; i < service.potential_clients.length; i++) {
+            //     if (service.potential_clients[i].name !== null) {
+            //     $(".pcName").text(service["potential_clients"][i].name)
+            //     $(".pcLastContacted").text(service["potential_clients"][i].last_contacted)
+            //     $(".pcReply").text(service["potential_clients"][i].reply)
+            //     $(".pcFollowUp").text(service["potential_clients"][i].follow_up)
+            //     $(".pcAgreedToMeeting").text(service["potential_clients"][i].agreed_to_meeting)
+            //     }
+            // }
+            let location =  document.querySelector(".potential-client-list")
+            location.innerHTML = ""
+            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+            location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+                location.innerHTML += `<h2>Potential Clients:</h2>`
+                for (let i = 0; i < data.potential_clients.length; i++) {
+                    if (data.potential_clients[i].name !== null) {
+                    location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
+                    location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
+                    location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
+                    location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
+                    location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+                }
+            }
 
             // getClients()
             
             // re-set the id to current on the link
-            $(".js-next").attr("data-id", service["id"]);
+            $(".js-next").attr("data-id", data["id"]);
         });
         event.preventDefault()
     });
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // })
 
 
