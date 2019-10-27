@@ -105,45 +105,17 @@ function showServiceOnClick() {
 }
 
 // rendering show page info on index page 
-// function showServices(e) {
-//     e.preventDefault()
-//     let id = this.dataset.id
-//     let location = document.querySelector("#showInfo")
-//     location.innerHTML = ''
-
-//     fetch(BASE_URL + '/business_services/' + id + '.json')
-//         .then(resp => resp.json())
-//         .then(data => {
-//             location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-//             location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
-//             location.innerHTML += `<h2>Potential Clients:</h2>`
-//             for (let i = 0; i < data.potential_clients.length; i++) {
-//                 if (data.potential_clients[i].name !== null) {
-//                 location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
-//                 location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
-//                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
-//                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
-//                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-//                 }
-//             }
-//         }) 
-// }
-
-// trying to the showServices to render the show page via json
 function showServices(e) {
     e.preventDefault()
     let id = this.dataset.id
-    // let location2 = document.querySelector("#showInfo")
-    // location2.innerHTML = ''
+    let location = document.querySelector("#showInfo")
+    location.innerHTML = ''
 
     fetch(BASE_URL + '/business_services/' + id + '.json')
-    .then(resp => resp.json())
-    .then(data => {
-        window.location = (BASE_URL + '/business_services/' + data.id + '.json')
-        
-        
-        location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-        location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+        .then(resp => resp.json())
+        .then(data => {
+            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+            location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
             location.innerHTML += `<h2>Potential Clients:</h2>`
             for (let i = 0; i < data.potential_clients.length; i++) {
                 if (data.potential_clients[i].name !== null) {
@@ -152,10 +124,38 @@ function showServices(e) {
                 location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
                 location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
                 location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+                }
             }
-        }
-    }) 
+        }) 
 }
+
+// trying to the showServices to render the show page via json
+// function showServices(e) {
+//     e.preventDefault()
+//     let id = this.dataset.id
+//     // let location2 = document.querySelector("#showInfo")
+//     // location2.innerHTML = ''
+
+//     fetch(BASE_URL + '/business_services/' + id + '.json')
+//     .then(resp => resp.json())
+//     .then(data => {
+//         window.location = (BASE_URL + '/business_services/' + data.id)
+        
+        
+//         // location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+//         // location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+//         //     location.innerHTML += `<h2>Potential Clients:</h2>`
+//         //     for (let i = 0; i < data.potential_clients.length; i++) {
+//         //         if (data.potential_clients[i].name !== null) {
+//         //         location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
+//         //         location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
+//         //         location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
+//         //         location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
+//         //         location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+//             // }
+//         // }
+//     }) 
+// }
     
 
 function createBusinessService() {
@@ -184,46 +184,45 @@ function createBusinessService() {
 $(function () {
     $(".js-next").on("click", function(event) {
         let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+        
         $.get("/business_services/" + nextId + ".json", function(data) {
-            // $(".serviceName").text(data["name"]);
-            // $(".serviceDescription").text(data["description"]);
-            // $(".potential-client-list").text("Potential Clients")
-            // for (let i = 0; i < service.potential_clients.length; i++) {
-            //     if (service.potential_clients[i].name !== null) {
-            //     $(".pcName").text(service["potential_clients"][i].name)
-            //     $(".pcLastContacted").text(service["potential_clients"][i].last_contacted)
-            //     $(".pcReply").text(service["potential_clients"][i].reply)
-            //     $(".pcFollowUp").text(service["potential_clients"][i].follow_up)
-            //     $(".pcAgreedToMeeting").text(service["potential_clients"][i].agreed_to_meeting)
-            //     }
-            // }
-            let location =  document.querySelector(".potential-client-list")
-            location.innerHTML = ""
-            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-            location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
-                location.innerHTML += `<h2>Potential Clients:</h2>`
-                for (let i = 0; i < data.potential_clients.length; i++) {
-                    if (data.potential_clients[i].name !== null) {
-                    location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
-                    location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
-                    location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
-                    location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
-                    location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-                }
-            }
-
-            // getClients()
+           showPC(data)
             
             // re-set the id to current on the link
             $(".js-next").attr("data-id", data["id"]);
         });
         event.preventDefault()
     });
-  });
+})
+// $(function () {
+//     $(".js-back").on("click", function(event) {
+//         let backId = parseInt($(".js-back").attr("data-id"));
+//         $.get("/business_services/" + backId + ".json", function(data) {
+//            showPC(data)
+            
+//             // re-set the id to current on the link
+//             $(".js-back").attr("data-id", data["id"]);
+//         });
+//         event.preventDefault()
+//     });
+//   });
 
-
-
-
+function showPC(data) {
+    let location =  document.querySelector(".potential-client-list")
+    location.innerHTML = ""
+    location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
+    location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+        location.innerHTML += `<h2>Potential Clients:</h2>`
+        for (let i = 0; i < data.potential_clients.length; i++) {
+            if (data.potential_clients[i].name !== null) {
+            location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
+            location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
+            location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
+            location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
+            location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
+        }
+    }
+}
 
 
 

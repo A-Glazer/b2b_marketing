@@ -1,23 +1,14 @@
-
-<div id="about_business_service">
-<h1 class="serviceName"></h1>
-<h3 class="serviceDescription"></h3>
-
-
-
 <div class="potential-client-list"></div>
-<%# <p class="pcName"></p>
-<p class="pcLastContacted"></p>
-<p class="pcReply"></p>
-<p class="pcFollowUp"></p>
-<p class="pcAgreedToMeeting"></p> %>
+
+
 
 <a href="#" class="js-next" data-id="<%=@business_service.id %>">Next Service</a>
+<%# <a href="#" class="js-back" data-id="<%=@business_service.id">Back</a> %> 
 
 
 
 
-
+<% if false %>
 <br><br><br>
 
 </div>
@@ -59,4 +50,5 @@
     <%= f.submit id: "submit-button" %>
 <% end %>
 
+<% end %>
 

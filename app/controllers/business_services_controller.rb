@@ -24,6 +24,7 @@ class BusinessServicesController < ApplicationController
             format.json { render json: @business_service}
             format.html { render :show }
         end
+        # render json: @business_service
     end
 
 
