@@ -95,11 +95,11 @@ function showServiceOnClick() {
     // debugger
     for (let i = 0; i < urlTitle.length; i++) {
 //         let titleId = urlTitle[i].dataset.id
-//         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
+        // const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
     // debugger        
     urlTitle[i].addEventListener('click', showServices)  
 //             debugger 
-//             window.location.href = businessServiceShowURL       
+            // window.location.href = businessServiceShowURL       
 //     })
     }
 }
@@ -184,18 +184,26 @@ function createBusinessService() {
 $(function () {
     $(".js-next").on("click", function(event) {
         let nextId = parseInt($(".js-next").attr("data-id")) + 1;
-        
         $.get("/business_services/" + nextId + ".json", function(data) {
            showPC(data)
             
-            // re-set the id to current on the link
+    //         // re-set the id to current on the link
             $(".js-next").attr("data-id", data["id"]);
+            window.history.pushState(null, null, `${BASE_URL}/business_services/${nextId}`);
         });
         event.preventDefault()
     });
 })
-// $(function () {
-//     $(".js-back").on("click", function(event) {
+
+
+$(function () {
+    $(".js-back").on("click", function(event) {
+        event.preventDefault()
+        window.history.back()
+        showPC(data)
+    })
+})
+
 //         let backId = parseInt($(".js-back").attr("data-id"));
 //         $.get("/business_services/" + backId + ".json", function(data) {
 //            showPC(data)
@@ -224,6 +232,17 @@ function showPC(data) {
     }
 }
 
+// loads show page content on load
+window.onload = function() {
+    const parts = window.location.href.split("/");
+    const id = parts[parts.length - 1]; 
+    $.get("/business_services/" + id + ".json", function(data) {
+        showPC(data)
+         
+         // re-set the id to current on the link
+         $(".js-next").attr("data-id", data["id"]);
+    })
+  };
 
 
 
