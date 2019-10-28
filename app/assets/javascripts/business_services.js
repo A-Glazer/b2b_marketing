@@ -128,8 +128,17 @@ function showServices(e) {
             
         }
         location.innerHTML += `<button class="loadShow">View More</button>`    
+        
+        $(".loadShow").on("click", function() {
+            const businessServiceShowURL = (`${BASE_URL}/business_services/${data.id}`)
+            window.location.href = businessServiceShowURL 
+        });
         }) 
 }
+
+// load show page
+// $(function () {
+// })
 
 // trying to get the showServices to render the show page via json
 // function showServices(e) {
