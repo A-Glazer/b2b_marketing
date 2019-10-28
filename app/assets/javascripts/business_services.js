@@ -127,7 +127,7 @@ function showServices(e) {
             }
             
         }
-        location.innerHTML += `<button class="loadShow">View More</button>`    
+        location.innerHTML += `<button class="loadShow">View Page</button>`    
         
         $(".loadShow").on("click", function() {
             const businessServiceShowURL = (`${BASE_URL}/business_services/${data.id}`)
@@ -194,14 +194,18 @@ function createBusinessService() {
 // next button original
 $(function () {
     $(".js-next").on("click", function(event) {
-        let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+        const parts = window.location.href.split("/");
+        const id = parts[parts.length - 1]; 
+        const nextId = parseInt(id) + 1
+        console.log(nextId)
+        // let nextId = parseInt($(".js-next").attr("data-id")) + 1;
         $.get("/business_services/" + nextId + ".json", function(data) {
-           showPC(data)
-            
-    //         // re-set the id to current on the link
+                showPC(data)
+            //         // re-set the id to current on the link
             $(".js-next").attr("data-id", data["id"]);
             window.history.pushState(null, null, `${BASE_URL}/business_services/${nextId}`);
-        });
+        })
+
         event.preventDefault()
     });
 
@@ -209,6 +213,9 @@ $(function () {
         const parts = window.location.href.split("/");
         const id = parts[parts.length - 1]; 
         const backId = id - 1
+        if (backId === 0){
+            alert("You have reached the first business service.")
+        }
         console.log(backId)
         // let backId = parseInt($(".js-back").attr("data-id")) - 1;
         $.get("/business_services/" + backId + ".json", function(data) {
