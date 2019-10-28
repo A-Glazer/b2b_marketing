@@ -35,7 +35,7 @@ PotentialClient.prototype.newClientHtml = function() {
     Agreed to Meeting? ${this.agreed_to_meeting}
     `) +
     '</li>'
-    $('#potential-client-list').append(html)
+    $('.potential-client-list').append(html)
 }
 
 function getClients() {

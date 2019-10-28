@@ -7,21 +7,6 @@
 
 
 
-<% if false %>
-<br><br><br>
-
-</div>
-<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
-</button>
-<br>
-<br>
-
-
-<b><u>Potential Clients:</u></b>
-<br><br>
-
-
-<br>
 
 <h3><i> Create a New Potential Client Form: </i></h3>
 <%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
@@ -48,6 +33,3 @@
     
     <%= f.submit id: "submit-button" %>
 <% end %>
-
-<% end %>
-
