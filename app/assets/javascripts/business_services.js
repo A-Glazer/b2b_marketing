@@ -204,31 +204,47 @@ $(function () {
         });
         event.preventDefault()
     });
+
+    $(".js-back").on("click", function(event) {
+        const parts = window.location.href.split("/");
+        const id = parts[parts.length - 1]; 
+        const backId = id - 1
+        console.log(backId)
+        // let backId = parseInt($(".js-back").attr("data-id")) - 1;
+        $.get("/business_services/" + backId + ".json", function(data) {
+           showPC(data)
+            
+    //         // re-set the id to current on the link
+            $(".js-back").attr("data-id", data["id"]);
+            window.history.pushState(null, null, `${BASE_URL}/business_services/${backId}`);
+        });
+        event.preventDefault()
+    });
+
+
+
+
+
+
+
+})
     
     
   // back button not working - that data-id is reseting itself to the original number. It needs to be the number of the webpage
-    $(".js-back").on("click", function(event) {
-        event.preventDefault()
-        window.history.back()
-        let backId = parseInt($(".js-back").attr("data-id"));
-        console.log(backId);
-        $.get("/business_services/" + backId + ".json", function(data) {
-        showPC(data)
-        })
-    })
-})
-
-
-    //         let backId = parseInt($(".js-back").attr("data-id"));
-//         $.get("/business_services/" + backId + ".json", function(data) {
-//            showPC(data)
-            
-//             // re-set the id to current on the link
-//             $(".js-back").attr("data-id", data["id"]);
-//         });
+//     $(".js-back").on("click", function(event) {
 //         event.preventDefault()
-//     });
-//   });
+//         // window.history.back()
+//         const parts = window.location.href.split("/");
+//         const id = parts[parts.length - 1]; 
+       
+//         let backId = parseInt($(".js-back").attr("data-id"));
+//         console.log(backId);
+//         $.get("/business_services/" + backId + ".json", function(data) {
+//         showPC(data)
+//         })
+//     })
+// })
+
 
 function showPC(data) {
     let location =  document.querySelector(".potential-client-list")
