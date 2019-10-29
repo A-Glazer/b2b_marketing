@@ -8,6 +8,48 @@ function listenForClick() {
 }
 
 
+function getSortedServices() {
+    document.querySelector('div#business-service-form').innerHTML = ""
+    $.ajax({
+        url: `${BASE_URL}/business_services/`,
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+            document.getElementById('info').innerHTML = ""
+            sortedArray = []
+
+            data.sort(function(a, b) {
+                let nameA = a.name 
+                let nameB = b.name
+                if (nameA < nameB) {
+                    return -1;
+                  }
+                  if (nameA > nameB) {
+                    return 1;
+                  }
+                
+                  // names must be equal
+                  return 0;
+            })
+            console.log(data)
+            // for (let i = 0; i < data.length; i++){
+            //     let name = data[i].name
+                
+        //    }
+            
+            // data[0].name => add it to an array in that order => map over the sorted array and add it to the page
+            
+            data.map(business_service => {
+                const newService = new BusinessService(business_service)
+                const newServiceHtml = newService.newServiceHtml()
+                
+                document.getElementById('info').innerHTML += newServiceHtml
+                showServiceOnClick()
+            })
+        }
+    })
+}
+
 function getServices() {
     document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
