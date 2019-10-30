@@ -1,5 +1,7 @@
 {
   "name": "b2b_marketing",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "startbootstrap-agency": "^5.2.2"
+  }
 }
