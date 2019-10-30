@@ -1,28 +1,11 @@
-<div id="about_business_service">
-<h1><u>Name: <%= @business_service.name %></u></h1>
-<h3><i>Description: <%= @business_service.description %></i></h3>
-<p><%= @business_service.id %></p>
-</div>
-<b><u>Potential Clients:</u></b>
+<div class="potential-client-list"></div>
+
+<%# href="/business_services/${newId} %>
+<a href="#" class="js-back" data-id="<%=@business_service.id %>"> Back</a>
+<a href="#" class="js-next" data-id="<%=@business_service.id %>">Next Service</a>
 
 
-<div id="potential-client-list">
-<% @all_clients.each do |client| %>
-    <% client.business_services.each do |service| %>
-        <% if service.id == @business_service.id %>
-            <ul>
-            <li>Name: <%= client.name %><br>
-            Last Contacted: <%= client.last_contacted %><br>
-            Reply: <%= client.reply %><br>
-            Follow Up: <%= client.follow_up %><br>
-            Agreed To Meeting: <%= client.agreed_to_meeting %> <br>
-            
-            </ul>
-        <% end %>
-    <% end %>
-<% end %>
-</div>
-<br><br>
+
 
 
 <h3><i> Create a New Potential Client Form: </i></h3>
@@ -49,25 +32,4 @@
     <br><br>
     
     <%= f.submit id: "submit-button" %>
-<% end %>
-
-
-
-
-
-<% if false %>
-<button><a href="#" onclick="getClients(); return false;">Display Potential Clients</a>
-</button>
-<br>
-<div id="client-info"></div>
-<br>
-<br>
-
-<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
-</button>
-<div id="potential-client-form">
-</div>
-<br>
-<br>
-
 <% end %>

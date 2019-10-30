@@ -2,24 +2,20 @@ class BusinessServicesController < ApplicationController
     before_action :logged_in?, :current_user 
     before_action :find_service, only: [:show, :edit, :update, :destroy]
     
-       def new
+    def new
         @business_service = BusinessService.new
-       end
+    end
 
-    def index
-        # @user = current_user          
+    def index         
         @business_services = BusinessService.all
         @potential_clients = PotentialClient.all
-        # if @user.id == @business_services.user_id
             respond_to do |format|
-                format.html {render :index}
                 format.json { render json: @business_services}
+                format.html { render :index}
             end
-        # end
     end
 
     def show
-        # binding.pry
         @all_clients = PotentialClient.all
         @business_service = BusinessService.find(params["id"])
         @potential_client = @business_service.potential_clients.build
@@ -28,70 +24,27 @@ class BusinessServicesController < ApplicationController
             format.json { render json: @business_service}
             format.html { render :show }
         end
-        
-        # need to fix
-        # @potential_clients = [] 
-        #     @all_clients.each do |client|
-        #         if client.business_service_id == @business_service.id
-        #             if !@potential_clients.include?(client) 
-        #                 @potential_clients << client
-        #             end
-        #         end
-        #     end
-        # @potential_client = PotentialClient.new(business_service_id: @business_service.id)
+        # render json: @business_service
     end
 
 
-   def create
-# need to comment in 46-54 for bs index page
+    def create
     @business_service = current_user.business_services.build(service_params)
-    if @business_service.save
-        respond_to do |format|
-            format.html { render new_business_service_path }
-            format.json { render json: @business_service}
+        if @business_service.save
+            respond_to do |format|
+                format.html { render new_business_service_path }
+                format.json { render json: @business_service}
+            end
+        else
+            render :new
         end
-    else
-        render :new
     end
-
-
-# need to create save for potential clients
-    # binding.pry
-    # @business_service = BusinessService.all
-    # binding.pry
-    #     @potential_client = @business_service.potential_client.build(client_params)
-    #     binding.pry
-    #     if @potential_client.save
-    #         respond_to do |f|
-    #             f.html {render :show}
-    #             f.json {render json: @potential_client}
-    #         end
-    #     else
-    #         render :show
-    #     end
-
-        
-        # if @potential_client
-        #     @potential_client.business_services << @business_service unless @potential_client.business_services.include?(@business_service)
-        #     @potential_client.save
-        #     # redirect_to business_service_potential_client_path(@business_service.id, @potential_client)
-        #     respond_to do |format|
-        #         format.html {render :show}
-        #         format.json (render json: @potential_client)
-        #     end
-        # else
-        #     render :show
-        # end
-
-    end
-
-   
 
     def edit
         @business_services = BusinessService.find(params["id"])
         respond_to do |format|
-            format.html {render :edit}
             format.json { render json: @business_services}
+            format.html { render :edit}
         end
     end
 

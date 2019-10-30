@@ -1,6 +1,8 @@
 <%# view all clients %>
+  <div id="service-info"> 
 <% @business_services.each do |service|%>
   <h2><%= service.id %>: <%= service.name %></h2>
+  </div>
 
   <div id="clients-belonging">
        <% @potential_clients.each do |client| %>
@@ -19,115 +21,5 @@
   </div>
 <% end %>
 </div>
-
-
-
-
-
-
-
-<%if false%>
-<div id="bs_id"><%=@business_service_id%></div>
-
-<div id="business_service_main">
-<% @business_services.each do |service|%>
-<% if service.id == @business_service_id.to_i %>
-
-<h2>Business Service: <u><%= service.name %></u></h2>
-<h3><i>Potential Clients: </i></h3>
-<div id="clients-belonging">
-  <% @potential_clients.each do |client| %>
-    <% client.business_services.each do |business| %>
-      <%# if service.name == business.name %>
-        <li>Name: <u><%= client.name %></u><br>
-            Last Contacted: <%= client.last_contacted %><br>
-            Reply: <%= client.reply %><br>
-            Follow up: <%= client.follow_up %><br>
-            Agreed to Meeting: <%= client.agreed_to_meeting %><br>
-            <br>
-        </li>
-      <%# end %>
- 
-    <% end %>
-  <% end %>
-         
-</div>
-<% end %>
-<% end %>
-</div>
-
-
-
-<button><a href="#" onclick="listenForNewClientForm(); return false;">Create a New Potential Client</a>
-</button>
-<div id="potential-client-form">
-</div>
-<br>
-<br>
-
-<div id="pc_new_form">
-  <ol>
-  </ol>
-</div>
-
-<h3><i> Create a New Potential Client Form: </i></h3>
-<%= form_for([@business_service, @potential_client], :url => {:action => :create}) do |f| %>
-
-    <%= f.label :name %>   
-    <%= f.text_field :name %>
-    <br><br>
-
-    <%= f.label :last_contacted %>   
-    <%= f.date_field :last_contacted %>
-    <br><br>
-
-    <%= f.label :reply %>   
-    <%= f.text_area :reply %>
-    <br><br>
-
-    <%= f.label :follow_up %>   
-    <%= f.date_field :follow_up %>
-    <br><br>
-
-    <%= f.label :agreed_to_meeting %>   
-    <%= f.text_field :agreed_to_meeting %>
-    <br><br>
-    
-    <%= f.submit "Submit" %>
-<% end %>
-
-
-<%# old code %>
-
-<%# main potential clients should only display clients belonging to that business service %>
-<%if false%>
- <% @potential_clients.each do |client| %>
-
-  <ul>
-    <li>Name: <u><%= client.name %></u><br>
-    Last Contacted: <%= client.last_contacted %><br>
-    Reply: <%= client.reply %><br>
-    Follow up: <%= client.follow_up %><br>
-    Agreed to Meeting: <%= client.agreed_to_meeting %><br>
-    Business Service(s): *
-      <% client.business_services.each do |service| %>
-        <%= service.name %>*
-      <% end %>
-    </li>
-    
-
-  </ul>
-  <% end %>
-<%# getClients() should display all potential clients (including those belonging to other services) %>
-
-<button><a href="#" onclick="getClients(); return false;">Display all Potential Clients</a>
-</button>
-<br>
-<div id="client-info"></div>
-<br>
-<br>
-  <%end %>
-<%end %>
-
 
 

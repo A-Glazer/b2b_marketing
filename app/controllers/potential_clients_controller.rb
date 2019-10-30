@@ -12,24 +12,11 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
-        # @business_services = BusinessService.all
         @business_service = BusinessService.find(params[:business_service_id])
-        @potential_client = PotentialClient.new(client_params)
-        @potential_client.business_service_id = @business_service.id
-        # binding.pry
+        @potential_client = @business_service.potential_clients.new(client_params)
         if @potential_client.save
-            # respond_to do |f|
-        # binding.pry
             render json: @potential_client
-                # f.json {render json: @potential_client}
-                # f.html {render :index}
-            # end
-            # binding.pry
-            # redirect_to `business_service/@potential_client.id`
         end
-        # else
-            # render :index
-        # end
     end
 
     def show
@@ -37,29 +24,16 @@ class PotentialClientsController < ApplicationController
        
     end
 
-    def index
-        # @user = current_user          
+    def index        
         @business_services = BusinessService.all
-        # binding.pry
         @potential_clients = PotentialClient.all
-
-        # @potential_client = @business_service.potential_clients.build
-        # binding.pry
         @business_service_id = params[:business_service_id]
-        # if @user.id == @business_services.user_id
         @business_services.each do |service|
             if service.id == @business_service_id.to_i    
-                # respond_to do |f|
-                    # render json: @potential_clients
-                    # f.json {render json: @potential_clients}
                 render "potential_clients/index"
-                # end
             end
-        end
-        
-             
+        end      
     end
-
 
     def edit
     end
@@ -79,17 +53,13 @@ class PotentialClientsController < ApplicationController
 
     def meetings
         @meeting = PotentialClient.meeting_yes 
-        # binding.pry
     end
 
-    
     private
+    
     def client_params
         params.require(:potential_client).permit(:name, :last_contacted, :reply, :follow_up, :agreed_to_meeting)
     end
     
 end
 
-# def created_before(date)
-#     @created_before = self.created_before(date)
-# end
