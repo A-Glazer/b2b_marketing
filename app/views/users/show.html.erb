@@ -1,14 +1,10 @@
+<div class="text-center p-3 mb-2 bg-light text-dark">
+<h1 class="shadow p-3 mb-5 bg-white rounded">Welcome <%= @user.username %>!</h1>
 
-<h1 class="titleNew">Welcome <%= @user.username %>!</h1>
+<h4> Would you to: <h4>
+<br/>
 
-<p> Would you to: 
-
-<ul>
-<li><%= link_to "View Business Services", business_services_path %></li>
-<li><%= link_to "Create a New Business Service", new_business_service_path %> </li> 
-
-</ul>
-</p>
-
- <%= link_to 'Log Out', logout_path, method: :delete %>
+<button type="button" class="btn btn-outline-info"><%= link_to "View Business Services", business_services_path %></button>
+<button type="button" class="btn btn-outline-info"><%= link_to "Create a New Business Service", new_business_service_path %> </button>
         
+</div>

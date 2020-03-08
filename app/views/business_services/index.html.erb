@@ -1,32 +1,114 @@
-<div text-align="center">
-<h1>Would you like to:</h1>
+<div class="text-center p-3 mb-2 bg-light text-dark">
+<h1 class="shadow p-3 mb-5 bg-white rounded">Would you like to:</h1>
 
-<button type="button" class="btn btn-info"><a href="#" onclick="listenForNewServiceForm(); return false;">Create a New Business Service</a>
-</button>
-<div id="business-service-form">
+<div class="w-50 p-3 mx-auto">
+<%# 1 question %>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <a href="#" onclick="listenForNewServiceForm(); return false;">Create a New Business Service</a>
+        </button>
+      </h5>
+    </div>
+<%# 1 answer %>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body" id="business-service-form">
+      </div>
+    </div>
+  </div>
+
+
+<%# 2 Question %>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <a href="#" onclick="getServices(); return false;">Display Business Services</a>
+        </button>
+      </h5>
+    </div>
+
+<%# 2 answer %>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body text-left " id="info">
+      </div>
+      
+    </div>
+  </div>
+
+
+<%# 2b answer %>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body text-left" id="info">
+      </div>
+      <div id="showInfo"></div>
+    </div>
+  </div> 
+
+
+
+
+  <%# 3 Question %>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <a href="/business_services/1/potential_clients">View All Services and Potential Clients</a>
+        </button>
+      </h5>
+    </div>
+    <%# 3 answer %>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body" id="showInfo">
+      </div>
+    </div>
+  </div>
 </div>
-<br>
-<br>
 
-<button><a href="#" onclick="getServices(); return false;">Display Business Services</a></button>
-</button>
-<div id="info">
 </div>
-<br>
-<br>
 
-<button><a href="#" onclick="getSortedServices(); return false;">Display Sorted Business Services</a></button>
+
+
+
+  <%# 3 Question %>
+  <%# <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <a href="#" onclick="getSortedServices(); return false;">Display Sorted Business Services</a>
+        </button>
+      </h5>
+    </div> %>
+    <%# 3 answer %>
+    <%# <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body" id="sort-service">
+      </div>
+    </div>
+  </div>
+</div> %>
+
+
+
+
+
+
+
+
+
+<%# <button type="button" class="btn btn-outline-info"><a href="#" onclick="getSortedServices(); return false;">Display Sorted Business Services</a></button>
 </button>
 
 <br>
-<br>
+<br> %>
 
-<div id="showClient">
-<button><a href="/business_services/1/potential_clients">Display Potential Clients</a></button>
+<%# <div id="showClient">
+<button type="button" class="btn btn-outline-info"><a href="/business_services/1/potential_clients">Display Potential Clients</a></button>
 </button>
 </div>
 <br>
 <br>
 
 <div id="showInfo"></div>
-</div>
+</div> %>

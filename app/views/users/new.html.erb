@@ -1,23 +1,27 @@
-<h1>Welcome! Please sign up. </h1>
+<div class="text-center p-3 mb-2 bg-light text-dark">
+<h1 class="shadow p-3 mb-5 bg-white rounded">Welcome! Please sign up. </h1>
 
+<div class="mx-auto" style="width: 200px;">
 <%= flash[:error] %>
 
 <%= form_for @user do |f| %>
     
     <%= render partial: 'layouts/errors', locals: {object: @user} %>
 
-    <%= f.label :username %>   
+    <%= f.label :username %>:   
     <%= f.text_field :username %>
     <br>
     <br>
 
-    <%= f.label :password %>   
+    <%= f.label :password %>:   
     <%= f.password_field :password %>
 
 <br><br>
-    <%= f.label :password_confirmation %>   
+    <%= f.label :password_confirmation %>:   
     <%= f.password_field :password_confirmation %>
 
 <br><br>
     <%= f.submit "Sign Up" %>
 <% end %>
+</div>
+</div>

@@ -43,7 +43,7 @@ function getSortedServices() {
                 const newService = new BusinessService(business_service)
                 const newServiceHtml = newService.newServiceHtml()
                 
-                document.getElementById('info').innerHTML += newServiceHtml
+                document.querySelector('div#sort-service').innerHTML += newServiceHtml
                 showServiceOnClick()
             })
         }
@@ -83,9 +83,8 @@ class BusinessService {
 
     static newServiceForm() {
         return (`
-        <br>
         <strong>New Business Service Form</strong>
-        <br>
+        <br/><br/>
             <form onsubmit="createBusinessService(); return false;">
             <label>Name: </label>
             <input type="text" id="name"></input>
@@ -110,15 +109,8 @@ BusinessService.prototype.newServiceHtml = function () {
 
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
-    // debugger
-    for (let i = 0; i < urlTitle.length; i++) {
-//         let titleId = urlTitle[i].dataset.id
-        // const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
-    // debugger        
+    for (let i = 0; i < urlTitle.length; i++) {   
     urlTitle[i].addEventListener('click', showServices)  
-//             debugger 
-            // window.location.href = businessServiceShowURL       
-//     })
     }
 }
 
@@ -132,9 +124,9 @@ function showServices(e) {
     fetch(BASE_URL + '/business_services/' + id + '.json')
         .then(resp => resp.json())
         .then(data => {
-            location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-            location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
-            location.innerHTML += `<h2>Potential Clients:</h2>`
+            location.innerHTML += `<h4>More information about: ${data.name}</h4>`;
+            location.innerHTML += `<i>Description: ${data.description}</i>`
+            location.innerHTML += `<h5>Potential Clients:</h5>`
             for (let i = 0; i < data.potential_clients.length; i++) {
                 if (data.potential_clients[i].name !== null) {
                 location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
@@ -153,39 +145,6 @@ function showServices(e) {
         });
         }) 
 }
-
-// load show page
-// $(function () {
-// })
-
-// trying to get the showServices to render the show page via json
-// function showServices(e) {
-//     e.preventDefault()
-//     let id = this.dataset.id
-//     // let location2 = document.querySelector("#showInfo")
-//     // location2.innerHTML = ''
-
-//     fetch(BASE_URL + '/business_services/' + id + '.json')
-//     .then(resp => resp.json())
-//     .then(data => {
-//         window.location = (BASE_URL + '/business_services/' + data.id)
-        
-        
-//         // location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-//         // location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
-//         //     location.innerHTML += `<h2>Potential Clients:</h2>`
-//         //     for (let i = 0; i < data.potential_clients.length; i++) {
-//         //         if (data.potential_clients[i].name !== null) {
-//         //         location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
-//         //         location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
-//         //         location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
-//         //         location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
-//         //         location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-//             // }
-//         // }
-//     }) 
-// }
-    
 
 function createBusinessService() {
     const business_service = {
@@ -254,23 +213,6 @@ $(function () {
 
 })
     
-    
-  // back button not working - that data-id is reseting itself to the original number. It needs to be the number of the webpage
-//     $(".js-back").on("click", function(event) {
-//         event.preventDefault()
-//         // window.history.back()
-//         const parts = window.location.href.split("/");
-//         const id = parts[parts.length - 1]; 
-       
-//         let backId = parseInt($(".js-back").attr("data-id"));
-//         console.log(backId);
-//         $.get("/business_services/" + backId + ".json", function(data) {
-//         showPC(data)
-//         })
-//     })
-// })
-
-
 function showPC(data) {
     let location =  document.querySelector(".potential-client-list")
     location.innerHTML = ""
