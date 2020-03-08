@@ -108,30 +108,6 @@ BusinessService.prototype.newServiceHtml = function () {
     `)
 }
 
-{/* <li><a href="${BASE_URL}/business_services/${this.id}.json" data-id="${this.id}">${this.name}</a> - ${this.description}</li> */}
-
-
-// function showServiceOnClick() {
-//     let urlTitle = document.querySelectorAll('li a')
-//     for (let i = 0; i < urlTitle.length; i++) {
-//         let titleId = urlTitle[i].dataset.id
-//         const businessServiceShowURL = (`${BASE_URL}/business_services/${titleId}.json`)
-//         urlTitle[i].addEventListener('click', function() {
-//             debugger
-
-//         })  
-            // window.location.href = businessServiceShowURL
-        
-        // testing link
-        // fetch(BASE_URL + '/business_services/' + titleId + '.json')
-            // .then(resp => resp.json())
-            // .then (data => {
-                // alert("Did this work?")
-            // })
-        
-//     }
-// }
-
 function showServiceOnClick() {
     let urlTitle = document.querySelectorAll('li a')
     // debugger
