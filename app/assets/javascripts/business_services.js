@@ -125,17 +125,10 @@ function showServices(e) {
         .then(resp => resp.json())
         .then(data => {
             location.innerHTML += `<h5>Potential Clients for ${data.name}:</h5>`;
-            // location.innerHTML += `<i>Description: ${data.description}</i>`
-            // location.innerHTML += `<h5>Potential Clients:</h5>`
             for (let i = 0; i < data.potential_clients.length; i++) {
                 if (data.potential_clients[i].name !== null) {
-                // location.innerHTML += `<li><h4>Name: ${data.potential_clients[i].name}</h4></li>`
                 location.innerHTML += `<div class="card mx-auto" style="width: 18rem;"><div class="card-body">
                 <h5 class="card-title">${data.potential_clients[i].name}</h5>`
-                // location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
-                // location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
-                // location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
-                // location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
             }
             
         }
@@ -229,14 +222,7 @@ function showPC(data) {
                 Follow Up: ${data.potential_clients[i].follow_up}<br/>
                 Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>
                 </div></div>`
-                
-               
-            // location.innerHTML += `<h4>Name: ${data.potential_clients[i].name}</h4>`
-            // location.innerHTML += `<p>Last Contacted: ${data.potential_clients[i].last_contacted}</p>`
-            // location.innerHTML += `<p>Reply: ${data.potential_clients[i].reply}</p>`
-            // location.innerHTML += `<p>Follow Up: ${data.potential_clients[i].follow_up}</p>`
-            // location.innerHTML += `<p>Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>`
-        }
+           }
     }
 }
 

@@ -1,20 +1,24 @@
 <%# view all clients %>
   <div id="service-info"> 
 <% @business_services.each do |service|%>
-  <h2><%= service.id %>: <%= service.name %></h2>
+<div class="text-center p-3 mb-2 bg-light text-dark">
+<h1 class="shadow p-3 mb-5 bg-white rounded"><%= service.id %>: <%= service.name %></h1>
   </div>
 
   <div id="clients-belonging">
        <% @potential_clients.each do |client| %>
           <% client.business_services.each do |business| %>
             <% if service.name == business.name %>
-              <li>Name: <u><%= client.name %></u><br>
-                  Last Contacted: <%= client.last_contacted %><br>
+            <div class="card mx-auto" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title ">Name: <%= client.name %></h5>
+            <p class="card-text">Last Contacted: <%= client.last_contacted %><br>
                   Reply: <%= client.reply %><br>
                   Follow up: <%= client.follow_up %><br>
-                  Agreed to Meeting: <%= client.agreed_to_meeting %><br>
-                  <br>
-              </li>
+                  Agreed to Meeting: <%= client.agreed_to_meeting %>
+                  </p>
+          </div>
+        </div>
             <% end %>
           <%end %>
        <% end %> 
