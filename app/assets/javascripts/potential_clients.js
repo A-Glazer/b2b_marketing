@@ -1,12 +1,33 @@
+// $(function() {
+//     $("#input#submit-button").on("submit", function(e) {
+//         $.ajax({
+//             type: "POST",
+//             url: this.action,
+//             data: $(this).serialize(),
+//             success: function(response){
+//                 let newClient = new PotentialClient(response) 
+//                 newClient.newClientHtml()
+//                 debugger 
+                
+//                 $("#new_potential_client")[0].reset()
+//                 $("#submit-button").attr("disabled", false)
+//             }
+//         })
+//         e.preventDefault()
+//     })    
+// })
+
 $(function() {
-    $("#new_potential_client").on("submit", function(e) {
+    $("#input#submit-button").on("submit", function(e) {
         $.ajax({
             type: "POST",
             url: this.action,
             data: $(this).serialize(),
             success: function(response){
+                console.log("response", response)
                 let newClient = new PotentialClient(response) 
                 newClient.newClientHtml()
+                debugger 
                 
                 $("#new_potential_client")[0].reset()
                 $("#submit-button").attr("disabled", false)

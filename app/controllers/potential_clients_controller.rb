@@ -12,19 +12,23 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
+        # binding.pry
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = @business_service.potential_clients.new(client_params)
-        if @potential_client.save
-            render json: @potential_client
-        end
+        @potential_client.save
+        redirect_to business_service_path(@business_service)
+            # render json: @potential_client
+        
     end
 
     def show
+        # binding.pry
         @business_service = @potential_client.business_service_id
        
     end
 
-    def index        
+    def index
+        # binding.pry
         @business_services = BusinessService.all
         @potential_clients = PotentialClient.all
         @business_service_id = params[:business_service_id]

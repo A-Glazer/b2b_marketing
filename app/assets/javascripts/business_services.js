@@ -216,8 +216,7 @@ $(function () {
 function showPC(data) {
     let location =  document.querySelector(".potential-client-list")
     location.innerHTML = ""
-    location.innerHTML += `<h2>More information about: ${data.name}</h2>`;
-    location.innerHTML += `<h3><i>Description: ${data.description}</i></h3>`
+    location.innerHTML += `<div class="shadow p-3 mb-5 bg-white rounded"><h2>More information about: ${data.name}</h2><br/><h4>Description: ${data.description}</h4></div>`;
         location.innerHTML += `<h2>Potential Clients:</h2>`
         for (let i = 0; i < data.potential_clients.length; i++) {
             if (data.potential_clients[i].name !== null) {
@@ -253,37 +252,3 @@ window.onload = function() {
 
 
 
-// })
-
-
-
-
-// not working
-// $(function() {
-//     getServices()
-//     $('#services u').on('click', function() {
-//         debugger
-//         alert("Testing if button2 works")
-//     })
-// })
-
-
-
-
-// $(function() {
-//     $("#new_potential_client").on("submit", function(e) {
-//         $.ajax({
-//             type: "POST",
-//             url: this.action,
-//             data: $(this).serialize(),
-//             success: function(response){
-//                 let newClient = new PotentialClient(response) 
-//                 newClient.newClientHtml()
-                
-//                 $("#new_potential_client")[0].reset()
-//                 $("#submit-button").attr("disabled", false)
-//             }
-//         })
-//         e.preventDefault()
-//     })    
-// })
