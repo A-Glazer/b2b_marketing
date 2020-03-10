@@ -16,8 +16,8 @@ class PotentialClientsController < ApplicationController
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = @business_service.potential_clients.new(client_params)
         @potential_client.save
-        # redirect_to business_service_path(@business_service)
-            render json: @potential_client
+        # render json: @potential_client
+        redirect_to business_service_path(@business_service)
         
     end
 
