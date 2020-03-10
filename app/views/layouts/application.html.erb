@@ -22,23 +22,39 @@
       </div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <%# <a class="navbar-brand" href="http://localhost:3000/business_services">Home</a> %>
+      <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"> %>
+        <%# <span class="navbar-toggler-icon"></span> %>
+      <%# </button> %>
+      <%# <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> %>
+        <div class="nav">
+          <div class="nav-item active mr-2 ml-2 "> <%= link_to "Business Services", business_services_path	%></div>
+          <div class="nav-item active mr-2 ml-2"> <%= link_to "Potential Clients", business_service_potential_clients_path("1")	%></div>
+          <div class="nav-item active mr-2 ml-2"> <%= link_to 'Log Out', logout_path, method: :delete %></div>
+          <%# <span class="sr-only">(current)</span></a> %>
+        </div>
+      <%# </div> %>
+    </nav>
+
+
+    <%# <nav class="navbar navbar-expand-lg navbar-light bg-light px-10">
       <a class="navbar-brand" href="http://localhost:3000/business_services">Home</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
+      <div class="collapse navbar-collapse px-10" id="navbarNav">
+        <div class="navbar-nav0">
+          <div class="nav-item active">
           <%= link_to "Display Business Services", business_services_path	%>
             <%# <a class="nav-link" href="/business_services">Display Business Services <span class="sr-only">(current)</span></a> %>
-          </li>
-          <li class="nav-item">
-          <%= link_to 'Log Out', logout_path, method: :delete %>
+          <%# </div> %>
+          <%# <div class="nav-item"> %>
+          <%# <%= link_to 'Log Out', logout_path, method: :delete %> 
             <%# <a class="nav-link" href="#"  >Log Out</a> %>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <%# </div> %>
+        <%# </div> %>
+      <%# </div> %>
+    <%# </nav> %>
 
       <%# <div class="column">
         Links:
