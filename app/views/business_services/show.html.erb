@@ -1,52 +1,50 @@
 <div class="text-center p-3 mb-2 bg-light text-dark">
 
 
-<%# href="/business_services/${newId} %>
 
-
-
-
+<div class="potential-client-list"></div>
+<%# <div class="card" style="width: 18rem;">
+<div class="card-body"> %>
 <br/>
-<div class="potential-client-list">
-    <div class="card" style="width: 18rem;">
-    <div class="card-body">
-</div>
-<br/>
+
 <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Create a New Potential Client: 
   </button>
-</p>
+
 <div class="collapse width=75%" id="collapseExample">
   <div class="card card-body">
     
-<%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
+    <%= form_for([@business_service, @potential_client], url: business_service_potential_clients_path(@business_service), method: :post) do |f| %>
 
-    <%= f.label :name %>   
-    <%= f.text_field :name %>
-    <br><br>
+        <%= f.label :name %>   
+        <%= f.text_field :name %>
+        <br><br>
 
-    <%= f.label :last_contacted %>   
-    <%= f.date_field :last_contacted %>
-    <br><br>
+        <%= f.label :last_contacted %>   
+        <%= f.date_field :last_contacted %>
+        <br><br>
 
-    <%= f.label :reply %>   
-    <%= f.text_area :reply %>
-    <br><br>
+        <%= f.label :reply %>   
+        <%= f.text_area :reply %>
+        <br><br>
 
-    <%= f.label :follow_up %>   
-    <%= f.date_field :follow_up %>
-    <br><br>
+        <%= f.label :follow_up %>   
+        <%= f.date_field :follow_up %>
+        <br><br>
 
-    <%= f.label :agreed_to_meeting %>   
-    <%= f.text_field :agreed_to_meeting %>
-    <br><br>
-    
-    <%= f.submit id: "submit-button" %>
-<% end %>
+        <%= f.label :agreed_to_meeting %>   
+        <%= f.text_field :agreed_to_meeting %>
+        <br><br>
+        
+        <%= f.submit id: "submit-button" %>
+    <% end %>
   </div>
 </div>
 
+
+
+</div>
+<div class="mx-auto" style="width: 200px;">
 <button type="button" class="btn btn-outline-secondary"><a href="#" class="js-back" data-id="<%=@business_service.id %>"> Back</a></button>
 <button type="button" class="btn btn-outline-info"><a href="#" class="js-next" data-id="<%=@business_service.id %>">Next Service</a></button>
-
 </div>

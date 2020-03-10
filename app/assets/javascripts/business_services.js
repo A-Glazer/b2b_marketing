@@ -199,17 +199,11 @@ $(function () {
         });
         event.preventDefault()
     });
-
-
-
-
-
-
-
 })
     
 function showPC(data) {
-    let location =  document.querySelector(".potential-client-list")
+    let location =  document.querySelector(".potential-client-list")  
+
     location.innerHTML = ""
     location.innerHTML += `<div class="shadow p-3 mb-5 bg-white rounded"><h2>More information about: ${data.name}</h2><br/><h4>Description: ${data.description}</h4></div>`;
         location.innerHTML += `<h2>Potential Clients:</h2>`
@@ -223,8 +217,25 @@ function showPC(data) {
                 Agreed to Meeting? ${data.potential_clients[i].agreed_to_meeting}</p>
                 </div></div>`
            }
-    }
+        }
+    // location.innerHTML += `<button onclick={nextButton()}>Next</button>`
 }
+
+// function nextButton(event){
+//     const parts = window.location.href.split("/");
+//     const id = parts[parts.length - 1]; 
+//     const nextId = parseInt(id) + 1
+//     console.log(nextId)
+//     // let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+//     $.get("/business_services/" + nextId + ".json", function(data) {
+//             showPC(data)
+//         //         // re-set the id to current on the link
+//         $(".js-next").attr("data-id", data["id"]);
+//         window.history.pushState(null, null, `${BASE_URL}/business_services/${nextId}`);
+//     })
+// }
+
+//     event.preventDefault() 
 
 // loads show page content on load
 window.onload = function() {

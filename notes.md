@@ -39,3 +39,9 @@ look at line 14 on recipes.js
 put form in show page
 *simplify what I already wrote
 -need the form to be dynamic so dont need to refresh when submit
+
+-------
+
+TO DO: 
+- Fix Navbar
+- Add button to add potential clients
