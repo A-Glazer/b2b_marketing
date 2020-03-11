@@ -29,8 +29,8 @@ class PotentialClientsController < ApplicationController
 
     def index
         # binding.pry
-        @business_services = BusinessService.all
-        @potential_clients = PotentialClient.all
+        @business_services = current_user.business_services
+        @potential_clients = current_user.potential_clients
         @business_service_id = params[:business_service_id]
         @business_services.each do |service|
             if service.id == @business_service_id.to_i    

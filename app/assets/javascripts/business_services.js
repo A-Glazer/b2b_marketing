@@ -7,7 +7,6 @@ function listenForClick() {
     })
 }
 
-
 function getSortedServices() {
     document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
@@ -31,14 +30,7 @@ function getSortedServices() {
                   // names must be equal
                   return 0;
             })
-            console.log(data)
-            // for (let i = 0; i < data.length; i++){
-            //     let name = data[i].name
-                
-        //    }
-            
-            // data[0].name => add it to an array in that order => map over the sorted array and add it to the page
-            
+            console.log(data)            
             data.map(business_service => {
                 const newService = new BusinessService(business_service)
                 const newServiceHtml = newService.newServiceHtml()
@@ -51,6 +43,7 @@ function getSortedServices() {
 }
 
 function getServices() {
+    console.log("we reached getServices")
     document.querySelector('div#business-service-form').innerHTML = ""
     $.ajax({
         url: `${BASE_URL}/business_services/`,
@@ -59,6 +52,7 @@ function getServices() {
         success: function(data) {
             document.getElementById('info').innerHTML = ""
             data.map(business_service => {
+                console.log("business_service in getServices", business_service)
                 const newService = new BusinessService(business_service)
                 const newServiceHtml = newService.newServiceHtml()
            
@@ -108,6 +102,8 @@ BusinessService.prototype.newServiceHtml = function () {
 }
 
 function showServiceOnClick() {
+    console.log("showServiceOnClick is hit")
+    // debugger
     let urlTitle = document.querySelectorAll('li a')
     for (let i = 0; i < urlTitle.length; i++) {   
     urlTitle[i].addEventListener('click', showServices)  
@@ -116,8 +112,11 @@ function showServiceOnClick() {
 
 // rendering show page info on index page 
 function showServices(e) {
+    console.log("showServices is hit")
+    // debugger
     e.preventDefault()
     let id = this.dataset.id
+    // let location = document.querySelector("#showInfo")
     let location = document.querySelector("#showInfo")
     location.innerHTML = ''
 
@@ -141,6 +140,34 @@ function showServices(e) {
         }) 
 }
 
+function newShowServices(data) {
+    document.querySelector('div#business-service-form').innerHTML = ""
+    $.ajax({
+        url: `${BASE_URL}/business_services/`,
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+            let renderLocation = document.getElementById('info').innerHTML
+            renderLocation = ""
+            data.map(business_service => {
+                console.log("business_service in getServices", business_service)
+                const newService = new BusinessService(business_service)
+                const newServiceHtml = newService.newServiceHtml()
+           
+                renderLocation += newServiceHtml
+                renderLocation += `<h5>Potential Clients for ${data.name}:</h5>`;
+                renderLocation += `<button class="loadShow">View Page</button>`    
+   
+        $(".loadShow").on("click", function() {
+            const businessServiceShowURL = (`${BASE_URL}/business_services/${data.id}`)
+            window.location.href = businessServiceShowURL 
+        });
+                showServiceOnClick()
+            })
+        }
+    })
+}
+
 function createBusinessService() {
     const business_service = {
         name: document.getElementById('name').value,
@@ -158,7 +185,8 @@ function createBusinessService() {
     })
     .then(resp => resp.json())
     .then(data => {
-        getServices()
+        console.log("data1", data)
+        newShowServices(data)
     })
 }
 
@@ -218,24 +246,8 @@ function showPC(data) {
                 </div></div>`
            }
         }
-    // location.innerHTML += `<button onclick={nextButton()}>Next</button>`
 }
 
-// function nextButton(event){
-//     const parts = window.location.href.split("/");
-//     const id = parts[parts.length - 1]; 
-//     const nextId = parseInt(id) + 1
-//     console.log(nextId)
-//     // let nextId = parseInt($(".js-next").attr("data-id")) + 1;
-//     $.get("/business_services/" + nextId + ".json", function(data) {
-//             showPC(data)
-//         //         // re-set the id to current on the link
-//         $(".js-next").attr("data-id", data["id"]);
-//         window.history.pushState(null, null, `${BASE_URL}/business_services/${nextId}`);
-//     })
-// }
-
-//     event.preventDefault() 
 
 // loads show page content on load
 window.onload = function() {

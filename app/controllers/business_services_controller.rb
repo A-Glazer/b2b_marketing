@@ -6,9 +6,9 @@ class BusinessServicesController < ApplicationController
         @business_service = BusinessService.new
     end
 
-    def index         
-        @business_services = BusinessService.all
-        @potential_clients = PotentialClient.all
+    def index
+        @business_services = current_user.business_services
+        @potential_clients = current_user.potential_clients
             respond_to do |format|
                 format.json { render json: @business_services}
                 format.html { render :index}
@@ -16,6 +16,7 @@ class BusinessServicesController < ApplicationController
     end
 
     def show
+        # binding.pry
         @all_clients = PotentialClient.all
         @business_service = BusinessService.find(params["id"])
         @potential_client = @business_service.potential_clients.build
