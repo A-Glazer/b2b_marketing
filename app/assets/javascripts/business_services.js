@@ -147,16 +147,16 @@ function newShowServices(data) {
         method: 'get',
         dataType: 'json',
         success: function(data) {
-            let renderLocation = document.getElementById('info').innerHTML
-            renderLocation = ""
+            let renderLocation = document.getElementById('info')
+            renderLocation.innerHTML = ""
             data.map(business_service => {
                 console.log("business_service in getServices", business_service)
                 const newService = new BusinessService(business_service)
                 const newServiceHtml = newService.newServiceHtml()
            
-                renderLocation += newServiceHtml
-                renderLocation += `<h5>Potential Clients for ${data.name}:</h5>`;
-                renderLocation += `<button class="loadShow">View Page</button>`    
+                renderLocation.innerHTML += newServiceHtml
+                renderLocation.innerHTML += `<h5>Potential Clients for ${data.name}:</h5>`;
+                renderLocation.innerHTML += `<button class="loadShow">View Page</button>`    
    
         $(".loadShow").on("click", function() {
             const businessServiceShowURL = (`${BASE_URL}/business_services/${data.id}`)

@@ -33,8 +33,10 @@ class BusinessServicesController < ApplicationController
     @business_service = current_user.business_services.build(service_params)
         if @business_service.save
             respond_to do |format|
-                format.html { render new_business_service_path }
+                # format.html { render new_business_service_path }
                 format.json { render json: @business_service}
+                format.html { render :show}
+
             end
         else
             render :new
