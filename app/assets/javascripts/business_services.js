@@ -45,6 +45,7 @@ function getSortedServices() {
 function getServices() {
     console.log("we reached getServices")
     document.querySelector('div#business-service-form').innerHTML = ""
+    // document.querySelector("#showInfo") = ""
     $.ajax({
         url: `${BASE_URL}/business_services/`,
         method: 'get',
@@ -66,6 +67,7 @@ function getServices() {
 function listenForNewServiceForm() {
         let newServiceForm = BusinessService.newServiceForm()
         document.querySelector('div#business-service-form').innerHTML = newServiceForm
+        document.querySelector("#showInfo").innerHTML = ""
 }
 
 class BusinessService {
@@ -103,10 +105,11 @@ BusinessService.prototype.newServiceHtml = function () {
 
 function showServiceOnClick() {
     console.log("showServiceOnClick is hit")
+    // document.querySelector("#showInfo") = ""
     // debugger
     let urlTitle = document.querySelectorAll('li a')
     for (let i = 0; i < urlTitle.length; i++) {   
-    urlTitle[i].addEventListener('click', showServices)  
+        urlTitle[i].addEventListener('click', showServices)  
     }
 }
 
@@ -147,7 +150,7 @@ function newShowServices(data) {
         method: 'get',
         dataType: 'json',
         success: function(data) {
-            let renderLocation = document.getElementById('info')
+            let renderLocation = document.querySelector("#showInfo")
             renderLocation.innerHTML = ""
             data.map(business_service => {
                 console.log("business_service in getServices", business_service)
@@ -174,6 +177,7 @@ function createBusinessService() {
         description: document.getElementById('description').value 
        
     }
+    // document.querySelector("#showInfo").innerHTML= ""
     fetch(`${BASE_URL}/business_services`, { 
         method: 'POST',
         body: JSON.stringify({ business_service }),
@@ -186,7 +190,8 @@ function createBusinessService() {
     .then(resp => resp.json())
     .then(data => {
         console.log("data1", data)
-        newShowServices(data)
+        getServices()
+        // newShowServices(data)
     })
 }
 
