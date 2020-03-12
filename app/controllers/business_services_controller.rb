@@ -17,8 +17,13 @@ class BusinessServicesController < ApplicationController
 
     def show
         # binding.pry
+        @splitURL=request.url.split(".json").join
+        @URL2 = @splitURL.split("/")
+        # binding.pry
+        @business_service_id = @URL2.last.to_i
+
         @all_clients = PotentialClient.all
-        @business_service = BusinessService.find(params["id"])
+        @business_service = BusinessService.find_by_id(@business_service_id)
         @potential_client = @business_service.potential_clients.build
         # binding.pry
         respond_to do |format|

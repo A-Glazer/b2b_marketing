@@ -137,6 +137,7 @@ function showServices(e) {
         location.innerHTML += `<button class="loadShow">View Page</button>`    
         
         $(".loadShow").on("click", function() {
+            console.log("url in showServices", data)
             const businessServiceShowURL = (`${BASE_URL}/business_services/${data.id}`)
             window.location.href = businessServiceShowURL 
         });
@@ -206,6 +207,7 @@ $(function () {
         // let nextId = parseInt($(".js-next").attr("data-id")) + 1;
         $.get("/business_services/" + nextId + ".json", function(data) {
                 showPC(data)
+                console.log("data in next button", data)
             //         // re-set the id to current on the link
             $(".js-next").attr("data-id", data["id"]);
             window.history.pushState(null, null, `${BASE_URL}/business_services/${nextId}`);
@@ -235,12 +237,14 @@ $(function () {
 })
     
 function showPC(data) {
+    console.log("data in showPC", data)
     let location =  document.querySelector(".potential-client-list")  
 
     location.innerHTML = ""
     location.innerHTML += `<div class="shadow p-3 mb-5 bg-white rounded"><h2>More information about: ${data.name}</h2><br/><h4>Description: ${data.description}</h4></div>`;
         location.innerHTML += `<h2>Potential Clients:</h2>`
         for (let i = 0; i < data.potential_clients.length; i++) {
+            // debugger
             if (data.potential_clients[i].name !== null) {
                 location.innerHTML += `<div class="card mx-auto" style="width: 18rem;"><div class="card-body">
                 <h5 class="card-title">${data.potential_clients[i].name}</h5>
@@ -259,10 +263,14 @@ window.onload = function() {
     const parts = window.location.href.split("/");
     const id = parts[parts.length - 1]; 
     $.get("/business_services/" + id + ".json", function(data) {
+        console.log("data once page changes", data)
+        // debugger
         showPC(data)
          
          // re-set the id to current on the link
          $(".js-next").attr("data-id", data["id"]);
+         console.log("data after next button", data)
+
     })
   };
 

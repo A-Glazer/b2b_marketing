@@ -19,6 +19,7 @@
 
 $(function() {
     $("#input#submit-button").on("submit", function(e) {
+        // debugger
         $.ajax({
             type: "POST",
             url: this.action,
@@ -27,7 +28,7 @@ $(function() {
                 console.log("response", response)
                 let newClient = new PotentialClient(response) 
                 newClient.newClientHtml()
-                debugger 
+                // debugger 
                 
                 $("#new_potential_client")[0].reset()
                 $("#submit-button").attr("disabled", false)

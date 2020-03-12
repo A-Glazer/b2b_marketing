@@ -4,6 +4,7 @@ class PotentialClientsController < ApplicationController
     before_action :find_client_scope, only: [:show, :index, :edit, :update, :destroy]
 
     def new
+        # binding.pry
         if params[:business_service_id] && !BusinessService.exists?(params[:business_service_id])
             redirect_to business_services_path
         else
@@ -12,7 +13,13 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
-        # binding.pry
+        binding.pry
+        # @splitURL=request.url.split(".json").join
+        # @URL2 = @splitURL.split("/")
+        # @business_service_id = @URL2.last.to_i
+
+        # @business_service = BusinessService.find_by_id(@business_service_id)
+
         @business_service = BusinessService.find(params[:business_service_id])
         @potential_client = @business_service.potential_clients.new(client_params)
         @potential_client.save
