@@ -270,6 +270,7 @@ window.onload = function() {
          // re-set the id to current on the link
          $(".js-next").attr("data-id", data["id"]);
          console.log("data after next button", data)
+        //  debugger
 
     })
   };

@@ -7,10 +7,15 @@
 <div class="card-body"> %>
 <br/>
 
-<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+<button onclick="listenForNewClientForm(); return false" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     Create a New Potential Client: 
   </button>
+  <br/>
 
+
+<div class="client-form-spot"></div>
+
+<% if false %>
 <div class="collapse width=75%" id="collapseExample">
   <div class="card card-body">
     
@@ -41,6 +46,7 @@
   </div>
 </div>
 
+<%end%>
 
 
 </div>

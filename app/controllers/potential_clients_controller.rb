@@ -13,9 +13,11 @@ class PotentialClientsController < ApplicationController
     end
 
     def create
-        binding.pry
+        # binding.pry
         # @splitURL=request.url.split(".json").join
         # @URL2 = @splitURL.split("/")
+        # @URL2.pop
+        # @business_service_id = @URL2.pop.to_i
         # @business_service_id = @URL2.last.to_i
 
         # @business_service = BusinessService.find_by_id(@business_service_id)
@@ -42,6 +44,7 @@ class PotentialClientsController < ApplicationController
         @business_services.each do |service|
             if service.id == @business_service_id.to_i    
                 render "potential_clients/index"
+                # render business_service_potential_client_path(@business_service)
             end
         end      
     end
